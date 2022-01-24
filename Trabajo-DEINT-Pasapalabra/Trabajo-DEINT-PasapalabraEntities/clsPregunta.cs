@@ -8,7 +8,7 @@ namespace Trabajo_DEINT_PasapalabraEntities
     {
         #region propiedades
         public int Id { get; set; }
-        public string Enuciado { get; set; }
+        public string Enunciado { get; set; }
         public string Respuesta { get; set; }
         public char Letra { get; set; }
         #endregion
@@ -16,25 +16,25 @@ namespace Trabajo_DEINT_PasapalabraEntities
         public clsPregunta(int id, string enenuciado, string respuesta, char letra)
         {
             Id = id;
-            Enuciado = enenuciado;
+            Enunciado = enenuciado;
             Respuesta = respuesta;
             Letra = letra;
         }
         public clsPregunta(string enunciado, string respuesta)
         {
-            Enuciado = enunciado;
+            Enunciado = enunciado;
             Respuesta = respuesta;
         }
         public clsPregunta(int id, string enunciado, string respuesta)
         {
             Id = id;
-            Enuciado = enunciado;
+            Enunciado = enunciado;
             Respuesta = respuesta;
         }
 
         public clsPregunta()
         {
-            Enuciado = "";
+            Enunciado = "";
             Respuesta = "";
             Letra = ' ';
         }

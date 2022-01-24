@@ -20,6 +20,14 @@ namespace Trabajo_DEINT_PasapalabraEntities
             TotalFalladas = totalFalladas;
             Tiempo = tiempo;
         }
+        public clsPartida()
+        {
+            Id = 0;
+            Nick = "";
+            TotalAcertadas =0;
+            TotalFalladas = 0;
+            Tiempo = DateTime.Now;
+        }
         public clsPartida(string nick, int totalAcertadas, int totalFalladas, DateTime time) 
         {
             Nick = nick;
