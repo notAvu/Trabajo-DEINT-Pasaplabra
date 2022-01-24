@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="edcf5776-787a-43e4-a469-6ecbd4b8c418"
-    Publisher="CN=Álvaro"
+    Name="9ab33790-a72c-4304-a72c-e624d1fbcf2b"
+    Publisher="CN=gdebustamante"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="edcf5776-787a-43e4-a469-6ecbd4b8c418" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="9ab33790-a72c-4304-a72c-e624d1fbcf2b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Trabajo-DEINT-PasapalabraUI</DisplayName>
-    <PublisherDisplayName>Álvaro</PublisherDisplayName>
+    <PublisherDisplayName>gdebustamante</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

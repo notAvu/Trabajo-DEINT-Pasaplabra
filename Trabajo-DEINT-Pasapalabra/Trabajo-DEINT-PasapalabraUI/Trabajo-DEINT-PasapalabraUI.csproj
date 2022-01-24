@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{69253DAD-8D03-48A6-BF3B-238A453980ED}</ProjectGuid>
+    <ProjectGuid>{56B806AD-BD15-47D5-9652-A86253B07272}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Trabajo_DEINT_PasapalabraUI</RootNamespace>
