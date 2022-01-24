@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace Trabajo_DEINT_PasapalabraDAL.Utilidades
 {
     /// <summary>
     /// Esta clase contendrá todas las propiedades y métodos que usaremos en una clase que ejecute instrucciones SELECT
     /// </summary>
-    public abstract class clsUtililidadSelectDAL : clsUtilidadBaseDAL
+    public abstract class clsUtilidadSelectDAL : clsUtilidadBaseDAL
     {
         //NOTA: Dichos métodos sobre esta clase no controlan ninguna SqlException ya que lo lanzan para
         //que se encarguen el método que lo llama
