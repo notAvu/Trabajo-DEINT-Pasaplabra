@@ -5,4 +5,8 @@
     <RootNamespace>Trabajo_DEINT_PasapalabraDAL</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
 </Project>

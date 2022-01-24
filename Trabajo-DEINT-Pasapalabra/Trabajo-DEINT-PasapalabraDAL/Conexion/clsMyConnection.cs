@@ -16,7 +16,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Conexion
         #endregion
 
         #region constructores
-        public ClsMyConnection()
+        public clsMyConnection()
         {
             Server = "servidor-german-sql.database.windows.net";
             DataBase = "PersonasDepartamentosDB";
@@ -24,7 +24,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Conexion
             Pass = "#Mitesoro";
         }
         //Con parámetros por si quisiera cambiar las conexiones
-        public ClsMyConnection(String server, String database, String user, String pass)
+        public clsMyConnection(String server, String database, String user, String pass)
         {
             Server = server;
             DataBase = database;
