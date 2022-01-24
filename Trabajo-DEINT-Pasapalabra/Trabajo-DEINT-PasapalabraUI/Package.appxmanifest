@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="9ab33790-a72c-4304-a72c-e624d1fbcf2b"
+    Name="51412063-72c5-40f6-8755-9de3d4685b80"
     Publisher="CN=gdebustamante"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="9ab33790-a72c-4304-a72c-e624d1fbcf2b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="51412063-72c5-40f6-8755-9de3d4685b80" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Trabajo-DEINT-PasapalabraUI</DisplayName>
