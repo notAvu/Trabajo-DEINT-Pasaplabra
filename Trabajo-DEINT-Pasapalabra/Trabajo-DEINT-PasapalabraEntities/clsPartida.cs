@@ -20,8 +20,8 @@ namespace Trabajo_DEINT_PasapalabraEntities
             TotalFalladas = totalFalladas;
             Tiempo = tiempo;
         }
-
-        #endregion          
+        public clsPartida(){}
+        #endregion
     }
 
 }
