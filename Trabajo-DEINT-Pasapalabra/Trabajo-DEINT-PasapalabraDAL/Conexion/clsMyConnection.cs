@@ -33,9 +33,6 @@ namespace Trabajo_DEINT_PasapalabraDAL.Conexion
         }
         #endregion
 
-
-
-
         #region metodos publicos
         /// <summary>
         /// Método que abre una conexión con la base de datos

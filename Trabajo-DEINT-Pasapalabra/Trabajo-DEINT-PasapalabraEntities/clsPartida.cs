@@ -5,7 +5,7 @@ namespace Trabajo_DEINT_PasapalabraEntities
     public class clsPartida
     {
         #region propiedades autoimplementadas
-        public int Id { get; set; }
+        public int Id { get; set; }//creo que no hace falta, preguntar
         public string Nick { get; set; }
         public int TotalAcertadas { get; set; }
         public int TotalFalladas { get; set; }
@@ -19,6 +19,13 @@ namespace Trabajo_DEINT_PasapalabraEntities
             TotalAcertadas = totalAcertadas;
             TotalFalladas = totalFalladas;
             Tiempo = tiempo;
+        }
+        public clsPartida(string nick, int totalAcertadas, int totalFalladas, DateTime time) 
+        {
+            Nick = nick;
+            TotalAcertadas = totalAcertadas;
+            TotalFalladas = totalFalladas;
+            Tiempo = time;
         }
 
         #endregion          
