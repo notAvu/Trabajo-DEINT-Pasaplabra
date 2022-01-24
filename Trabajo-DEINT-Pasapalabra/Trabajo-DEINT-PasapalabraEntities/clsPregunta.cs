@@ -25,6 +25,12 @@ namespace Trabajo_DEINT_PasapalabraEntities
             Enuciado = enunciado;
             Respuesta = respuesta;
         }
+        public clsPregunta(int id, string enunciado, string respuesta)
+        {
+            Id = id;
+            Enuciado = enunciado;
+            Respuesta = respuesta;
+        }
 
         public clsPregunta()
         {
