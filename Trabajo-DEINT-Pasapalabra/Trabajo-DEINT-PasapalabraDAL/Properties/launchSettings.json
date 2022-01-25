@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Trabajo-DEINT-PasapalabraDAL": {
+      "commandName": "Executable"
+    },
+    "newProfile1": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\jjmza\\Source\\Repos\\Trabajo-DEINT-Pasaplabra\\Trabajo-DEINT-Pasapalabra"
+    }
+  }
+}

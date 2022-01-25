@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
@@ -27,6 +28,11 @@ namespace Trabajo_DEINT_PasapalabraUI
             this.InitializeComponent();
             List<String> list = new List<String>() { "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B" };
             listBoxPrueba.ItemsSource = list;
+            DataTemplate dt = listBoxPrueba.ItemTemplate;
+            StackPanel stck = dt.LoadContent() as StackPanel;
+            Storyboard s = stck.Resources.ToList().First().Value as Storyboard;
+            ColorAnimation c = s.Children.First() as ColorAnimation; 
+            s.Begin();
         }
     }
 }
