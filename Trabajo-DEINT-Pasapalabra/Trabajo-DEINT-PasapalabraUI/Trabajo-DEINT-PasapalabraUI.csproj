@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\clsModelPregunta.cs" />
+    <Compile Include="Utils\clsCircularPanel.cs" />
     <Compile Include="Utils\clsVMBase.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
     <Compile Include="ViewModels\ClaseVM.cs" />
