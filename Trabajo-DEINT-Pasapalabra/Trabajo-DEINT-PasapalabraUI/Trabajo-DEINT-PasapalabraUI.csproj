@@ -122,7 +122,7 @@
     <Compile Include="Models\clsModelPregunta.cs" />
     <Compile Include="Utils\clsVMBase.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
-    <Compile Include="ViewModels\ClaseVM.cs" />
+    <Compile Include="ViewModels\clsGameVM.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
