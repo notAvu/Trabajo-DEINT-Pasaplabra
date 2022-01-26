@@ -12,7 +12,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
     {
         #region propiedades privadas
         List<clsModelPregunta> listadoPreguntas;
-        clsModelPregunta preguntaSeleccionada;//mejor indice seleccionado?
+        clsModelPregunta preguntaSeleccionada;
         int aciertos;
         int fallos;
         string respuestaJugador;
