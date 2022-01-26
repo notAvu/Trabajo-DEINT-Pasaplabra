@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using Trabajo_DEINT_PasapalabraDAL.Utilidades;
+using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadSelectDAL;
+using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadBaseDAL;
 using Trabajo_DEINT_PasapalabraEntities;
+
 
 namespace Trabajo_DEINT_PasapalabraDAL.Listados
 {
@@ -11,16 +13,15 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
     {
         public static List<clsPartida> CargarListadoPartidaDAL()
         {
-            clsUtilidadBaseDAL.instanciarConexion();
+            instanciarConexion();
             List<clsPartida> listadoPartidas = new List<clsPartida>();
-            clsUtilidadSelectDAL.ejecutarSelect("SELECT*FROM Partida");
-            while (clsUtilidadSelectDAL.MiLector.HasRows)
+            ejecutarSelect("SELECT*FROM Partida");
+            while (MiLector.HasRows)
             {
-                clsUtilidadSelectDAL.MiLector.Read();
-
-                listadoPartidas.Add(getPartida(clsUtilidadSelectDAL.MiLector));
+                MiLector.Read();
+                listadoPartidas.Add(getPartida(MiLector));
             }
-            clsUtilidadSelectDAL.cerrarFlujos();
+            cerrarFlujos();
             return listadoPartidas;
         }
 
