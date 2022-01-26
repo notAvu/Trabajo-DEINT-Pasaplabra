@@ -30,13 +30,25 @@
     <AppXManifest Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-01-26T00:05:54.855</Modified>
+      <Modified>2022-01-26T17:11:01.257</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>entrypoint\Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-01-26T00:05:54.505</Modified>
+      <Modified>2022-01-26T17:10:59.793</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\germa\.nuget\packages\microsoft.toolkit\7.1.2\lib\netstandard2.0\Microsoft.Toolkit.dll">
+      <PackagePath>Microsoft.Toolkit.dll</PackagePath>
+      <Modified>2021-11-18T22:28:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\germa\.nuget\packages\microsoft.toolkit.uwp\7.1.2\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.dll">
+      <PackagePath>Microsoft.Toolkit.Uwp.dll</PackagePath>
+      <Modified>2021-11-18T22:29:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\germa\.nuget\packages\microsoft.toolkit.uwp.ui\7.1.2\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.dll">
+      <PackagePath>Microsoft.Toolkit.Uwp.UI.dll</PackagePath>
+      <Modified>2021-11-18T22:29:18.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\.nuget\packages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -94,19 +106,19 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Trabajo-DEINT-PasapalabraUI.xr.xml">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.xr.xml</PackagePath>
-      <Modified>2022-01-26T00:05:54.439</Modified>
+      <Modified>2022-01-26T16:15:11.700</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-01-26T00:05:54.444</Modified>
+      <Modified>2022-01-26T17:10:59.684</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\GamePage.xbf">
       <PackagePath>Views\GamePage.xbf</PackagePath>
-      <Modified>2022-01-26T00:05:54.444</Modified>
+      <Modified>2022-01-26T17:10:59.684</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-01-26T00:05:54.444</Modified>
+      <Modified>2022-01-26T17:10:59.685</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -114,11 +126,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-01-25T23:21:01.468</Modified>
+      <Modified>2022-01-26T17:11:00.321</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Core\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-01-26T00:05:54.850</Modified>
+      <Modified>2022-01-26T17:11:01.249</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

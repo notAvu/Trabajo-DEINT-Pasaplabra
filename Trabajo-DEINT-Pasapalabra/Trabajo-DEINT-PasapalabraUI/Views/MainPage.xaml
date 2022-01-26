@@ -5,41 +5,60 @@
     xmlns:local="using:Trabajo_DEINT_PasapalabraUI"
     xmlns:ut="using:Trabajo_DEINT_PasapalabraUI.Utils"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Trabajo_DEINT_PasapalabraUI.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <!--TODOS
         Textos con sombras
-        Ellipse con BorderBrush Blanco
-        Elegir una fuente bonita
-        Titulo de arriba bonito-->
+        Rosco no aparece con otros elementos-->
+
+    <Page.DataContext>
+        <vm:clsGamePageVM/>
+    </Page.DataContext>
+    
+    <Page.Resources>
+        <ui:AttachedDropShadow x:Key="CommonShadow" Offset="4" />
+    </Page.Resources>
 
 
     <RelativePanel>
         <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
         </RelativePanel.Background>
-
-        <TextBlock FontSize="40" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"
+            <Button x:Name="BackButton" Foreground="White" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="BackButton_Click"
+                 RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
+        
+        <TextBlock x:Name="txtBlckT" FontSize="40" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"
+                   ui:Effects.Shadow="{StaticResource CommonShadow}" FontFamily="Calibri"
                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-            EL ROSCO DE<LineBreak/>PASABALABRA
+            EL ROSCO DE
         </TextBlock>
-
+        <TextBlock x:Name="txtBlckT2" FontSize="40" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"
+                   ui:Effects.Shadow="{StaticResource CommonShadow}" FontFamily="Verdana"
+                   RelativePanel.Below="txtBlckT" RelativePanel.AlignLeftWith="txtBlckT"  RelativePanel.AlignRightWith="txtBlckT">
+            PASABALABRA
+        </TextBlock>
+        
+        <!--Canvas Abajo Izquierda-->
         <Canvas x:Name="cvIzq" Height="160" Width="250" Margin="16"
                 RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
-            <Ellipse Fill="Blue" Height="150" Width="150" Canvas.ZIndex="1"/>
-            <Ellipse Fill="Green" Height="100" Width="100" Canvas.Left="136" Canvas.Top="25"/>
-            <TextBlock Text="0:00" FontSize="40" FontWeight="Bold" Foreground="White"
+            <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Canvas.ZIndex="1">
+                <Ellipse Fill="Blue" Height="150" Width="150" />
+            </Border>
+            <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Canvas.Left="136" Canvas.Top="25">
+                <Ellipse Fill="LimeGreen" Height="100" Width="100" />
+            </Border>
+            <TextBlock Text="0:00" FontSize="40" FontWeight="Bold" Foreground="White" 
                        Canvas.Left="35" Canvas.Top="45" Canvas.ZIndex="2">
-                <!--<TextBlock.Shadow>
-                    <ThemeShadow/>
-                </TextBlock.Shadow>-->
+
             </TextBlock>
             <TextBlock Text="0" FontSize="36" FontWeight="Bold" Foreground="White" 
                        Canvas.Left="176" Canvas.Top="50" Canvas.ZIndex="2"/>
         </Canvas>
-
+        
+        <!--Grid Abajo Derecha-->
         <Grid x:Name="cvDcha" Margin="16" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -49,30 +68,36 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock FontSize="12" FontWeight="Bold" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Center"
+            <TextBlock FontSize="12" FontWeight="Bold" Foreground="White" FontFamily="Verdana" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="0" Grid.Column="0" Margin="0,0,12,12">
                     PALABRAS
                     <LineBreak/>
                     FALLADAS
             </TextBlock>
-            <TextBlock FontSize="12" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
+            <TextBlock FontSize="12" FontWeight="Bold" Foreground="White" FontFamily="Verdana" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="1" Grid.Column="0" Margin="0,0,12,12">
                     PALABRAS
                     <LineBreak/>
                     RESTANTES
             </TextBlock>
-            <Ellipse Fill="Red" Height="60" Width="60" VerticalAlignment="Center" Margin="0,0,12,12"
-                     Grid.Row="0" Grid.Column="1"/>
-            <Ellipse Fill="Blue" Height="60" Width="60" Margin="0,0,12,12"
-                     Grid.Row="1" Grid.Column="1"/>
+            <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Grid.Row="0" Grid.Column="1" Margin="0,0,12,12">
+                <Ellipse Fill="Red" Height="60" Width="60" VerticalAlignment="Center"/>
+            </Border>
+                
+
+            <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Grid.Row="1" Grid.Column="1" Margin="0,0,12,12">
+                <Ellipse Fill="Blue" Height="60" Width="60" VerticalAlignment="Center"/>
+            </Border>
             <TextBlock Text="0" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="0" Grid.Column="1" Margin="0,0,12,12"/>
             <TextBlock Text="25" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="1" Grid.Column="1" Margin="0,0,12,12"/>
         </Grid>
 
-        <!--<ListBox x:Name="listBoxPrueba" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
-                 RelativePanel.AlignBottomWithPanel="True">
+        <ListBox x:Name="listBoxPrueba" RelativePanel.Below="txtBlckT2" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                 RelativePanel.Above="cvIzq" MaxWidth="1200">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ut:clsCircularPanel/>
@@ -83,7 +108,7 @@
                     <Button Content="A" CornerRadius="90" Height="64" Width="64"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>-->
+        </ListBox>
 
     </RelativePanel>
 </Page>

@@ -123,7 +123,7 @@
     <Compile Include="Utils\clsCircularPanel.cs" />
     <Compile Include="Utils\clsVMBase.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
-    <Compile Include="ViewModels\ClaseVM.cs" />
+    <Compile Include="ViewModels\clsGamePageVM.cs" />
     <Compile Include="Views\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
@@ -166,8 +166,15 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>7.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Trabajo-DEINT-PasapalabraBL\Trabajo-DEINT-PasapalabraBL.csproj">
+      <Project>{F1832D29-7687-4A46-B047-CC865FAE8664}</Project>
+      <Name>Trabajo-DEINT-PasapalabraBL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Trabajo-DEINT-PasapalabraEntities\Trabajo-DEINT-PasapalabraEntities.csproj">
       <Project>{FBE0ACE7-1880-4029-AC7B-ACF852F438F2}</Project>
       <Name>Trabajo-DEINT-PasapalabraEntities</Name>
