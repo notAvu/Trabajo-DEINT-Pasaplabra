@@ -8,8 +8,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-   
+    <Page.Resources>
+        <Storyboard x:Name="storyboard2">
+            <ColorAnimation x:Name="colorAnimation" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                             To="Red" Duration="0:0:1"/>
+        </Storyboard>
+        <SolidColorBrush x:Key="RedColor" Color="Red" />
+    </Page.Resources>
+  
         <!--<Storyboard x:Name="storyboard2">
             <DoubleAnimation EnableDependentAnimation="True"
                 AutoReverse="False" Storyboard.TargetName="ellipse"
@@ -23,7 +29,13 @@
 
     
     <RelativePanel>
-        <ListBox  x:Name="listBoxPrueba" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+        <ListBox x:Name="listBoxPrueba"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+            <ListBox.Resources>
+                <Storyboard x:Name="storyboard">
+                    <ColorAnimation Storyboard.TargetName="btn2" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                            From="Blue" To="Red" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever"/>
+                </Storyboard>
+            </ListBox.Resources>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ut:clsCircularPanel/>
@@ -34,19 +46,16 @@
                     <StackPanel>
                         <StackPanel.Resources>
                             <Storyboard x:Name="storyboard">
-                                <ColorAnimation Storyboard.TargetName="colors" Storyboard.TargetProperty="Color"
-                            From="Red" To="Yellow" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever" BeginTime="0:0:4"/>
+                                <ColorAnimation Storyboard.TargetName="btn" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                            From="Red" To="Yellow" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever"/>
                             </Storyboard>
                         </StackPanel.Resources>
-                        <Button CornerRadius="90" Height="64" Width="64">
-                            <Button.Background>
-                                <SolidColorBrush x:Name="colors" Color="Red">
-                                </SolidColorBrush>
-                            </Button.Background>
+                        <Button x:Name="btn2" CornerRadius="90" Height="64" Width="64" Background="Blue" Click="btn2_Click">
                         </Button>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button x:Name="btn2" RelativePanel.Below="listBoxPrueba" CornerRadius="90" Height="64" Width="64" Background="Red"/>
     </RelativePanel>
 </Page>

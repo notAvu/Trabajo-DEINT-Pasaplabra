@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,11 +29,21 @@ namespace Trabajo_DEINT_PasapalabraUI
             this.InitializeComponent();
             List<String> list = new List<String>() { "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B" };
             listBoxPrueba.ItemsSource = list;
+            (listBoxPrueba.Resources.ToList().First().Value as Storyboard).Begin();
             DataTemplate dt = listBoxPrueba.ItemTemplate;
             StackPanel stck = dt.LoadContent() as StackPanel;
             Storyboard s = stck.Resources.ToList().First().Value as Storyboard;
             ColorAnimation c = s.Children.First() as ColorAnimation; 
-            s.Begin();
+            storyboard.Begin();
+        }
+
+        private void btn2_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Storyboard.SetTarget(colorAnimation,btn);
+            storyboard2.Begin();
+            btn.Background=(SolidColorBrush)Resources["RedColor"];
+            storyboard2.Stop();
         }
     }
 }
