@@ -14,8 +14,8 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         {
             instanciarConexion();
             List<clsPregunta> listadoPregunta = new List<clsPregunta>();
-            ejecutarSelect("SELECT TOP 20 FROM Pregunta ORDER BY RAND()");
-            while (MiLector.HasRows)
+            ejecutarSelect("SELECT TOP 20 * FROM Preguntas ORDER BY RAND()");
+            while (MiLector.HasRows)   
             {
                 MiLector.Read();
 

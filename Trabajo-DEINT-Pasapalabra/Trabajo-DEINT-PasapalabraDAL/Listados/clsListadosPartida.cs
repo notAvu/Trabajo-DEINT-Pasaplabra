@@ -15,7 +15,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         {
             instanciarConexion();
             List<clsPartida> listadoPartidas = new List<clsPartida>();
-            ejecutarSelect("SELECT*FROM Partida");
+            ejecutarSelect("SELECT*FROM Partidas");
             while (MiLector.HasRows)
             {
                 MiLector.Read();
