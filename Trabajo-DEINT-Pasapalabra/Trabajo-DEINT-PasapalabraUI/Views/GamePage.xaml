@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="Trabajo_DEINT_PasapalabraUI.Views.GamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Trabajo_DEINT_PasapalabraUI.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    
+    <!--PAGINA DE COMIENZO QUE POR AHORA ESTOY USANDO PARA PRUEBAS-->
+    <Page.Resources>
+        <ui:AttachedDropShadow x:Key="CommonShadow" Offset="4"/>
+        <LinearGradientBrush x:Key="backGr">
+            <GradientStop Offset="0" Color="SlateBlue"/>
+            <GradientStop Offset="1" Color="AliceBlue"/>
+            <GradientStop Offset="2" Color="Blue"/>
+        </LinearGradientBrush>
+    </Page.Resources>
+    <RelativePanel>
+        <Button x:Name="BackButton" Foreground="Black" Style="{StaticResource NavigationBackButtonSmallStyle}"
+                 RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
+        <TextBlock ui:Effects.Shadow="{StaticResource CommonShadow}"
+                   RelativePanel.AlignRightWithPanel="True"
+                   Text="This is some text with a Shadow!"
+                   HorizontalAlignment="Center"/>
+        <Rectangle Fill="{StaticResource backGr}" Height="500" Width="500"/>
+    </RelativePanel>
+</Page>

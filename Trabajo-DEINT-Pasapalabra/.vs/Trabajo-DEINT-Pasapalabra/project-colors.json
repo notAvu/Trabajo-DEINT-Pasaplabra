@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "32f2c095-f60e-4531-94c7-f624c60418f3": {
+      "ProjectGuid": "32f2c095-f60e-4531-94c7-f624c60418f3",
+      "DisplayName": "Trabajo-DEINT-PasapalabraUI",
+      "ColorIndex": 0
+    },
+    "4f74b22c-8977-4240-b3f6-eaa45ba451eb": {
+      "ProjectGuid": "4f74b22c-8977-4240-b3f6-eaa45ba451eb",
+      "DisplayName": "Trabajo-DEINT-PasapalabraDAL",
+      "ColorIndex": 1
+    },
+    "fbe0ace7-1880-4029-ac7b-acf852f438f2": {
+      "ProjectGuid": "fbe0ace7-1880-4029-ac7b-acf852f438f2",
+      "DisplayName": "Trabajo-DEINT-PasapalabraEntities",
+      "ColorIndex": 2
+    },
+    "f1832d29-7687-4a46-b047-cc865fae8664": {
+      "ProjectGuid": "f1832d29-7687-4a46-b047-cc865fae8664",
+      "DisplayName": "Trabajo-DEINT-PasapalabraBL",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

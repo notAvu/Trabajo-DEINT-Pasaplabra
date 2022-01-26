@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,7 +22,9 @@ namespace Trabajo_DEINT_PasapalabraUI.Utils
             if (Children.Count > 0)
             {
                 // Center & radius of panel
-                Point center = new Point(finalSize.Width / 2, finalSize.Height / 2);
+                var ch = Children.FirstOrDefault().DesiredSize.Height; 
+                var cw = Children.FirstOrDefault().DesiredSize.Width; 
+                Point center = new Point((finalSize.Width - cw) / 2, (finalSize.Height - ch) / 2);
                 double radius = Math.Min(finalSize.Width, finalSize.Height) / 2.0;
                 radius *= 0.8;   // To avoid hitting edges
 

@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Trabajo_DEINT_PasapalabraBL</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Trabajo-DEINT-PasapalabraDAL\Trabajo-DEINT-PasapalabraDAL.csproj" />
+    <ProjectReference Include="..\Trabajo-DEINT-PasapalabraEntities\Trabajo-DEINT-PasapalabraEntities.csproj" />
+  </ItemGroup>
 
 </Project>
