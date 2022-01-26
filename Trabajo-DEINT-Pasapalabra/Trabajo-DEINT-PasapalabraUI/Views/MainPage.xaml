@@ -13,6 +13,10 @@
             <ColorAnimation x:Name="colorAnimation" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
                              To="Red" Duration="0:0:1"/>
         </Storyboard>
+        <Storyboard x:Name="storyboard3">
+            <DoubleAnimation x:Name="doubleAnimation" Duration="0:0:1" To="717" Storyboard.TargetProperty="(Button.RenderTransform).(CompositeTransform.TranslateX)" d:IsOptimized="True"/>
+
+        </Storyboard>
         <SolidColorBrush x:Key="RedColor" Color="Red" />
     </Page.Resources>
   
@@ -33,7 +37,7 @@
             <ListBox.Resources>
                 <Storyboard x:Name="storyboard">
                     <ColorAnimation Storyboard.TargetName="btn2" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
-                            From="Blue" To="Red" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever"/>
+                            From="Blue" To="Red" Duration="0:0:2"/>
                 </Storyboard>
             </ListBox.Resources>
             <ListBox.ItemsPanel>
@@ -51,6 +55,11 @@
                             </Storyboard>
                         </StackPanel.Resources>
                         <Button x:Name="btn2" CornerRadius="90" Height="64" Width="64" Background="Blue" Click="btn2_Click">
+                            <Button.RenderTransform>
+                                <CompositeTransform>
+                                    <CompositeTransform.CenterX></CompositeTransform.CenterX>
+                                </CompositeTransform>
+                            </Button.RenderTransform>
                         </Button>
                     </StackPanel>
                 </DataTemplate>

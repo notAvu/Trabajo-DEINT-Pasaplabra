@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Trabajo-DEINT-Pasapalabra",
+    "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraUI",
+    "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraUI\\Views"
   ],
+  "SelectedNode": "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraUI\\Views\\MainPage.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

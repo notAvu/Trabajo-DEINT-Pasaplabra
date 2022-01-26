@@ -39,11 +39,17 @@ namespace Trabajo_DEINT_PasapalabraUI
 
         private void btn2_Click(object sender, RoutedEventArgs e)
         {
+            if (storyboard2.GetCurrentState().Equals(ClockState.Filling)){
+                storyboard2.Stop();
+            }
+            
             Button btn = sender as Button;
+            Storyboard.SetTarget(doubleAnimation, btn);
+
+            storyboard3.Begin();
             Storyboard.SetTarget(colorAnimation,btn);
-            storyboard2.Begin();
-            btn.Background=(SolidColorBrush)Resources["RedColor"];
-            storyboard2.Stop();
+            storyboard2.Begin();       
+           
         }
     }
 }

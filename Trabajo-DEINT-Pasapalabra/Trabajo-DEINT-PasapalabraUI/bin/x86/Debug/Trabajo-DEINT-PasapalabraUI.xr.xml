@@ -18,6 +18,10 @@
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
       <RootProperty Name="Color" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.DoubleAnimation">
+      <RootProperty Name="Duration" />
+      <RootProperty Name="To" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.Animation.ColorAnimation">
       <RootProperty Name="To" />
       <RootProperty Name="Duration" />
@@ -48,6 +52,7 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
       <RootProperty Name="Background" />
+      <RootProperty Name="RenderTransform" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsPanelTemplate">
@@ -60,6 +65,9 @@
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Resources" />
       <RootProperty Name="Children" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.CompositeTransform">
+      <RootProperty Name="CenterX" />
     </RootType>
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.MainPage" />
   </Roots.RootTypes>
