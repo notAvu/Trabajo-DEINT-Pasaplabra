@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-01-26T18:51:52.627</Modified>
+      <Modified>2022-01-27T19:41:58.586</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>entrypoint\Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-01-26T18:51:51.925</Modified>
+      <Modified>2022-01-27T19:41:58.169</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\.nuget\packages\microsoft.toolkit\7.1.2\lib\netstandard2.0\Microsoft.Toolkit.dll">
       <PackagePath>Microsoft.Toolkit.dll</PackagePath>
@@ -72,15 +72,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraBL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraBL.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraBL.dll</PackagePath>
-      <Modified>2022-01-26T18:51:47.083</Modified>
+      <Modified>2022-01-27T16:33:52.126</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraEntities\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraEntities.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraEntities.dll</PackagePath>
-      <Modified>2022-01-26T17:55:47.300</Modified>
+      <Modified>2022-01-27T16:23:39.339</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraBL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraDAL.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraDAL.dll</PackagePath>
-      <Modified>2022-01-26T18:51:46.672</Modified>
+      <Modified>2022-01-27T16:33:51.681</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.19041.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
@@ -88,7 +88,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\fondo_pasapalabra.jpeg">
       <PackagePath>Assets\Images\fondo_pasapalabra.jpeg</PackagePath>
-      <Modified>2022-01-26T17:55:47.301</Modified>
+      <Modified>2022-01-27T16:23:39.341</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -128,21 +128,25 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2022-01-25T16:33:32.125</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Fonts\Keedy Sans Regular.ttf">
+      <PackagePath>Assets\Fonts\Keedy Sans Regular.ttf</PackagePath>
+      <Modified>2022-01-27T17:28:13.656</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Trabajo-DEINT-PasapalabraUI.xr.xml">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.xr.xml</PackagePath>
-      <Modified>2022-01-26T17:56:32.417</Modified>
+      <Modified>2022-01-27T19:41:58.091</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-01-26T18:51:51.866</Modified>
+      <Modified>2022-01-27T19:31:49.081</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\GamePage.xbf">
       <PackagePath>Views\GamePage.xbf</PackagePath>
-      <Modified>2022-01-26T18:51:51.866</Modified>
+      <Modified>2022-01-27T19:41:58.095</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-01-26T18:51:51.866</Modified>
+      <Modified>2022-01-27T19:31:49.081</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -150,11 +154,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-01-26T17:56:33.718</Modified>
+      <Modified>2022-01-27T17:46:18.289</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Core\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-01-26T18:51:52.623</Modified>
+      <Modified>2022-01-27T19:41:58.583</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

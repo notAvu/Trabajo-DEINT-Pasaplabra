@@ -97,6 +97,9 @@
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Fonts\Keedy Sans Regular.ttf">
+      <PackagePath>Assets\Fonts\Keedy Sans Regular.ttf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jjmza\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Trabajo-DEINT-PasapalabraUI.xr.xml">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.xr.xml</PackagePath>
     </AppxPackagedFile>
