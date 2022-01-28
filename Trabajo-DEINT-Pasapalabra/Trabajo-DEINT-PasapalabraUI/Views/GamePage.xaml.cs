@@ -27,5 +27,10 @@ namespace Trabajo_DEINT_PasapalabraUI.Views
             this.InitializeComponent();
             storyboard4.Begin();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
     }
 }

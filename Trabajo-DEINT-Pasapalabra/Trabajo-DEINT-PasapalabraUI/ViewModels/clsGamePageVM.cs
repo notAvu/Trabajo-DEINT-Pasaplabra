@@ -27,8 +27,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #region constructor
         public clsGamePageVM()
         {
-            cargarListadoPreguntas();
-            preguntaSeleccionada = listadoPreguntas[0];
+            //cargarListadoPreguntas();
+            //preguntaSeleccionada = listadoPreguntas[0];
             aciertos = 0;
             fallos = 0;
             tiempoMax = 300;

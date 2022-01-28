@@ -26,9 +26,9 @@
         <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
         </RelativePanel.Background>
-            <Button x:Name="BackButton" Foreground="White" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="BackButton_Click"
+        <Button x:Name="BackButton" Foreground="White" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="BackButton_Click"
                  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
-        
+
         <TextBlock x:Name="txtBlckT" FontSize="40" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"
                    ui:Effects.Shadow="{StaticResource CommonShadow}" FontFamily="Calibri"
                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
@@ -39,9 +39,9 @@
                    RelativePanel.Below="txtBlckT" RelativePanel.AlignLeftWith="txtBlckT"  RelativePanel.AlignRightWith="txtBlckT">
             PASABALABRA
         </TextBlock>
-        
+
         <!--Canvas Abajo Izquierda-->
-        <Canvas x:Name="cvIzq" Height="160" Width="250" Margin="16"
+        <Canvas x:Name="cvIzq" MinHeight="160" MinWidth="250" Margin="16"
                 RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Canvas.ZIndex="1">
                 <Ellipse Fill="Blue" Height="150" Width="150" />
@@ -56,7 +56,7 @@
             <TextBlock Text="0" FontSize="36" FontWeight="Bold" Foreground="White" 
                        Canvas.Left="176" Canvas.Top="50" Canvas.ZIndex="2"/>
         </Canvas>
-        
+
         <!--Grid Abajo Derecha-->
         <Grid x:Name="cvDcha" Margin="16" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
             <Grid.RowDefinitions>
@@ -84,7 +84,7 @@
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Grid.Row="0" Grid.Column="1" Margin="0,0,12,12">
                 <Ellipse Fill="Red" Height="60" Width="60" VerticalAlignment="Center"/>
             </Border>
-                
+
 
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Grid.Row="1" Grid.Column="1" Margin="0,0,12,12">
                 <Ellipse Fill="Blue" Height="60" Width="60" VerticalAlignment="Center"/>
@@ -94,23 +94,46 @@
             <TextBlock Text="25" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="1" Grid.Column="1" Margin="0,0,12,12"/>
         </Grid>
+        <Grid x:Name="cvRosco" RelativePanel.AlignBottomWith="cvIzq" Background="Transparent"
+                   RelativePanel.Below="txtBlckT2" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+            <!--NO FUNCIONA EL CIRCULAR PANEL DENTRO DEL CANVAS-->            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="listBoxPrueba" Grid.Row="0" Grid.Column="0">
+                <ListBox.Background>
+                    <ImageBrush ImageSource="\Assets\Images\fondo_pasapalabra.jpeg"></ImageBrush>
+                </ListBox.Background>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ut:clsCircularPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button BorderBrush="White" BorderThickness="2" Content="A" CornerRadius="90" Height="64" Width="64"
+                            FontFamily="Arial" Foreground="White" Background="Blue" FontSize="32" FontWeight="Black" IsHitTestVisible="False"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Ellipse  Height="550" Width="550" Opacity="0.8" Fill="White"/>
+            <StackPanel Height="550" Width="550" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Background="Transparent">
+                <TextBlock Text="Con la A" Foreground="Black"  FontSize="32" FontWeight="SemiBold" Margin="0,60,0,0" HorizontalAlignment="Center" />
+                <TextBlock TextWrapping="WrapWholeWords" TextAlignment="Center"
+                           Text="Interfaz de programación de aplicaciones es un conjunto de definiciones y protocolos que se usa para diseñar e integrar el software de las aplicaciones."
+                           HorizontalAlignment="Center" Margin="0,50,0,0"
+                           Foreground="Black"  FontSize="22" FontWeight="SemiBold" 
+                           MaxWidth="450"/>
+                <TextBox PlaceholderText="RESPUESTA" TextAlignment="Center" Margin="0,100,0,0" FontSize="22" CornerRadius="6" BorderBrush="Black" 
+                         MaxWidth="240" MinHeight="40"/>
+                <Button Content="Responder" CornerRadius="6" Background="CadetBlue" FontSize="22" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+            </StackPanel>
+        </Grid>
 
-        <ListBox x:Name="listBoxPrueba" RelativePanel.Below="txtBlckT2" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
-                 RelativePanel.Above="cvIzq" MaxWidth="1200" >
-            <ListBox.Background>
-                <ImageBrush ImageSource="\Assets\Images\fondo_pasapalabra.jpeg"></ImageBrush>
-            </ListBox.Background>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ut:clsCircularPanel/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Button BorderBrush="White" BorderThickness="3" Content="A" CornerRadius="90" Height="64" Width="64"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+
 
     </RelativePanel>
 </Page>
