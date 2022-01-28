@@ -17,7 +17,6 @@
     <Page.DataContext>
         <vm:clsGamePageVM/>
     </Page.DataContext>
-    
     <Page.Resources>
         <ui:AttachedDropShadow x:Key="CommonShadow" Offset="4" />
     </Page.Resources>
@@ -97,7 +96,10 @@
         </Grid>
 
         <ListBox x:Name="listBoxPrueba" RelativePanel.Below="txtBlckT2" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
-                 RelativePanel.Above="cvIzq" MaxWidth="1200">
+                 RelativePanel.Above="cvIzq" MaxWidth="1200" >
+            <ListBox.Background>
+                <ImageBrush ImageSource="\Assets\Images\fondo_pasapalabra.jpeg"></ImageBrush>
+            </ListBox.Background>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ut:clsCircularPanel/>
@@ -105,7 +107,7 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="A" CornerRadius="90" Height="64" Width="64"/>
+                    <Button BorderBrush="White" BorderThickness="3" Content="A" CornerRadius="90" Height="64" Width="64"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

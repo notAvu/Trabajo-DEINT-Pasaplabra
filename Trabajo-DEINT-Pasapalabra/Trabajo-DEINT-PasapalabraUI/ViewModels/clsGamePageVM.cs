@@ -19,7 +19,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #region constructores
         public clsGamePageVM()
         {
-            ListadoPreguntas = clsListadosPreguntaBL.CargarListadoPreguntaBL();
+            //ListadoPreguntas = clsListadosPreguntaBL.CargarListadoPreguntaBL();
             //TODO BINDEAR EL LISTADO CON ITEMS SOURCE DEL LIST BOX
         }
         #endregion

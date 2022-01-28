@@ -25,6 +25,7 @@ namespace Trabajo_DEINT_PasapalabraUI.Views
         public GamePage()
         {
             this.InitializeComponent();
+            storyboard4.Begin();
         }
     }
 }

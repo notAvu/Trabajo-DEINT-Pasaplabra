@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using Trabajo_DEINT_PasapalabraDAL.Utilidades;
+using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadBaseDAL;
+using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadSelectDAL;
 using Trabajo_DEINT_PasapalabraEntities;
 
 namespace Trabajo_DEINT_PasapalabraDAL.Listados
@@ -11,16 +12,16 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
     {
         public static List<clsPregunta> CargarListadoPreguntaDAL()
         {
-            clsUtilidadBaseDAL.instanciarConexion();
+            instanciarConexion();
             List<clsPregunta> listadoPregunta = new List<clsPregunta>();
-            clsUtilidadSelectDAL.ejecutarSelect("SELECT TOP 20 FROM Pregunta ORDER BY RAND()");
-            while (clsUtilidadSelectDAL.MiLector.HasRows)
+            ejecutarSelect("SELECT TOP 20 * FROM Preguntas ORDER BY RAND()");
+            while (MiLector.HasRows)   
             {
-                clsUtilidadSelectDAL.MiLector.Read();
+                MiLector.Read();
 
-                listadoPregunta.Add(getPregunta(clsUtilidadSelectDAL.MiLector));
+                listadoPregunta.Add(getPregunta(MiLector));
             }
-            clsUtilidadSelectDAL.cerrarFlujos();
+            cerrarFlujos();
             return listadoPregunta;
         }
 
