@@ -1,6 +1,7 @@
 ﻿using _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private DelegateCommand checkRespuesta;
         private DelegateCommand saltarPregunta;
         #endregion
-        #region constructor
+        #region constructor por defecto
         public clsGamePageVM()
         {
             cargarListadoPreguntas();
@@ -68,6 +69,21 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         {
             clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta)));
         }
+
+        /// <summary>
+        /// Método que elimina las tildes de la cadena que entra como parámetro y devuelve la misma cadena pero sin las tildes
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns>Devuelve asociado al nombre una cadena sin tildes</returns>
+        public static string SinTildes(string texto) =>
+            new String(
+                texto.Normalize(NormalizationForm.FormD)
+                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                .ToArray()
+            )
+            .Normalize(NormalizationForm.FormC);
+        
+        
         #endregion
 
     }
