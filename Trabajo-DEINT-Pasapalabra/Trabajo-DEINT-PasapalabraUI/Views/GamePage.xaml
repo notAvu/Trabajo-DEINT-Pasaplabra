@@ -5,7 +5,7 @@
     xmlns:ut="using:Trabajo_DEINT_PasapalabraUI.Utils"
     xmlns:local="using:Trabajo_DEINT_PasapalabraUI.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -19,7 +19,7 @@
             </Storyboard>
     </Page.Resources>
 
-    <RelativePanel>
+    <RelativePanel x:Name="rltRoot">
         <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"></ImageBrush>
         </RelativePanel.Background>
