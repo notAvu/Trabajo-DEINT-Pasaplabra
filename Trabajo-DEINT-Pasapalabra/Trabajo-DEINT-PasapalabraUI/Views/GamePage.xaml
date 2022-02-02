@@ -7,19 +7,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
 
-    <Page.Resources>
-        <Storyboard x:Name="storyboard4">
-                <DoubleAnimation x:Name="doubleAnimation" Duration="0:0:5" To="100" Storyboard.TargetName="bn" Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateX)" d:IsOptimized="True"
-                                 RepeatBehavior="Forever" AutoReverse="True"/>
-            <DoubleAnimation  Duration="0:0:5" To="-1000" Storyboard.TargetName="bn" Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateY)" d:IsOptimized="True"
-                                 RepeatBehavior="Forever" AutoReverse="True"/>
-
-            </Storyboard>
-    </Page.Resources>
-
-    <RelativePanel>
+    <RelativePanel x:Name="rltRoot">
         <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"></ImageBrush>
         </RelativePanel.Background>
@@ -27,19 +18,16 @@
             <StackPanel.Background>
                 <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
             </StackPanel.Background>
+                <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center"
+                         OffsetZ="5.0" OffsetX="10.0" OffsetY="10.0" Color="#02035e">
+                    <!--<TextBlock x:Name="Target" Text="A" FontSize="260" Foreground="White" />-->
             <TextBlock Margin="0,10,0,40" FontSize="88" FontWeight="Bold" Foreground="White" FontFamily="Keedy Sans" 
                        VerticalAlignment="Center" HorizontalAlignment="Center" Text="PASAPALABRA"/>
+                </controls:DropShadowPanel>
             <Button FontFamily="Keedy Sans" HorizontalAlignment="Center" Command="{Binding Jugar}" BorderBrush="Black"  Background="White" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold">PLAY</Button>
             <Button x:Name="btnPuntuacion" HorizontalAlignment="Center" BorderBrush="Black"  Background="White" Margin="0,15,0,0" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
             Command="{Binding VerPuntuacion}" CommandParameter="{Binding ElementName=btnPuntuacion}" FontFamily="Keedy Sans">SCOREBOARD</Button>
         </StackPanel>
-        <Border BorderThickness="2" Canvas.ZIndex="-99" BorderBrush="White" x:Name="bn" RelativePanel.Below="stckMenu" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="10" Background="Blue" Padding="10" CornerRadius="25" Width="50" Height="50">
-            <Border.RenderTransform>
-                <CompositeTransform CenterX="0" CenterY="0"/>
-            </Border.RenderTransform>
-            <TextBlock FontWeight="Bold" Foreground="White" FontSize="20" Text="A" HorizontalAlignment="Center" />
-        </Border>
-       
     </RelativePanel>
 
    
