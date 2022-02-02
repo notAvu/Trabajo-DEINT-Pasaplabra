@@ -34,5 +34,10 @@ namespace Trabajo_DEINT_PasapalabraUI
         {
             this.Frame.Navigate(typeof(GamePage));
         }
+
+        private void btnMicro_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO aqui el codigo para hablar por el micro de Juanjo
+        }
     }
 }

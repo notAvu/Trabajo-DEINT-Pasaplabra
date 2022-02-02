@@ -139,6 +139,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\fondo_pasapalabra.jpeg" />
+    <Content Include="Assets\Images\micro1.png" />
+    <Content Include="Assets\Images\micro2.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -167,6 +169,9 @@
       <Version>6.2.13</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>7.1.2</Version>
     </PackageReference>
   </ItemGroup>
