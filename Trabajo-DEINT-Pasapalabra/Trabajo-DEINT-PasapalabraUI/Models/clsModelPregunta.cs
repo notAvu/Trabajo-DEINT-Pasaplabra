@@ -7,7 +7,7 @@ using Trabajo_DEINT_PasapalabraEntities;
 
 namespace Trabajo_DEINT_PasapalabraUI.Models
 {
-    class clsModelPregunta : clsPregunta
+    public class clsModelPregunta : clsPregunta
     {
         #region propiedadesAutoimplementadas
         public int Estado { get; set; }
