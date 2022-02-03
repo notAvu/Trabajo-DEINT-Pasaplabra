@@ -75,7 +75,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// </summary>
         /// <param name="texto"></param>
         /// <returns>Devuelve asociado al nombre una cadena sin tildes</returns>
-        public static string SinTildes(string texto) =>
+        private static string sinTildes(string texto) =>
             new String(
                 texto.Normalize(NormalizationForm.FormD)
                 .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)

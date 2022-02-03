@@ -132,11 +132,20 @@
                            HorizontalAlignment="Center" Margin="0,50,0,0"
                            Foreground="Black"  FontSize="22" FontWeight="SemiBold" 
                            MaxWidth="450"/>
-                <TextBox PlaceholderText="RESPUESTA" TextAlignment="Center" Margin="0,100,0,0" FontSize="22" CornerRadius="6" BorderBrush="Black" 
-                         MaxWidth="240" MinHeight="40"/>
-                <Button Content="Responder" CornerRadius="6" Background="CadetBlue" FontSize="22" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <TextBox PlaceholderText="RESPUESTA" TextAlignment="Center" Margin="50,30,0,0" FontSize="22" CornerRadius="0" BorderBrush="Black" 
+                         MaxWidth="240" MinHeight="40" FontFamily="Berlin Sans FB" BorderThickness="0,0,0,2" Background="{ThemeResource AppBarItemBackgroundThemeBrush}"/>
+                    <Button Name="btnMicro" Click="btnMicro_Click"  Height="30" BorderBrush="DarkBlue" BorderThickness="1" CornerRadius="20"
+                        HorizontalAlignment="Center" Margin="20,20,0,0" Padding="0,0,0,0" MinWidth="20" MinHeight="20" Background="{ThemeResource AppBarItemBackgroundThemeBrush}">
+                        <Image Source="/Assets/Images/micro1.png" Opacity="2"></Image>
+                    </Button>
+                </StackPanel>
+                <AppBarButton Icon="Accept" CornerRadius="6" Background="CadetBlue" HorizontalAlignment="Center" Margin="0,15,0,0" 
+                        MaxWidth="40" MaxHeight="40" />
+                <Button Name="btnPasaPalabra" Content="PASAPALABRA" MinHeight="20" MinWidth="100" HorizontalAlignment="Center" Margin="0,20,0,0"
+                        CornerRadius="20" BorderBrush="Black" BorderThickness="1" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" FontFamily="Berlin Sans FB" />
             </StackPanel>
         </Grid>
-
     </RelativePanel>
 </Page>
