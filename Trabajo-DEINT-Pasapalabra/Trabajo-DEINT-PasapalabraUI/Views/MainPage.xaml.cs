@@ -6,6 +6,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Trabajo_DEINT_PasapalabraUI.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Capture;
+using Windows.Media.SpeechRecognition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -35,9 +37,85 @@ namespace Trabajo_DEINT_PasapalabraUI
             this.Frame.Navigate(typeof(GamePage));
         }
 
-        private void btnMicro_Click(object sender, RoutedEventArgs e)
+        
+        /*
+        //TTS 
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //TODO aqui el codigo para hablar por el micro de Juanjo
+            MediaElement mediaplayer = new MediaElement();
+            using (var speech = new SpeechSynthesizer())
+            {
+                speech.Voice = SpeechSynthesizer.AllVoices.First(gender => gender.Gender == VoiceGender.Female);
+                string ssml = @"<speak version='1.0' " + "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='es-ES'>" + txtBox.Text + "</speak>";
+                SpeechSynthesisStream stream = await speech.SynthesizeSsmlToStreamAsync(ssml);
+                mediaplayer.SetSource(stream, stream.ContentType);
+
+            }
+        }
+        */
+        //MICROFONO
+        private async void btnMicro_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of SpeechRecognizer.
+            var speechRecognizer = new Windows.Media.SpeechRecognition.SpeechRecognizer();
+            // Compile the dictation grammar by default.
+            await speechRecognizer.CompileConstraintsAsync();
+            // Start recognition.
+            try
+            {
+                SpeechRecognitionResult speechRecognitionResult = await speechRecognizer.RecognizeWithUIAsync();
+                // Do something with the recognition result.
+                txtRespuesta.Text = speechRecognitionResult.Text;
+            }
+            catch (Exception)
+            {
+                RequestMicrophonePermission();
+            }
+        }
+        private static int NoCaptureDevicesHResult = -1072845856;
+
+        public async void RequestMicrophonePermission()
+        {
+
+            ContentDialog noWifiDialog = new ContentDialog()
+            {
+                Title = "No tienes activados los permisos del micrófono",
+                Content = "¿Deseas activarlos?",
+                PrimaryButtonText = "Sí",
+                CloseButtonText = "No",
+
+            };
+            ContentDialogResult result = await noWifiDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                try
+                {
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-speech"));
+                    MediaCaptureInitializationSettings settings = new MediaCaptureInitializationSettings();
+                    settings.StreamingCaptureMode = StreamingCaptureMode.Audio;
+                    settings.MediaCategory = MediaCategory.Speech;
+                    MediaCapture capture = new MediaCapture();
+                    await capture.InitializeAsync(settings);
+                }
+                catch (TypeLoadException)
+                {
+                    var messageDialog = new Windows.UI.Popups.MessageDialog("Componentes del reproductor no compatibles con tu sistema.");
+                    await messageDialog.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    var messageDialog = new Windows.UI.Popups.MessageDialog("No tienes permiso para activar el micrófono, habla con el administrador del equipo.");
+                    await messageDialog.ShowAsync();
+                }
+                catch (Exception exception)
+                {
+                    if (exception.HResult == NoCaptureDevicesHResult)
+                    {
+                        var messageDialog = new Windows.UI.Popups.MessageDialog("No se detectan dispositivos de audio en tu equipo.");
+                        await messageDialog.ShowAsync();
+                    }
+                }
+            }
         }
     }
 }

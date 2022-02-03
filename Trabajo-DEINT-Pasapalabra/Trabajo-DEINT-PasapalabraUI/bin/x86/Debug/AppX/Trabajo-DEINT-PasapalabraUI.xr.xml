@@ -180,8 +180,8 @@
       <RootProperty Name="Background" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="MinWidth" />
-      <RootProperty Name="MinHeight" />
+      <RootProperty Name="MaxWidth" />
+      <RootProperty Name="MaxHeight" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="PlaceholderText" />
