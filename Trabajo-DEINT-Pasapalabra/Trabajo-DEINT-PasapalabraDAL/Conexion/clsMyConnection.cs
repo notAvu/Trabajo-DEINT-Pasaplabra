@@ -18,10 +18,10 @@ namespace Trabajo_DEINT_PasapalabraDAL.Conexion
         #region constructores
         public clsMyConnection()
         {
-            Server = "servidor-german-sql.database.windows.net";
-            DataBase = "PersonasDepartamentosDB";
-            User = "gdebustamante";
-            Pass = "#Mitesoro";
+            Server = "iesnervion.database.windows.net";
+            DataBase = "WPFSample";
+            User = "prueba";
+            Pass = "iesnervion123";
         }
         //Con parámetros por si quisiera cambiar las conexiones
         public clsMyConnection(String server, String database, String user, String pass)
