@@ -9,65 +9,100 @@ using Trabajo_DEINT_PasapalabraBL.Listados;
 using Trabajo_DEINT_PasapalabraEntities;
 using Trabajo_DEINT_PasapalabraUI.Models;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 {
-    public class clsGamePageVM:clsVMBase
+    public class clsGamePageVM : clsVMBase
     {
         #region propiedades privadas
         private List<clsModelPregunta> listadoPreguntas;
         private clsModelPregunta preguntaSeleccionada;
-        private int aciertos;
-        private int fallos;
-        private int tiempoMax;
-        private string respuestaJugador;
+        private string txtBoxRespuestaJugador;
         private DispatcherTimer tiempo;
-        private DelegateCommand checkRespuesta;
+        private DelegateCommand checkRespuestaCommand;
         private DelegateCommand saltarPregunta;
         #endregion
         #region constructor por defecto
         public clsGamePageVM()
         {
-            //cargarListadoPreguntas();
-            //preguntaSeleccionada = listadoPreguntas[0];
-            aciertos = 0;
-            fallos = 0;
-            tiempoMax = 300;
-            tiempo = new DispatcherTimer();
-            tiempo.Interval = new TimeSpan(0, 0, 1);
-            tiempo.Tick += (a, b) =>
-            {
-                TiempoMax--;
-                NotifyPropertyChanged("TiempoMax");
-            };
-            respuestaJugador = "";
+            cargarListadoPreguntas();
+            preguntaSeleccionada = listadoPreguntas[0];
+            recargarPregunta(preguntaSeleccionada);
+            TiempoMax = 300;
+            NotifyPropertyChanged("TiempoMax");
+            iniciarContador();
+            TxtBoxRespuestaJugador = "";
         }
+
         #endregion
         #region propiedades publicas
-        public string RespuestaJugador { get => respuestaJugador; set => respuestaJugador = value; }
-        public DispatcherTimer TiempoRestante { get => tiempo; set => tiempo = value; }
-        public int Aciertos { get => aciertos; set => aciertos = value; }
-        public int Fallos { get => fallos; set => fallos = value; }
-        public int TiempoMax { get => tiempoMax; set => tiempoMax = value; }
-        public DelegateCommand CheckRespuesta { get => new DelegateCommand(CheckRespuesta_Execute, CheckRespuesta_CanExecute); }
-
-        private bool CheckRespuesta_CanExecute()
+        public string TxtBoxRespuestaJugador
         {
-            return preguntaSeleccionada != null && !string.IsNullOrEmpty(respuestaJugador);
+            get { return txtBoxRespuestaJugador; }
+            set
+            {
+                txtBoxRespuestaJugador = value;
+                if (checkRespuestaCommand != null)
+                {
+                    checkRespuestaCommand.RaiseCanExecuteChanged();
+                }
+            }
         }
+        public string TxtBoxEnunciadoPregunta { get; set; }
+        public string TxtBoxLetraPregunta { get; set; }
+        public DispatcherTimer TiempoRestante { get => tiempo; set => tiempo = value; }
+        public int Aciertos{ get; set; }
+        public int Fallos { get; set; }
+        public int PalabrasRestantes { get; set; }
 
-        private void CheckRespuesta_Execute()
+        public int TiempoMax { get; set; }
+        public DelegateCommand CheckRespuestaCommand
         {
-            PreguntaSeleccionada.Estado = respuestaJugador == PreguntaSeleccionada.Respuesta ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
+            get
+            {
+                return checkRespuestaCommand = new DelegateCommand(CheckRespuestaCommand_Execute, CheckRespuesta_CanExecute);
+            }
         }
 
         public clsModelPregunta PreguntaSeleccionada { get => preguntaSeleccionada; set => preguntaSeleccionada = value; }
         public List<clsModelPregunta> ListadoPreguntas { get => listadoPreguntas; set => listadoPreguntas = value; }
         #endregion
+        #region commands
+        private bool CheckRespuesta_CanExecute()
+        {
+            return preguntaSeleccionada != null && !string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador);
+        }
+
+        private void CheckRespuestaCommand_Execute()
+        {
+            PreguntaSeleccionada.Estado = TxtBoxRespuestaJugador == PreguntaSeleccionada.Respuesta ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
+            preguntaSeleccionada = listadoPreguntas.Where(pregunta => pregunta.Estado == 0 &&
+               true).FirstOrDefault();
+            switch (PreguntaSeleccionada.Estado)//TODO MODURALIZAR
+            {
+                case 1:
+                    Aciertos++;
+                    NotifyPropertyChanged("Aciertos");
+                    break;
+                case -1:
+                    Fallos++;
+                    NotifyPropertyChanged("Fallos");
+                    break;
+                default:
+                    PalabrasRestantes++;
+                    NotifyPropertyChanged("PalabrasRestantes");
+                    break;
+            }
+            //TODO METER AQUI LO QUE HARIA SI HA TERMINADO EL ROSCO
+            recargarPregunta(preguntaSeleccionada);
+        }
+        #endregion
         #region metodos auxiliares
         private void cargarListadoPreguntas()
         {
-            clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta)));
+            //clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta)));
+            listadoPreguntas = dameAlgo();
         }
 
         /// <summary>
@@ -82,9 +117,52 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 .ToArray()
             )
             .Normalize(NormalizationForm.FormC);
-        
-        
+
+        private void recargarPregunta(clsModelPregunta preguntaSeleccionada)
+        {
+            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado;
+            NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
+            TxtBoxLetraPregunta = preguntaSeleccionada.Letra.ToString();
+            NotifyPropertyChanged("TxtBoxLetraPregunta");
+        }
+
+        private void iniciarContador()
+        {
+            //TODO MODURALIZAR Y DISCUTIR QUE QUEREMOS QUE SE MUESTRE
+            ContentDialog contentDialogPartidaTerminada = new ContentDialog
+            {
+                Title = "Se te ha acabado el tiempo :(",
+                Content = "",
+                PrimaryButtonText = "Joder que malo soy",
+                CloseButtonText = "",
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            tiempo = new DispatcherTimer();
+            tiempo.Interval = new TimeSpan(0, 0, 1);
+            tiempo.Start();
+            tiempo.Tick += (a, b) =>
+            {
+                TiempoMax--;
+                NotifyPropertyChanged("TiempoMax");
+                if (TiempoMax == 0)
+                {
+                    contentDialogPartidaTerminada.ShowAsync();
+                    tiempo.Stop();
+                }
+            };
+        }
         #endregion
+
+        private List<clsModelPregunta> dameAlgo()
+        {
+            List<clsModelPregunta> a = new List<clsModelPregunta>();
+            for (int i = 0; i < 10; i++)
+            {
+                a.Add(new clsModelPregunta(0, i, i.ToString(), i.ToString(), 'A'));
+            }
+            return a;
+        }
 
     }
 }

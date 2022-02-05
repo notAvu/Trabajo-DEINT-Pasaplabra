@@ -7,16 +7,16 @@ namespace Trabajo_DEINT_PasapalabraEntities
     public class clsPregunta
     {
         #region propiedades
-        public int Id { get; set; }
-        public string Enunciado { get; set; }
-        public string Respuesta { get; set; }
-        public char Letra { get; set; }
+        public int Id { get; }
+        public string Enunciado { get; }
+        public string Respuesta { get; }
+        public char Letra { get; }
         #endregion
         #region constructores
-        public clsPregunta(int id, string enenuciado, string respuesta, char letra)
+        public clsPregunta(int id, string enunciado, string respuesta, char letra)
         {
             Id = id;
-            Enunciado = enenuciado;
+            Enunciado = enunciado;
             Respuesta = respuesta;
             Letra = letra;
         }

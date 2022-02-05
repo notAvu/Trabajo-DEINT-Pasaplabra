@@ -9,15 +9,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     mc:Ignorable="d"
+    xmlns:cv ="using:Trabajo_DEINT_PasapalabraUI.Utils.Converters" 
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
         <vm:clsGamePageVM/>
     </Page.DataContext>
+    
     <Page.Resources>
         <ui:AttachedDropShadow x:Key="CommonShadow" Offset="4" />
+        <cv:clsColorToBrushConverter x:Key="cvColor"/>
     </Page.Resources>
+
 
 
     <RelativePanel>
@@ -47,7 +51,7 @@
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Canvas.Left="136" Canvas.Top="25">
                 <Ellipse Fill="LimeGreen" Height="100" Width="100" />
             </Border>
-            <TextBlock Text="0:00" FontSize="40" FontWeight="Bold" Foreground="White" 
+            <TextBlock Text="{Binding TiempoMax}" FontSize="40" FontWeight="Bold" Foreground="White" 
                        Canvas.Left="35" Canvas.Top="45" Canvas.ZIndex="2">
 
             </TextBlock>
@@ -87,9 +91,9 @@
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Grid.Row="1" Grid.Column="1" Margin="0,0,12,12">
                 <Ellipse Fill="Blue" Height="60" Width="60" VerticalAlignment="Center"/>
             </Border>
-            <TextBlock Text="0" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
+            <TextBlock Text="{Binding Aciertos}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="0" Grid.Column="1" Margin="0,0,12,12"/>
-            <TextBlock Text="25" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
+            <TextBlock Text="{Binding Fallos}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="1" Grid.Column="1" Margin="0,0,12,12"/>
         </Grid>
         <Grid x:Name="cvRosco" RelativePanel.AlignBottomWith="cvIzq" Background="Transparent"
@@ -101,7 +105,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="listBoxPrueba" Grid.Row="0" Grid.Column="0">
+            <ListBox x:Name="listBoxPrueba" Grid.Row="0" Grid.Column="0" Margin="-18,0,18,0"
+                     ItemsSource="{Binding ListadoPreguntas}">
                 <ListBox.Background>
                     <ImageBrush ImageSource="\Assets\Images\fondo_pasapalabra.jpeg"></ImageBrush>
                 </ListBox.Background>
@@ -113,7 +118,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid  Height="64" Width="64">
-                            <Ellipse  Stroke="White" Fill="Blue" StrokeThickness="2"></Ellipse>
+                            <Ellipse  Stroke="White" Fill="{Binding Estado, Converter= {StaticResource cvColor}}" StrokeThickness="2"></Ellipse>
                             <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e">
                                 <TextBlock x:Name="Target" Text="A" FontFamily="Arial" FontSize="32" Foreground="White" />
                             </controls:DropShadowPanel>
@@ -126,23 +131,27 @@
             </ListBox>
             <Ellipse  Height="550" Width="550" Opacity="0.8" Fill="White"/>
             <StackPanel Height="550" Width="550" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Background="Transparent">
-                <TextBlock Text="Con la A" Foreground="Black"  FontSize="32" FontWeight="SemiBold" Margin="0,60,0,0" HorizontalAlignment="Center" />
+                <TextBlock Foreground="Black"  FontSize="32" FontWeight="SemiBold" Margin="0,60,0,0" HorizontalAlignment="Center">
+                    <Run Text="Con la "/>
+                    <Run Text="{Binding TxtBoxLetraPregunta}"/>
+                </TextBlock>
                 <TextBlock TextWrapping="WrapWholeWords" TextAlignment="Center"
-                           Text="Interfaz de programación de aplicaciones es un conjunto de definiciones y protocolos que se usa para diseñar e integrar el software de las aplicaciones."
+                           Text="{Binding TxtBoxEnunciadoPregunta}"
                            HorizontalAlignment="Center" Margin="0,50,0,0"
                            Foreground="Black"  FontSize="22" FontWeight="SemiBold" 
                            MaxWidth="450"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
                     <TextBox x:Name="txtRespuesta" PlaceholderText="RESPUESTA" TextAlignment="Center" Margin="50,30,0,0" FontSize="22" CornerRadius="0" BorderBrush="Black" 
-                         MaxWidth="240" MinHeight="40" FontFamily="Berlin Sans FB" BorderThickness="0,0,0,2" Background="{ThemeResource AppBarItemBackgroundThemeBrush}"/>
+                         MaxWidth="240" MinHeight="40" FontFamily="Berlin Sans FB" BorderThickness="0,0,0,2" Background="{ThemeResource AppBarItemBackgroundThemeBrush}"
+                             Text="{Binding TxtBoxRespuestaJugador,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Name="btnMicro" Click="btnMicro_Click"  Height="40" BorderBrush="DarkBlue" BorderThickness="1" CornerRadius="20" 
                         HorizontalAlignment="Center" Margin="20,20,0,0" Padding="2,2,2,2" MinWidth="20" MinHeight="20" Background="{ThemeResource AppBarItemBackgroundThemeBrush}">
-                        <Image Source="/Assets/Images/micro1.png" Opacity="2" ></Image>
+                        <Image Source="/Assets/Images/micro1.png" Opacity="2"/>
                     </Button>
                 </StackPanel>
                 <AppBarButton Icon="Accept" CornerRadius="6" Background="CadetBlue" HorizontalAlignment="Center" Margin="0,15,0,0" 
-                        MaxWidth="40" MaxHeight="40" />
+                        MaxWidth="40" MaxHeight="40" Command="{Binding CheckRespuestaCommand}"/>
                 <Button Name="btnPasaPalabra" Content="PASAPALABRA" MinHeight="20" MinWidth="100" HorizontalAlignment="Center" Margin="0,20,0,0"
                         CornerRadius="20" BorderBrush="Black" BorderThickness="1" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" FontFamily="Berlin Sans FB" />
             </StackPanel>

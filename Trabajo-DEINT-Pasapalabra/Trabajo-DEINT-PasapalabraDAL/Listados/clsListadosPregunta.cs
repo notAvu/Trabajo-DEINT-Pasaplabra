@@ -5,6 +5,7 @@ using System.Text;
 using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadBaseDAL;
 using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadSelectDAL;
 using Trabajo_DEINT_PasapalabraEntities;
+using Trabajo_DEINT_PasapalabraDAL.Utilidades;
 
 namespace Trabajo_DEINT_PasapalabraDAL.Listados
 {
@@ -14,12 +15,11 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         {
             instanciarConexion();
             List<clsPregunta> listadoPregunta = new List<clsPregunta>();
-            ejecutarSelect("SELECT TOP 20 * FROM Preguntas ORDER BY RAND()");
+            ejecutarSelect("SELECT TOP 20 * FROM Preguntas ORDER BY RAND() GROUP BY letra");//TODO CAMBIAR INSTRUCCION
             while (MiLector.HasRows)   
             {
                 MiLector.Read();
-
-                listadoPregunta.Add(getPregunta(MiLector));
+                listadoPregunta.Add(getPregunta());
             }
             cerrarFlujos();
             return listadoPregunta;
@@ -27,13 +27,14 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
 
 
 
-        private static clsPregunta getPregunta(SqlDataReader reader)
+        private static clsPregunta getPregunta()
         {
             clsPregunta oPregunta;
-            oPregunta = new clsPregunta();
-            oPregunta.Id = (int)reader["ID"];
-            oPregunta.Enunciado = (string)reader["Enunciado"];
-            oPregunta.Respuesta = (string)reader["Respuesta"];
+            char letra = Convert.ToChar((string)MiLector["letra"]);
+            oPregunta = new clsPregunta((int)MiLector["idPreguntas"],
+                                        (string)MiLector["enunciado"],
+                                        (string)MiLector["respuesta"],
+                                        letra);//TODO NO DEJABA CONVERSION EXPLICITA
             return oPregunta;
         }
 

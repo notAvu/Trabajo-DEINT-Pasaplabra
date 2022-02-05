@@ -32,7 +32,8 @@ namespace Trabajo_DEINT_PasapalabraDAL.Utilidades
             MiComando.Parameters.Add(ID_PARAMETRO, System.Data.SqlDbType.Int).Value = condicion;
             MiComando.Connection = MiConexion.Conexion;
             MiComando.CommandText = instruccionSelect + ID_PARAMETRO;
-            return MiComando.ExecuteReader();
+            MiLector = MiComando.ExecuteReader();
+            return null;
         }
 
         /// <summary>
@@ -62,11 +63,11 @@ namespace Trabajo_DEINT_PasapalabraDAL.Utilidades
         /// </summary>
         /// <param name="instruccionSelect"></param>
         /// <returns> SqlDataReader flujo de filas de solo avance resultante de la instrucción</returns>
-        public static SqlDataReader ejecutarSelect(String instruccionSelect)
+        public static void ejecutarSelect(String instruccionSelect)
         {
             MiComando.CommandText = instruccionSelect;
             MiComando.Connection = MiConexion.Conexion;
-            return MiComando.ExecuteReader();
+            MiLector = MiComando.ExecuteReader();
         }
 
         /// <summary>
