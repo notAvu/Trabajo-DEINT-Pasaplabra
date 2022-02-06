@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trabajo_DEINT_PasapalabraBL.Listados;
+using Trabajo_DEINT_PasapalabraDAL.Gestora;
 using Trabajo_DEINT_PasapalabraEntities;
 using Trabajo_DEINT_PasapalabraUI.Models;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -83,10 +85,12 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             {
                 case 1:
                     Aciertos++;
+                    PlaySound("correct.mp3");
                     NotifyPropertyChanged("Aciertos");
                     break;
                 case -1:
                     Fallos++;
+                    PlaySound("Wrong.mp3");
                     NotifyPropertyChanged("Fallos");
                     break;
                 default:
@@ -152,6 +156,18 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 }
             };
         }
+        /// <summary>
+        /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
+        /// </summary>
+        /// <param name="soundFileName"></param>
+        private async void PlaySound(string soundFileName)
+        {
+            MediaElement element = new MediaElement();
+            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets/Sounds");
+            StorageFile file = await folder.GetFileAsync(soundFileName);
+            element.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
+            element.Play();
+        }
         #endregion
 
         private List<clsModelPregunta> dameAlgo()
@@ -162,6 +178,19 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 a.Add(new clsModelPregunta(0, i, i.ToString(), i.ToString(), 'A'));
             }
             return a;
+        }
+        /// <summary>
+        /// Metodo auxiliar que se llama al finalizar la partida para cargar los datos de la misma en la base de datos
+        /// TODO Finalizar implementacion
+        /// </summary>
+        private void GameFinished() 
+        {
+            clsPartida partidaJugada = new clsPartida();
+            //partidaJugada.Nick = askNick();
+            partidaJugada.Tiempo = TiempoMax;
+            partidaJugada.TotalAcertadas = Aciertos;
+            partidaJugada.TotalFalladas = Fallos;
+            clsGestoraPartida.insertarPartida(partidaJugada);
         }
 
     }

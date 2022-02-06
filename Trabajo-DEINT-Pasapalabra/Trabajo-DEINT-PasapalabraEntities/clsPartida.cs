@@ -4,6 +4,7 @@ namespace Trabajo_DEINT_PasapalabraEntities
 {
     public class clsPartida
     {
+        //TODO Revisar correspondencia de los atributos de tiempo de la entidad y de tiempo en el viewmodel 
         #region propiedades autoimplementadas
         public int Id { get; set; }//creo que no hace falta, preguntar
         public string Nick { get; set; }

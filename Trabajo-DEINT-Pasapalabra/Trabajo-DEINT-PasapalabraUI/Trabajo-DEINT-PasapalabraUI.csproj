@@ -142,6 +142,8 @@
     <Content Include="Assets\Images\fondo_pasapalabra.jpeg" />
     <Content Include="Assets\Images\micro1.png" />
     <Content Include="Assets\Images\micro2.png" />
+    <Content Include="Assets\Sounds\correct.mp3" />
+    <Content Include="Assets\Sounds\Wrong.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -180,6 +182,10 @@
     <ProjectReference Include="..\Trabajo-DEINT-PasapalabraBL\Trabajo-DEINT-PasapalabraBL.csproj">
       <Project>{F1832D29-7687-4A46-B047-CC865FAE8664}</Project>
       <Name>Trabajo-DEINT-PasapalabraBL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trabajo-DEINT-PasapalabraDAL\Trabajo-DEINT-PasapalabraDAL.csproj">
+      <Project>{4F74B22C-8977-4240-B3F6-EAA45BA451EB}</Project>
+      <Name>Trabajo-DEINT-PasapalabraDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Trabajo-DEINT-PasapalabraEntities\Trabajo-DEINT-PasapalabraEntities.csproj">
       <Project>{FBE0ACE7-1880-4029-AC7B-ACF852F438F2}</Project>
