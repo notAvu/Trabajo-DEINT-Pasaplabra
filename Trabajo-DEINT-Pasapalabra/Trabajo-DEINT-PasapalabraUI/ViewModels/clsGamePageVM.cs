@@ -54,7 +54,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         public string TxtBoxEnunciadoPregunta { get; set; }
         public string TxtBoxLetraPregunta { get; set; }
         public DispatcherTimer TiempoRestante { get => tiempo; set => tiempo = value; }
-        public int Aciertos{ get; set; }
+        public int Aciertos { get; set; }
         public int Fallos { get; set; }
         public int PalabrasRestantes { get; set; }
 
@@ -183,15 +183,30 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// Metodo auxiliar que se llama al finalizar la partida para cargar los datos de la misma en la base de datos
         /// TODO Finalizar implementacion
         /// </summary>
-        private void GameFinished() 
+        private async Task GameFinishedAsync()
         {
             clsPartida partidaJugada = new clsPartida();
-            //partidaJugada.Nick = askNick();
-            partidaJugada.Tiempo = TiempoMax;
+            partidaJugada.Nick = await askNickAsync();
+            //partidaJugada.Tiempo = TiempoMax;
             partidaJugada.TotalAcertadas = Aciertos;
             partidaJugada.TotalFalladas = Fallos;
-            clsGestoraPartida.insertarPartida(partidaJugada);
+            if (!string.IsNullOrEmpty(partidaJugada.Nick))
+                clsGestoraPartida.insertarPartida(partidaJugada);
+            //mostrar resultados
         }
 
+        private async Task<string> askNickAsync()
+        {
+            string nickName = "";
+            TextBox inputTbx = new TextBox();
+            inputTbx.AcceptsReturn = true;
+            ContentDialog nickContent = new ContentDialog();
+            nickContent.Title = "Introducza un apodo";
+            nickContent.PrimaryButtonText = "Enviar puntuacion";
+            nickContent.Content = inputTbx;
+            if (await nickContent.ShowAsync() == ContentDialogResult.Primary)
+                nickName = inputTbx.Text;
+            return nickName;
+        }
     }
 }
