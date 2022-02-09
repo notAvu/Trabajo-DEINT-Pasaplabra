@@ -105,8 +105,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #region metodos auxiliares
         private void cargarListadoPreguntas()
         {
-            //clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta)));
-            listadoPreguntas = dameAlgo();
+            listadoPreguntas = new List<clsModelPregunta>();
+             clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
         }
 
         /// <summary>
@@ -124,9 +124,10 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         private void recargarPregunta(clsModelPregunta preguntaSeleccionada)
         {
-            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado;
-            NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
-            TxtBoxLetraPregunta = preguntaSeleccionada.Letra.ToString();
+            int indice = preguntaSeleccionada.Enunciado.IndexOf(":");
+            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice -1);//PERUANO, PERO NO SE COMO PONERLO
+            NotifyPropertyChanged("TxtBoxEnunciadoPregunta");   
+            TxtBoxLetraPregunta = preguntaSeleccionada.Enunciado.Substring(0, indice);
             NotifyPropertyChanged("TxtBoxLetraPregunta");
         }
 
@@ -170,15 +171,6 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         }
         #endregion
 
-        private List<clsModelPregunta> dameAlgo()
-        {
-            List<clsModelPregunta> a = new List<clsModelPregunta>();
-            for (int i = 0; i < 10; i++)
-            {
-                a.Add(new clsModelPregunta(0, i, i.ToString(), i.ToString(), 'A'));
-            }
-            return a;
-        }
         /// <summary>
         /// Metodo auxiliar que se llama al finalizar la partida para cargar los datos de la misma en la base de datos
         /// TODO Finalizar implementacion

@@ -122,19 +122,13 @@
                             <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e">
                                 <TextBlock x:Name="Target" Text="A" FontFamily="Arial" FontSize="32" Foreground="White" />
                             </controls:DropShadowPanel>
-                            <!--Esto es como German hizo originalmente el tema de los botones, lo dejo comentado en caso de que haya que volver a el-->
-                            <!--<Button BorderBrush="White" BorderThickness="2" Content="A" CornerRadius="90" Height="64" Width="64"-->
-                            <!--FontFamily="Arial" Foreground="White" Background="Blue" FontSize="32" FontWeight="Black" IsHitTestVisible="False"/>-->
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
             <Ellipse  Height="550" Width="550" Opacity="0.8" Fill="White"/>
             <StackPanel Height="550" Width="550" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Background="Transparent">
-                <TextBlock Foreground="Black"  FontSize="32" FontWeight="SemiBold" Margin="0,60,0,0" HorizontalAlignment="Center">
-                    <Run Text="Con la "/>
-                    <Run Text="{Binding TxtBoxLetraPregunta}"/>
-                </TextBlock>
+                <TextBlock Foreground="Black" Text="{Binding TxtBoxLetraPregunta}" FontSize="32" FontWeight="SemiBold" Margin="0,60,0,0" HorizontalAlignment="Center" />
                 <TextBlock TextWrapping="WrapWholeWords" TextAlignment="Center"
                            Text="{Binding TxtBoxEnunciadoPregunta}"
                            HorizontalAlignment="Center" Margin="0,50,0,0"

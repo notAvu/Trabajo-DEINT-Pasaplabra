@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-02-05T23:15:38.766</Modified>
+      <Modified>2022-02-09T12:51:14.347</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>entrypoint\Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-02-05T23:15:38.093</Modified>
+      <Modified>2022-02-09T12:51:13.208</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -124,15 +124,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraBL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraBL.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraBL.dll</PackagePath>
-      <Modified>2022-02-05T23:04:27.707</Modified>
+      <Modified>2022-02-09T12:22:05.199</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraDAL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraDAL.dll">
+      <PackagePath>Trabajo-DEINT-PasapalabraDAL.dll</PackagePath>
+      <Modified>2022-02-09T12:20:13.651</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraEntities\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraEntities.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraEntities.dll</PackagePath>
-      <Modified>2022-02-05T23:04:27.202</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraBL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraDAL.dll">
-      <PackagePath>Trabajo-DEINT-PasapalabraDAL.dll</PackagePath>
-      <Modified>2022-02-05T23:04:27.523</Modified>
+      <Modified>2022-02-09T12:02:39.881</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\.nuget\packages\win2d.uwp\1.25.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
@@ -212,6 +212,14 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2022-02-05T16:55:40.197</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Sounds\correct.mp3">
+      <PackagePath>Assets\Sounds\correct.mp3</PackagePath>
+      <Modified>2022-02-09T11:44:12.442</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Sounds\Wrong.mp3">
+      <PackagePath>Assets\Sounds\Wrong.mp3</PackagePath>
+      <Modified>2022-02-09T11:44:12.442</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2022-02-05T16:55:40.801</Modified>
@@ -222,19 +230,19 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Trabajo-DEINT-PasapalabraUI.xr.xml">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.xr.xml</PackagePath>
-      <Modified>2022-02-05T23:15:38.019</Modified>
+      <Modified>2022-02-09T12:42:49.549</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-02-05T23:15:38.030</Modified>
+      <Modified>2022-02-09T12:51:13.070</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\GamePage.xbf">
       <PackagePath>Views\GamePage.xbf</PackagePath>
-      <Modified>2022-02-05T23:15:38.030</Modified>
+      <Modified>2022-02-09T12:51:13.071</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-02-05T23:15:38.030</Modified>
+      <Modified>2022-02-09T12:51:13.070</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -246,11 +254,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-02-05T23:04:31.799</Modified>
+      <Modified>2022-02-09T12:02:50.582</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Core\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-02-05T23:15:38.762</Modified>
+      <Modified>2022-02-09T12:51:14.335</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>

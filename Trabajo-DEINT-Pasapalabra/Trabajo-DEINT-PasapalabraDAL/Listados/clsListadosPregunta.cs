@@ -6,6 +6,7 @@ using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadBaseDAL;
 using static Trabajo_DEINT_PasapalabraDAL.Utilidades.clsUtilidadSelectDAL;
 using Trabajo_DEINT_PasapalabraEntities;
 using Trabajo_DEINT_PasapalabraDAL.Utilidades;
+using System.Data;
 
 namespace Trabajo_DEINT_PasapalabraDAL.Listados
 {
@@ -13,17 +14,28 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
     {
         public static List<clsPregunta> CargarListadoPreguntaDAL()
         {
-            instanciarConexion();
             List<clsPregunta> listadoPregunta = new List<clsPregunta>();
-            MiComando = new SqlCommand("PalabrasJugada", MiConexion.Conexion);
-            ejecutarSelect("SELECT TOP 20 * FROM Preguntas ORDER BY RAND() GROUP BY letra");
-            //TODO CAMBIAR INSTRUCCION
-            while (MiLector.HasRows)   
+            instanciarConexion();
+
+            SqlDataAdapter da = new SqlDataAdapter();//TODO MODURALIZAR
+            da.SelectCommand = new SqlCommand("PalabrasJugada", MiConexion.Conexion);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "tabla_preguntas");
+
+            DataTable dt = ds.Tables["tabla_preguntas"];//TODO DUDA SI SON FLUJOS Y HAY QUE CERRARLOS, YO CREO QUE NO, GERMAN
+
+            foreach (DataRow row in dt.Rows)
             {
-                MiLector.Read();
-                listadoPregunta.Add(getPregunta());
+                char letra = Convert.ToChar((String)row["letra"]);
+                clsPregunta oPregunta = new clsPregunta((int)row["IdPreguntas"],
+                                            (string)row["enunciado"],
+                                            (string)row["respuesta"],
+                                            letra);
+                listadoPregunta.Add(oPregunta);
             }
-            cerrarFlujos();
+            MiConexion.Conexion.Close();
             return listadoPregunta;
         }
 
@@ -36,7 +48,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
             oPregunta = new clsPregunta((int)MiLector["idPreguntas"],
                                         (string)MiLector["enunciado"],
                                         (string)MiLector["respuesta"],
-                                        letra);//TODO NO DEJABA CONVERSION EXPLICITA
+                                        letra);
             return oPregunta;
         }
 
