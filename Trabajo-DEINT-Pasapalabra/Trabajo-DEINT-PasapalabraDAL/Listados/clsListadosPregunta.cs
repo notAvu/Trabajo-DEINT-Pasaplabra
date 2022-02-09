@@ -15,7 +15,9 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         {
             instanciarConexion();
             List<clsPregunta> listadoPregunta = new List<clsPregunta>();
-            ejecutarSelect("SELECT TOP 20 * FROM Preguntas ORDER BY RAND() GROUP BY letra");//TODO CAMBIAR INSTRUCCION
+            MiComando = new SqlCommand("PalabrasJugada", MiConexion.Conexion);
+            ejecutarSelect("SELECT TOP 20 * FROM Preguntas ORDER BY RAND() GROUP BY letra");
+            //TODO CAMBIAR INSTRUCCION
             while (MiLector.HasRows)   
             {
                 MiLector.Read();
