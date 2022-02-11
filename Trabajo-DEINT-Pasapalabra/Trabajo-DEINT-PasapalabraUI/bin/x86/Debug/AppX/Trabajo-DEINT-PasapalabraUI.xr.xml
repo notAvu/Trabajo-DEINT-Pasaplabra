@@ -1,8 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
+  <Roots.Interfaces>
+    <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
+  </Roots.Interfaces>
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="VerPuntuacion" />
     <RootPropertyPathName Name="Jugar" />
+    <RootPropertyPathName Name="CheckRespuestaCommand" />
+    <RootPropertyPathName Name="TxtBoxRespuestaJugador" />
+    <RootPropertyPathName Name="TxtBoxEnunciadoPregunta" />
+    <RootPropertyPathName Name="TxtBoxLetraPregunta" />
+    <RootPropertyPathName Name="ListadoPreguntas" />
+    <RootPropertyPathName Name="Letra" />
+    <RootPropertyPathName Name="Estado" />
+    <RootPropertyPathName Name="Fallos" />
+    <RootPropertyPathName Name="Aciertos" />
+    <RootPropertyPathName Name="TiempoMax" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
@@ -105,6 +118,9 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="ElementName" />
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
+      <RootProperty Name="Converter" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="Margin" />
@@ -125,6 +141,7 @@
     <RootType FullName="Microsoft.Toolkit.Uwp.UI.AttachedDropShadow">
       <RootProperty Name="Offset" />
     </RootType>
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.Utils.Converters.clsColorToBrushConverter" />
     <RootType FullName="Microsoft.Toolkit.Uwp.UI.Effects">
       <RootMethod Name="GetShadow" />
       <RootMethod Name="SetShadow" />
@@ -161,6 +178,8 @@
       <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="ItemsSource" />
       <RootProperty Name="Background" />
       <RootProperty Name="ItemsPanel" />
       <RootProperty Name="ItemTemplate" />
@@ -182,6 +201,7 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="MaxWidth" />
       <RootProperty Name="MaxHeight" />
+      <RootProperty Name="Command" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="PlaceholderText" />
@@ -195,6 +215,7 @@
       <RootProperty Name="FontFamily" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Text" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Source" />
@@ -207,6 +228,7 @@
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Border">
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
@@ -215,7 +237,6 @@
       <RootProperty Name="Child" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Documents.LineBreak" />
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.MainPage" />
   </Roots.RootTypes>
 </Roots>

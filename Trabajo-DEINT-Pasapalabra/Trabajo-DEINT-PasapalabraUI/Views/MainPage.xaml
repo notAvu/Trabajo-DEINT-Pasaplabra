@@ -120,7 +120,7 @@
                         <Grid  Height="64" Width="64">
                             <Ellipse  Stroke="White" Fill="{Binding Estado, Converter= {StaticResource cvColor}}" StrokeThickness="2"></Ellipse>
                             <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e">
-                                <TextBlock x:Name="Target" Text="A" FontFamily="Arial" FontSize="32" Foreground="White" />
+                                <TextBlock x:Name="Target" Text="{Binding Letra}" FontFamily="Arial" FontSize="32" Foreground="White" />
                             </controls:DropShadowPanel>
                         </Grid>
                     </DataTemplate>
