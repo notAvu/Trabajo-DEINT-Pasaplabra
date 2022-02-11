@@ -78,9 +78,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         private void CheckRespuestaCommand_Execute()
         {
-            PreguntaSeleccionada.Estado = TxtBoxRespuestaJugador == PreguntaSeleccionada.Respuesta ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
-            preguntaSeleccionada = listadoPreguntas.Where(pregunta => pregunta.Estado == 0 &&
-               true).FirstOrDefault();
+            PreguntaSeleccionada.Estado = (TxtBoxRespuestaJugador == PreguntaSeleccionada.Respuesta) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
+            
             switch (PreguntaSeleccionada.Estado)//TODO MODURALIZAR
             {
                 case 1:
@@ -98,6 +97,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                     NotifyPropertyChanged("PalabrasRestantes");
                     break;
             }
+            preguntaSeleccionada = listadoPreguntas.Where(pregunta => pregunta.Estado == 0 &&
+               true).FirstOrDefault();
             //TODO METER AQUI LO QUE HARIA SI HA TERMINADO EL ROSCO
             recargarPregunta(preguntaSeleccionada);
         }
@@ -164,7 +165,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private async void PlaySound(string soundFileName)
         {
             MediaElement element = new MediaElement();
-            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets/Sounds");
+            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
             StorageFile file = await folder.GetFileAsync(soundFileName);
             element.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
             element.Play();

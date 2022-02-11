@@ -55,7 +55,7 @@
                        Canvas.Left="35" Canvas.Top="45" Canvas.ZIndex="2">
 
             </TextBlock>
-            <TextBlock Text="0" FontSize="36" FontWeight="Bold" Foreground="White" 
+            <TextBlock Text="{Binding Aciertos}" FontSize="36" FontWeight="Bold" Foreground="White" 
                        Canvas.Left="176" Canvas.Top="50" Canvas.ZIndex="2"/>
         </Canvas>
 
@@ -91,9 +91,9 @@
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Grid.Row="1" Grid.Column="1" Margin="0,0,12,12">
                 <Ellipse Fill="Blue" Height="60" Width="60" VerticalAlignment="Center"/>
             </Border>
-            <TextBlock Text="{Binding Aciertos}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Grid.Row="0" Grid.Column="1" Margin="0,0,12,12"/>
             <TextBlock Text="{Binding Fallos}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Grid.Row="0" Grid.Column="1" Margin="0,0,12,12"/>
+            <TextBlock Text="{Binding PalabrasRestantes}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Grid.Row="1" Grid.Column="1" Margin="0,0,12,12"/>
         </Grid>
         <Grid x:Name="cvRosco" RelativePanel.AlignBottomWith="cvIzq" Background="Transparent"
@@ -147,7 +147,8 @@
                 <AppBarButton Icon="Accept" CornerRadius="6" Background="CadetBlue" HorizontalAlignment="Center" Margin="0,15,0,0" 
                         MaxWidth="40" MaxHeight="40" Command="{Binding CheckRespuestaCommand}"/>
                 <Button Name="btnPasaPalabra" Content="PASAPALABRA" MinHeight="20" MinWidth="100" HorizontalAlignment="Center" Margin="0,20,0,0"
-                        CornerRadius="20" BorderBrush="Black" BorderThickness="1" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" FontFamily="Berlin Sans FB" />
+                        CornerRadius="20" BorderBrush="Black" BorderThickness="1" 
+                        Background="{ThemeResource AppBarItemBackgroundThemeBrush}" FontFamily="Berlin Sans FB" />
             </StackPanel>
         </Grid>
     </RelativePanel>
