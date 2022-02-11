@@ -11,8 +11,8 @@
     <RootPropertyPathName Name="TxtBoxEnunciadoPregunta" />
     <RootPropertyPathName Name="TxtBoxLetraPregunta" />
     <RootPropertyPathName Name="ListadoPreguntas" />
+    <RootPropertyPathName Name="Letra" />
     <RootPropertyPathName Name="Estado" />
-    <RootPropertyPathName Name="PalabrasRestantes" />
     <RootPropertyPathName Name="Fallos" />
     <RootPropertyPathName Name="Aciertos" />
     <RootPropertyPathName Name="TiempoMax" />

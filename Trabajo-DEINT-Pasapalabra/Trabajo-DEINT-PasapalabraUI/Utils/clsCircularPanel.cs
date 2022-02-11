@@ -31,7 +31,7 @@ namespace Trabajo_DEINT_PasapalabraUI.Utils
                 // # radians between children
                 double angleIncrRadians = 2.0 * Math.PI / Children.Count;
 
-                double angleInRadians = 0.0;
+                double angleInRadians = -1.5708;
 
                 foreach (UIElement child in Children)
                 {

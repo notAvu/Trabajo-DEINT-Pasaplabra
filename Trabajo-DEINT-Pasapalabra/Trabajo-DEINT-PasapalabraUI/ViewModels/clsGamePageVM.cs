@@ -108,6 +108,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         {
             listadoPreguntas = new List<clsModelPregunta>();
              clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
+            NotifyPropertyChanged("ListadoPreguntas");
         }
 
         /// <summary>
