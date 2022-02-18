@@ -16,7 +16,7 @@
     <Page.DataContext>
         <vm:clsGamePageVM/>
     </Page.DataContext>
-    
+
     <Page.Resources>
         <ui:AttachedDropShadow x:Key="CommonShadow" Offset="4" />
         <cv:clsColorToBrushConverter x:Key="cvColor"/>
@@ -50,12 +50,15 @@
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Canvas.Left="136" Canvas.Top="25">
                 <Ellipse Fill="LimeGreen" Height="100" Width="100" />
             </Border>
-            <TextBlock Text="{Binding TiempoMax}" FontSize="40" FontWeight="Bold" Foreground="White" 
-                       Canvas.Left="35" Canvas.Top="45" Canvas.ZIndex="2">
+            <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e"
+                                      Canvas.ZIndex="2" Canvas.Left="35" Canvas.Top="45">
+                <TextBlock Text="{Binding TiempoMax}" FontSize="40" FontWeight="Bold" Foreground="White"/>
+            </controls:DropShadowPanel>
 
-            </TextBlock>
-            <TextBlock Text="0" FontSize="36" FontWeight="Bold" Foreground="White" 
-                       Canvas.Left="176" Canvas.Top="50" Canvas.ZIndex="2"/>
+            <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e"
+            Canvas.Left="176" Canvas.Top="50" Canvas.ZIndex="2">
+                <TextBlock Text="{Binding Aciertos}" FontSize="36" FontWeight="Bold" Foreground="White"/>
+            </controls:DropShadowPanel>
         </Canvas>
 
         <!--Grid Abajo Derecha-->
@@ -90,10 +93,16 @@
             <Border BorderBrush="White" BorderThickness="2" CornerRadius="90" Grid.Row="1" Grid.Column="1" Margin="0,0,12,12">
                 <Ellipse Fill="Blue" Height="60" Width="60" VerticalAlignment="Center"/>
             </Border>
-            <TextBlock Text="{Binding Aciertos}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Grid.Row="0" Grid.Column="1" Margin="0,0,12,12"/>
-            <TextBlock Text="{Binding Fallos}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Grid.Row="1" Grid.Column="1" Margin="0,0,12,12"/>
+
+            <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e"
+                                      Grid.Row="0" Grid.Column="1" Margin="0,0,12,12">
+                <TextBlock Text="{Binding Fallos}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </controls:DropShadowPanel>
+
+            <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e"
+                                      Grid.Row="1" Grid.Column="1" Margin="0,0,12,12">
+                <TextBlock Text="{Binding PalabrasRestantes}" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </controls:DropShadowPanel>
         </Grid>
         <Grid x:Name="cvRosco" RelativePanel.AlignBottomWith="cvIzq" Background="Transparent"
                    RelativePanel.Below="txtBlckT2" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
@@ -117,7 +126,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid  Height="64" Width="64">
-                            <Ellipse  Stroke="White" Fill="{Binding Estado, Converter= {StaticResource cvColor}}" StrokeThickness="2"></Ellipse>
+                            <Ellipse  Stroke="White" Fill="{Binding Color}" StrokeThickness="2"></Ellipse>
                             <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e">
                                 <TextBlock x:Name="Target" Text="{Binding Letra}" FontFamily="Arial" FontSize="32" Foreground="White" />
                             </controls:DropShadowPanel>
@@ -146,9 +155,8 @@
                 <AppBarButton Icon="Accept" CornerRadius="6" Background="CadetBlue" HorizontalAlignment="Center" Margin="0,15,0,0" 
                         MaxWidth="40" MaxHeight="40" Command="{Binding CheckRespuestaCommand}"/>
                 <Button Name="btnPasaPalabra" Content="PASAPALABRA" MinHeight="20" MinWidth="100" HorizontalAlignment="Center" Margin="0,20,0,0"
-                        CornerRadius="20" BorderBrush="Black" BorderThickness="1" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" FontFamily="Berlin Sans FB" />
+                        CornerRadius="20" BorderBrush="Black" BorderThickness="1" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" Command="{Binding SaltarPreguntaCommand}"  FontFamily="Berlin Sans FB" />
             </StackPanel>
         </Grid>
-        <ListView Visibility="Collapsed"/>
     </RelativePanel>
 </Page>
