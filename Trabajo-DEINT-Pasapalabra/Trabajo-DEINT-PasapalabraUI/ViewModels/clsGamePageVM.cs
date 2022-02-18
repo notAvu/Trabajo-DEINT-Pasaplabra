@@ -1,4 +1,4 @@
-﻿using _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades;
+using _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,14 +23,17 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private string txtBoxRespuestaJugador;
         private DispatcherTimer tiempo;
         private DelegateCommand checkRespuestaCommand;
-        private DelegateCommand saltarPregunta;
+        private DelegateCommand saltarPreguntaCommand;
         #endregion
         #region constructor por defecto
         public clsGamePageVM()
         {
+            SelectedIndex = 0;
             cargarListadoPreguntas();
             preguntaSeleccionada = listadoPreguntas[0];
-            recargarPregunta(preguntaSeleccionada);
+            PalabrasRestantes = listadoPreguntas.Count;
+            NotifyPropertyChanged("PalabrasRestantes");
+            recargarPregunta();
             TiempoMax = 300;
             NotifyPropertyChanged("TiempoMax");
             iniciarContador();
@@ -57,8 +60,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         public int Aciertos { get; set; }
         public int Fallos { get; set; }
         public int PalabrasRestantes { get; set; }
-
         public int TiempoMax { get; set; }
+        public int SelectedIndex { get; set; }//¿Esta esto bien o es un poco peruano?
         public DelegateCommand CheckRespuestaCommand
         {
             get
@@ -66,9 +69,44 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 return checkRespuestaCommand = new DelegateCommand(CheckRespuestaCommand_Execute, CheckRespuesta_CanExecute);
             }
         }
-
+        public DelegateCommand SaltarPreguntaCommand
+        {
+            get
+            {
+                return saltarPreguntaCommand = new DelegateCommand(SaltarPregunta_Execute, SaltarPregunta_CanExecute);
+            }
+        }
         public clsModelPregunta PreguntaSeleccionada { get => preguntaSeleccionada; set => preguntaSeleccionada = value; }
         public List<clsModelPregunta> ListadoPreguntas { get => listadoPreguntas; set => listadoPreguntas = value; }
+
+        private bool SaltarPregunta_CanExecute()
+        {
+            return /*tiempo.Interval >= TimeSpan.MinValue && PalabrasRestantes > 1;//mientras no se haya agotado el tiempo y queden preguntas por contestar*/true;
+        }
+
+        private void SaltarPregunta_Execute()
+        {
+            SiguientePregunta();
+        }
+
+        private void SiguientePregunta()
+        {
+            for (int i = SelectedIndex + 1; i < listadoPreguntas.Count+1; i++)
+            {
+                if (i == listadoPreguntas.Count)
+                { i = 0; }
+                if (ListadoPreguntas[i].Estado == 0)
+                {
+                    SelectedIndex = i;
+                    PreguntaSeleccionada = listadoPreguntas[SelectedIndex];
+                    recargarPregunta();
+                    NotifyPropertyChanged("PreguntaSeleccionada");
+                    break;
+                }
+            }
+        }
+
+
         #endregion
         #region commands
         private bool CheckRespuesta_CanExecute()
@@ -78,37 +116,34 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         private void CheckRespuestaCommand_Execute()
         {
-            PreguntaSeleccionada.Estado = (TxtBoxRespuestaJugador == PreguntaSeleccionada.Respuesta) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
-            
-            switch (PreguntaSeleccionada.Estado)//TODO MODURALIZAR
+            PreguntaSeleccionada.Estado = TxtBoxRespuestaJugador.ToLower().Equals(PreguntaSeleccionada.Respuesta.ToLower()) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
+            switch (PreguntaSeleccionada.Estado)
             {
                 case 1:
                     Aciertos++;
+                    PalabrasRestantes--;
                     PlaySound("correct.mp3");
                     NotifyPropertyChanged("Aciertos");
                     break;
                 case -1:
                     Fallos++;
+                    PalabrasRestantes--;
                     PlaySound("Wrong.mp3");
                     NotifyPropertyChanged("Fallos");
                     break;
-                default:
-                    PalabrasRestantes++;
-                    NotifyPropertyChanged("PalabrasRestantes");
-                    break;
             }
-            preguntaSeleccionada = listadoPreguntas.Where(pregunta => pregunta.Estado == 0 &&
-               true).FirstOrDefault();
+            NotifyPropertyChanged("PreguntaSeleccionada");
+            SiguientePregunta();
             //TODO METER AQUI LO QUE HARIA SI HA TERMINADO EL ROSCO
-            recargarPregunta(preguntaSeleccionada);
+            NotifyPropertyChanged("PalabrasRestantes");
+            recargarPregunta();
         }
         #endregion
         #region metodos auxiliares
         private void cargarListadoPreguntas()
         {
             listadoPreguntas = new List<clsModelPregunta>();
-             clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
-            NotifyPropertyChanged("ListadoPreguntas");
+            clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
         }
 
         /// <summary>
@@ -124,13 +159,15 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             )
             .Normalize(NormalizationForm.FormC);
 
-        private void recargarPregunta(clsModelPregunta preguntaSeleccionada)
+        private void recargarPregunta()
         {
             int indice = preguntaSeleccionada.Enunciado.IndexOf(":");
-            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice -1);//PERUANO, PERO NO SE COMO PONERLO
-            NotifyPropertyChanged("TxtBoxEnunciadoPregunta");   
+            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice - 1);//PERUANO, PERO NO SE COMO PONERLO
+            NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
             TxtBoxLetraPregunta = preguntaSeleccionada.Enunciado.Substring(0, indice);
             NotifyPropertyChanged("TxtBoxLetraPregunta");
+            TxtBoxRespuestaJugador = "";
+            NotifyPropertyChanged("TxtBoxRespuestaJugador");
         }
 
         private void iniciarContador()
@@ -179,16 +216,15 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// </summary>
         private async Task GameFinishedAsync()
         {
-            clsPartida partidaJugada = new clsPartida();
-            partidaJugada.Nick = await askNickAsync();
-            //partidaJugada.Tiempo = TiempoMax;
-            partidaJugada.TotalAcertadas = Aciertos;
-            partidaJugada.TotalFalladas = Fallos;
+            string nick = await askNickAsync();
+            clsPartida partidaJugada = new clsPartida(nick, Aciertos, Fallos, tiempo.Interval);
             if (!string.IsNullOrEmpty(partidaJugada.Nick))
                 clsGestoraPartida.insertarPartida(partidaJugada);
-            //mostrar resultados
         }
-
+        /// <summary>
+        /// Metodo auxiliar que muestra en pantala un contentDialog para recibir el nick del usuario
+        /// </summary>
+        /// <returns></returns>
         private async Task<string> askNickAsync()
         {
             string nickName = "";
