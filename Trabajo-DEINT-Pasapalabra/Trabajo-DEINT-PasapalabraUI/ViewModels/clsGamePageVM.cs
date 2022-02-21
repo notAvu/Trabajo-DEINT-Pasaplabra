@@ -28,6 +28,9 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #region constructor por defecto
         public clsGamePageVM()
         {
+            VisibilityPreguntaFallidaControl = false;
+            NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
+
             SelectedIndex = 0;
             cargarListadoPreguntas();
             preguntaSeleccionada = listadoPreguntas[0];
@@ -73,42 +76,19 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         {
             get
             {
-                return saltarPreguntaCommand = new DelegateCommand(SaltarPregunta_Execute, SaltarPregunta_CanExecute);
+                return saltarPreguntaCommand = new DelegateCommand(SaltarPregunta_Execute);
             }
         }
         public clsModelPregunta PreguntaSeleccionada { get => preguntaSeleccionada; set => preguntaSeleccionada = value; }
         public List<clsModelPregunta> ListadoPreguntas { get => listadoPreguntas; set => listadoPreguntas = value; }
 
-        private bool SaltarPregunta_CanExecute()
-        {
-            return /*tiempo.Interval >= TimeSpan.MinValue && PalabrasRestantes > 1;//mientras no se haya agotado el tiempo y queden preguntas por contestar*/true;
-        }
-
+        public bool VisibilityPreguntaFallidaControl{ get; set; }
+        #endregion
+        #region commands
         private void SaltarPregunta_Execute()
         {
             SiguientePregunta();
         }
-
-        private void SiguientePregunta()
-        {
-            for (int i = SelectedIndex + 1; i < listadoPreguntas.Count+1; i++)
-            {
-                if (i == listadoPreguntas.Count)
-                { i = 0; }
-                if (ListadoPreguntas[i].Estado == 0)
-                {
-                    SelectedIndex = i;
-                    PreguntaSeleccionada = listadoPreguntas[SelectedIndex];
-                    recargarPregunta();
-                    NotifyPropertyChanged("PreguntaSeleccionada");
-                    break;
-                }
-            }
-        }
-
-
-        #endregion
-        #region commands
         private bool CheckRespuesta_CanExecute()
         {
             return preguntaSeleccionada != null && !string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador);
@@ -130,6 +110,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                     PalabrasRestantes--;
                     PlaySound("Wrong.mp3");
                     NotifyPropertyChanged("Fallos");
+                    mostrarControlPreguntaFallada();
                     break;
             }
             NotifyPropertyChanged("PreguntaSeleccionada");
@@ -138,8 +119,32 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             NotifyPropertyChanged("PalabrasRestantes");
             recargarPregunta();
         }
+
+
         #endregion
         #region metodos auxiliares
+        private void mostrarControlPreguntaFallada()
+        {
+
+        }
+
+        private void SiguientePregunta()
+        {
+            for (int i = SelectedIndex + 1; i < listadoPreguntas.Count + 1; i++)
+            {
+                if (i == listadoPreguntas.Count)
+                { i = 0; }
+                if (ListadoPreguntas[i].Estado == 0)
+                {
+                    SelectedIndex = i;
+                    PreguntaSeleccionada = listadoPreguntas[SelectedIndex];
+                    recargarPregunta();
+                    NotifyPropertyChanged("PreguntaSeleccionada");
+                    break;
+                }
+            }
+        }
+
         private void cargarListadoPreguntas()
         {
             listadoPreguntas = new List<clsModelPregunta>();
@@ -217,7 +222,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private async Task GameFinishedAsync()
         {
             string nick = await askNickAsync();
-            clsPartida partidaJugada = new clsPartida(nick, Aciertos, Fallos, tiempo.Interval);
+            clsPartida partidaJugada = new clsPartida(nick, Aciertos, Fallos, /*tiempo.Interval*/DateTime.Now);
             if (!string.IsNullOrEmpty(partidaJugada.Nick))
                 clsGestoraPartida.insertarPartida(partidaJugada);
         }

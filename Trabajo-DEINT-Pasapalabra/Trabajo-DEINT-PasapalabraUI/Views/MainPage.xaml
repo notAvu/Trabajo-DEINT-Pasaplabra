@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     mc:Ignorable="d"
+    xmlns:uc ="using:Trabajo_DEINT_PasapalabraUI.Views.UsersControlls"
     xmlns:cv ="using:Trabajo_DEINT_PasapalabraUI.Utils.Converters" 
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -19,7 +20,7 @@
 
     <Page.Resources>
         <ui:AttachedDropShadow x:Key="CommonShadow" Offset="4" />
-        <cv:clsColorToBrushConverter x:Key="cvColor"/>
+        <cv:clsBoolToVisibilityConverter x:Key="cvVisbility"/>
     </Page.Resources>
 
 
@@ -27,6 +28,8 @@
         <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
         </RelativePanel.Background>
+        <uc:PreguntaFalladaControl Respuesta="{Binding PreguntaSeleccionada.Respuesta, Mode=TwoWay}" LetraBoton="{Binding PreguntaSeleccionada.Letra, Mode=TwoWay}" Visibility="Visible" Canvas.ZIndex="1"
+                                   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
         <Button x:Name="BackButton" Foreground="White" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="BackButton_Click"
                  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
 

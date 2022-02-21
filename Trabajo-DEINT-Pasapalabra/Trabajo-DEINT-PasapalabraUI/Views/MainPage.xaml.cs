@@ -28,8 +28,6 @@ namespace Trabajo_DEINT_PasapalabraUI
         public MainPage()
         {
             this.InitializeComponent();
-            List<String> list = new List<String>() { "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B" };
-            listBoxPrueba.ItemsSource = list;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
