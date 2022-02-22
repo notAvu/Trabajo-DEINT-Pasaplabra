@@ -24,7 +24,9 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private DispatcherTimer tiempo;
         private DelegateCommand checkRespuestaCommand;
         private DelegateCommand saltarPreguntaCommand;
+        private bool visibilityPreguntaFallidaControl;
         #endregion
+
         #region constructor por defecto
         public clsGamePageVM()
         {
@@ -43,6 +45,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         }
 
         #endregion
+
         #region propiedades publicas
         public string TxtBoxRespuestaJugador
         {
@@ -81,8 +84,25 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         public clsModelPregunta PreguntaSeleccionada { get => preguntaSeleccionada; set => preguntaSeleccionada = value; }
         public List<clsModelPregunta> ListadoPreguntas { get => listadoPreguntas; set => listadoPreguntas = value; }
 
-        public bool VisibilityPreguntaFallidaControl { get; set; }
+        public bool VisibilityPreguntaFallidaControl
+        {
+            get { return visibilityPreguntaFallidaControl; }
+            set
+            {
+                visibilityPreguntaFallidaControl = value;
+                if (visibilityPreguntaFallidaControl)
+                {
+                    tiempo.Start();
+                }
+                else
+                {
+                    tiempo.Stop();
+                }
+            }
+
+        }
         #endregion
+
         #region commands
         private void SaltarPregunta_Execute()
         {
@@ -121,6 +141,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
 
         #endregion
+
         #region metodos auxiliares
         private void mostrarControlPreguntaFallada(bool visible)
         {
@@ -222,6 +243,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         }
         #endregion
 
+        #region metodos finPartida
         /// <summary>
         /// Metodo auxiliar que se llama al finalizar la partida para cargar los datos de la misma en la base de datos
         /// TODO Finalizar implementacion
@@ -250,5 +272,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 nickName = inputTbx.Text;
             return nickName;
         }
+        #endregion
+
     }
 }

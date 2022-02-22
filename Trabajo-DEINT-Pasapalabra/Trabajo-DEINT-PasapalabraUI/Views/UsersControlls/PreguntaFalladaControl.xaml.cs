@@ -44,6 +44,7 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
             DependencyProperty.Register("LetraBoton", typeof(string),
             typeof(PreguntaFalladaControl), new PropertyMetadata(string.Empty, letraChanged));
 
+
         private static void letraChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (mostrarAlIniciar)
@@ -55,23 +56,45 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
             mostrarAlIniciar = true;
         }
 
+        private static readonly DependencyProperty visibilidadProperty =
+            DependencyProperty.Register("Visibilidad", typeof(bool),
+            typeof(PreguntaFalladaControl), new PropertyMetadata(true, visibilidadChanged));
+
+        private static void visibilidadChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+                var ucPreguntaFallada = d as PreguntaFalladaControl;
+                bool visible = e.NewValue.Equals(true);
+                if (visible)
+                {
+                    ucPreguntaFallada.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ucPreguntaFallada.Visibility = Visibility.Collapsed;
+                }
+        }
+
         public string Respuesta
         {
             get { return (string)GetValue(respuestaProperty); }
-            set
-            { SetValue(respuestaProperty, value); }
+            set { SetValue(respuestaProperty, value); }
         }
 
         public string LetraBoton
         {
             get { return (string)(GetValue(letraBotonProperty)); }
-            set
-            { SetValue(letraBotonProperty, value); }
+            set { SetValue(letraBotonProperty, value); }
+        }
+
+        public bool Visibilidad
+        {
+            get { return (bool)GetValue(visibilidadProperty); }
+            set { SetValue(visibilidadProperty, value); }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ucPreguntaFallada.Visibility = Visibility.Collapsed;
+            ucPreguntaFallada.Visibility=Visibility.Collapsed;
         }
     }
 }
