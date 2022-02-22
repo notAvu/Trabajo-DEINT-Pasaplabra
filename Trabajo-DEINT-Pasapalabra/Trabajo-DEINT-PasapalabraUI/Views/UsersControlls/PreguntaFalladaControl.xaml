@@ -1,4 +1,5 @@
 ﻿<UserControl
+    x:Name="ucPreguntaFallada"
     x:Class="Trabajo_DEINT_PasapalabraUI.Views.UsersControlls.PreguntaFalladaControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -31,7 +32,7 @@ d:DesignHeight="600"
             <Run>seguir completando el rosco. ¿Preparado?</Run>
             </TextBlock>
             <Button Content="CONTINUAR" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,8,0,20" Foreground="DarkSlateGray" FontWeight="SemiBold"
-                FontSize="40" Padding="12" CornerRadius="12" BorderThickness="1" Background="White" FontFamily="Berlin Sans FB"/>
+                FontSize="40" Padding="12" CornerRadius="12" BorderThickness="1" Background="White" FontFamily="Berlin Sans FB" Click="Button_Click"/>
         </StackPanel>
     </RelativePanel>
 

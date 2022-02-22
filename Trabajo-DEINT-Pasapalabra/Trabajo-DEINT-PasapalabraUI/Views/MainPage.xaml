@@ -28,7 +28,7 @@
         <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
         </RelativePanel.Background>
-        <uc:PreguntaFalladaControl Respuesta="{Binding PreguntaSeleccionada.Respuesta, Mode=TwoWay}" LetraBoton="{Binding PreguntaSeleccionada.Letra, Mode=TwoWay}" Visibility="Visible" Canvas.ZIndex="1"
+        <uc:PreguntaFalladaControl Respuesta="{Binding PreguntaSeleccionada.Respuesta}" LetraBoton="{Binding PreguntaSeleccionada.Letra}" Visibility="{Binding VisibilityPreguntaFallidaControl, Converter={StaticResource cvVisbility}}" Canvas.ZIndex="1"
                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
         <Button x:Name="BackButton" Foreground="White" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="BackButton_Click"
                  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>

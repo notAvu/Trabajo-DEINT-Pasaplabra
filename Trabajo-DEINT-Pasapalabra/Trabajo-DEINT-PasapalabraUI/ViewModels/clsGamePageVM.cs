@@ -28,9 +28,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #region constructor por defecto
         public clsGamePageVM()
         {
-            VisibilityPreguntaFallidaControl = false;
-            NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
-
+            tiempo = new DispatcherTimer();
+            mostrarControlPreguntaFallada(false);
             SelectedIndex = 0;
             cargarListadoPreguntas();
             preguntaSeleccionada = listadoPreguntas[0];
@@ -82,7 +81,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         public clsModelPregunta PreguntaSeleccionada { get => preguntaSeleccionada; set => preguntaSeleccionada = value; }
         public List<clsModelPregunta> ListadoPreguntas { get => listadoPreguntas; set => listadoPreguntas = value; }
 
-        public bool VisibilityPreguntaFallidaControl{ get; set; }
+        public bool VisibilityPreguntaFallidaControl { get; set; }
         #endregion
         #region commands
         private void SaltarPregunta_Execute()
@@ -110,7 +109,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                     PalabrasRestantes--;
                     PlaySound("Wrong.mp3");
                     NotifyPropertyChanged("Fallos");
-                    mostrarControlPreguntaFallada();
+                    mostrarControlPreguntaFallada(true);//TODO HACER METODO DEL BOTON CLICK SINCRONO
                     break;
             }
             NotifyPropertyChanged("PreguntaSeleccionada");
@@ -123,9 +122,18 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         #endregion
         #region metodos auxiliares
-        private void mostrarControlPreguntaFallada()
+        private void mostrarControlPreguntaFallada(bool visible)
         {
-
+            if (visible)
+            {
+                tiempo.Stop();
+            }
+            else
+            {
+                tiempo.Start();
+            }
+            VisibilityPreguntaFallidaControl = visible;
+            NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
         }
 
         private void SiguientePregunta()
@@ -187,7 +195,6 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 DefaultButton = ContentDialogButton.Primary
             };
 
-            tiempo = new DispatcherTimer();
             tiempo.Interval = new TimeSpan(0, 0, 1);
             tiempo.Start();
             tiempo.Tick += (a, b) =>

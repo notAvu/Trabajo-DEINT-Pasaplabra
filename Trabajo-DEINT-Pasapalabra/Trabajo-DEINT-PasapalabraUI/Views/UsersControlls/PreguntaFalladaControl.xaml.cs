@@ -19,39 +19,59 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 {
     public sealed partial class PreguntaFalladaControl : UserControl
     {
+        private static bool mostrarAlIniciar;
         public PreguntaFalladaControl()
         {
             this.InitializeComponent();
+            mostrarAlIniciar = false;
         }
+
         public static readonly DependencyProperty respuestaProperty =
             DependencyProperty.Register("Respuesta", typeof(string),
-                typeof(PreguntaFalladaControl), new PropertyMetadata(string.Empty));
+                typeof(PreguntaFalladaControl), new PropertyMetadata(string.Empty, respuestaChanged));
+
+        private static void respuestaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (mostrarAlIniciar)
+            {
+                var ucPreguntaFallada = d as PreguntaFalladaControl;
+                ucPreguntaFallada.txtRespuesta.Text = e.OldValue.ToString();
+            }
+
+        }
 
         public static readonly DependencyProperty letraBotonProperty =
             DependencyProperty.Register("LetraBoton", typeof(string),
-            typeof(PreguntaFalladaControl), new PropertyMetadata(string.Empty));
+            typeof(PreguntaFalladaControl), new PropertyMetadata(string.Empty, letraChanged));
+
+        private static void letraChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (mostrarAlIniciar)
+            {
+                var ucPreguntaFallada = d as PreguntaFalladaControl;
+                ucPreguntaFallada.Visibility = Visibility.Visible;
+                ucPreguntaFallada.txtLetra.Text = e.OldValue.ToString();
+            }
+            mostrarAlIniciar = true;
+        }
 
         public string Respuesta
         {
             get { return (string)GetValue(respuestaProperty); }
             set
-            {
-                    SetValue(respuestaProperty, value);
-                    txtRespuesta.Text = value;
-            }
+            { SetValue(respuestaProperty, value); }
         }
 
         public string LetraBoton
         {
             get { return (string)(GetValue(letraBotonProperty)); }
             set
-            {
-                if (value != null)
-                {
-                    SetValue(letraBotonProperty, value);
-                    txtLetra.Text = value;
-                }
-            }
+            { SetValue(letraBotonProperty, value); }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ucPreguntaFallada.Visibility = Visibility.Collapsed;
         }
     }
 }
