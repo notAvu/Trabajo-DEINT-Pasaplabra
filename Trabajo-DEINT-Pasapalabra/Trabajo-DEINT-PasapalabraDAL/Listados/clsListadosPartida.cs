@@ -35,7 +35,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
             if (reader["Nickname"] != DBNull.Value) { oPartida.Nick = (string)reader["Nickname"]; }
             oPartida.TotalAcertadas = (int)reader["aciertos"];
             oPartida.TotalFalladas = (int)reader["fallos"];
-            oPartida.Tiempo = (DateTime)reader["tiempo"];
+            oPartida.Tiempo = (TimeSpan)reader["tiempo"];
             return oPartida;
         }
     }

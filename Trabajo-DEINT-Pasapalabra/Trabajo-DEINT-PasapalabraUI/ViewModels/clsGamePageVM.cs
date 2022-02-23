@@ -251,7 +251,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private async Task GameFinishedAsync()
         {
             string nick = await askNickAsync();
-            clsPartida partidaJugada = new clsPartida(nick, Aciertos, Fallos, /*tiempo.Interval*/DateTime.Now);
+            clsPartida partidaJugada = new clsPartida(nick, Aciertos, Fallos, tiempo.Interval);
             if (!string.IsNullOrEmpty(partidaJugada.Nick))
                 clsGestoraPartida.insertarPartida(partidaJugada);
         }
