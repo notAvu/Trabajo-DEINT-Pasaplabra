@@ -140,15 +140,19 @@
             <Ellipse  Height="550" Width="550" Opacity="0.8" Fill="White"/>
             <StackPanel Height="550" Width="550" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Background="Transparent">
                 <TextBlock Foreground="Black" Text="{Binding TxtBoxLetraPregunta}" FontSize="32" FontWeight="SemiBold" Margin="0,60,0,0" HorizontalAlignment="Center" />
-                <TextBlock TextWrapping="WrapWholeWords" TextAlignment="Center"
+                <Button Name="btnAudio" Click="btnAudio_Click"  HorizontalAlignment="Center" Margin="0,20,0,0" Height="40" BorderBrush="DarkBlue" BorderThickness="1" CornerRadius="20"
+                       MinWidth="20" MinHeight="20" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" >
+                    <Image Source="/Assets/Images/volumen.png" Opacity="2" />
+                </Button>
+                <TextBlock Name="txtPregunta" TextWrapping="WrapWholeWords" TextAlignment="Center"
                            Text="{Binding TxtBoxEnunciadoPregunta}"
-                           HorizontalAlignment="Center" Margin="0,50,0,0"
+                           HorizontalAlignment="Center" Margin="0,0,0,0"
                            Foreground="Black"  FontSize="22" FontWeight="SemiBold" 
                            MaxWidth="450"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
                     <TextBox x:Name="txtRespuesta" PlaceholderText="RESPUESTA" TextAlignment="Center" Margin="50,30,0,0" FontSize="22" CornerRadius="0" BorderBrush="Black" 
-                         MaxWidth="240" MinHeight="40" FontFamily="Berlin Sans FB" BorderThickness="0,0,0,2" Background="{ThemeResource AppBarItemBackgroundThemeBrush}"
+                         Width="240" MinHeight="40" FontFamily="Berlin Sans FB" BorderThickness="0,0,0,2" Background="{ThemeResource AppBarItemBackgroundThemeBrush}"
                              Text="{Binding TxtBoxRespuestaJugador,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Name="btnMicro" Click="btnMicro_Click"  Height="40" BorderBrush="DarkBlue" BorderThickness="1" CornerRadius="20" 
                         HorizontalAlignment="Center" Margin="20,20,0,0" Padding="2,2,2,2" MinWidth="20" MinHeight="20" Background="{ThemeResource AppBarItemBackgroundThemeBrush}">
@@ -157,8 +161,8 @@
                 </StackPanel>
                 <AppBarButton Icon="Accept" CornerRadius="6" Background="CadetBlue" HorizontalAlignment="Center" Margin="0,15,0,0" 
                         MaxWidth="40" MaxHeight="40" Command="{Binding CheckRespuestaCommand}"/>
-                <Button Name="btnPasaPalabra" Content="PASAPALABRA" MinHeight="20" MinWidth="100" HorizontalAlignment="Center" Margin="0,20,0,0"
-                        CornerRadius="20" BorderBrush="Black" BorderThickness="1" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" Command="{Binding SaltarPreguntaCommand}"  FontFamily="Berlin Sans FB" />
+                <Button Name="btnPasaPalabra" Content="PASAPALABRA" MinHeight="20" MinWidth="100" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="10" 
+                        CornerRadius="20" BorderBrush="DarkBlue" BorderThickness="1" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" Command="{Binding SaltarPreguntaCommand}"  FontFamily="Tahoma" FontWeight="Bold" FontSize="16" />
             </StackPanel>
         </Grid>
     </RelativePanel>

@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Capture;
 using Windows.Media.SpeechRecognition;
+using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -75,7 +76,7 @@ namespace Trabajo_DEINT_PasapalabraUI
         public async void RequestMicrophonePermission()
         {
 
-            ContentDialog noWifiDialog = new ContentDialog()
+            ContentDialog noMicDialog = new ContentDialog()
             {
                 Title = "No tienes activados los permisos del micrófono",
                 Content = "¿Deseas activarlos?",
@@ -83,7 +84,7 @@ namespace Trabajo_DEINT_PasapalabraUI
                 CloseButtonText = "No",
 
             };
-            ContentDialogResult result = await noWifiDialog.ShowAsync();
+            ContentDialogResult result = await noMicDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
                 try
@@ -113,6 +114,19 @@ namespace Trabajo_DEINT_PasapalabraUI
                         await messageDialog.ShowAsync();
                     }
                 }
+            }
+        }
+
+        private async void btnAudio_Click(object sender, RoutedEventArgs e)
+        {
+            MediaElement mediaplayer = new MediaElement();
+            using (var speech = new SpeechSynthesizer())
+            {
+                speech.Voice = SpeechSynthesizer.AllVoices.First(gender => gender.Gender == VoiceGender.Female);
+                string ssml = @"<speak version='1.0' " + "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='es-ES'>" + txtPregunta.Text + "</speak>";
+                SpeechSynthesisStream stream = await speech.SynthesizeSsmlToStreamAsync(ssml);
+                mediaplayer.SetSource(stream, stream.ContentType);
+
             }
         }
     }

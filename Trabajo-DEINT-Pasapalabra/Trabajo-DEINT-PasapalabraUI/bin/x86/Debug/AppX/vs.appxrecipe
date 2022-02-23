@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>834803312C01BB96C4E16306ABDC4E0A49BE159FE7EAF2B30F354991F5F2BD81</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>E35E51F432F3B7932959C31C2191CB52D86F3E4D937A0BE7E1634293EFA9866B</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>51412063-72c5-40f6-8755-9de3d4685b80_1.0.0.0_x86__m9dy9qtns2aea</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>51412063-72c5-40f6-8755-9de3d4685b80_m9dy9qtns2aea!App</RegisteredUserModeAppID>
     <RegisteredPackageID>51412063-72c5-40f6-8755-9de3d4685b80</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-02-23T11:30:56.698</Modified>
+      <Modified>2022-02-23T12:20:59.145</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>entrypoint\Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-02-23T11:30:48.607</Modified>
+      <Modified>2022-02-23T12:20:57.931</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -178,6 +178,10 @@
       <PackagePath>Assets\Images\micro2.png</PackagePath>
       <Modified>2022-02-23T11:07:43.505</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\volumen.png">
+      <PackagePath>Assets\Images\volumen.png</PackagePath>
+      <Modified>2022-02-23T12:12:24.446</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2022-02-23T11:07:43.505</Modified>
@@ -230,23 +234,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Trabajo-DEINT-PasapalabraUI.xr.xml">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.xr.xml</PackagePath>
-      <Modified>2022-02-23T11:30:48.376</Modified>
+      <Modified>2022-02-23T12:20:57.771</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-02-23T11:30:48.454</Modified>
+      <Modified>2022-02-23T12:18:42.606</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\GamePage.xbf">
       <PackagePath>Views\GamePage.xbf</PackagePath>
-      <Modified>2022-02-23T11:30:48.454</Modified>
+      <Modified>2022-02-23T12:18:42.606</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-02-23T11:30:48.438</Modified>
+      <Modified>2022-02-23T12:20:57.791</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\UsersControlls\PreguntaFalladaControl.xbf">
       <PackagePath>Views\UsersControlls\PreguntaFalladaControl.xbf</PackagePath>
-      <Modified>2022-02-23T11:30:48.454</Modified>
+      <Modified>2022-02-23T12:18:42.606</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -258,11 +262,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-02-23T11:30:51.014</Modified>
+      <Modified>2022-02-23T12:14:22.577</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Core\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-02-23T11:30:56.676</Modified>
+      <Modified>2022-02-23T12:20:59.130</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>

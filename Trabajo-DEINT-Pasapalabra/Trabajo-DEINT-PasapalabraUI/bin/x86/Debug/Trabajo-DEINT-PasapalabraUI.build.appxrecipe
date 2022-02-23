@@ -133,6 +133,9 @@
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\micro2.png">
       <PackagePath>Assets\Images\micro2.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\volumen.png">
+      <PackagePath>Assets\Images\volumen.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\macal\source\repos\rabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
