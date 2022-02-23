@@ -24,6 +24,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private DispatcherTimer tiempo;
         private DelegateCommand checkRespuestaCommand;
         private DelegateCommand saltarPreguntaCommand;
+        public bool PartidaFinalizada => PalabrasRestantes == 0 || tiempo.Interval <= TimeSpan.MinValue;
         #endregion
         #region constructor por defecto
         public clsGamePageVM()
@@ -133,10 +134,12 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                     break;
             }
             NotifyPropertyChanged("PreguntaSeleccionada");
-            SiguientePregunta();
-            //TODO METER AQUI LO QUE HARIA SI HA TERMINADO EL ROSCO
+            if (PalabrasRestantes > 0)
+                SiguientePregunta();
             NotifyPropertyChanged("PalabrasRestantes");
             recargarPregunta();
+            if (PartidaFinalizada)
+                _ = GameFinishedAsync();
         }
         #endregion
         #region metodos auxiliares
@@ -216,6 +219,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// </summary>
         private async Task GameFinishedAsync()
         {
+            tiempo.Stop();
             string nick = await askNickAsync();
             clsPartida partidaJugada = new clsPartida(nick, Aciertos, Fallos, tiempo.Interval);
             if (!string.IsNullOrEmpty(partidaJugada.Nick))
