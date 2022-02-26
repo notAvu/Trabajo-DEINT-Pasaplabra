@@ -10,10 +10,10 @@ namespace Trabajo_DEINT_PasapalabraEntities
         public string Nick { get; set; }
         public int TotalAcertadas { get; set; }
         public int TotalFalladas { get; set; }
-        public DateTime Tiempo { get; set; }
+        public TimeSpan Tiempo { get; set; }
         #endregion
         #region constructores
-        public clsPartida(int id, string nick, int totalAcertadas, int totalFalladas, DateTime tiempo)
+        public clsPartida(int id, string nick, int totalAcertadas, int totalFalladas, TimeSpan tiempo)
         {
             Id = id;
             Nick = nick;
@@ -27,9 +27,9 @@ namespace Trabajo_DEINT_PasapalabraEntities
             Nick = "";
             TotalAcertadas =0;
             TotalFalladas = 0;
-            Tiempo = DateTime.Now;
+            Tiempo = new TimeSpan(0,0,0);
         }
-        public clsPartida(string nick, int totalAcertadas, int totalFalladas, DateTime time) 
+        public clsPartida(string nick, int totalAcertadas, int totalFalladas, TimeSpan time) 
         {
             Nick = nick;
             TotalAcertadas = totalAcertadas;
