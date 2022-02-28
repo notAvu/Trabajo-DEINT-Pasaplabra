@@ -84,7 +84,7 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ucPreguntaFallada.Visibility = Visibility.Collapsed;
+            Visibilidad = false;
         }
     }
 }

@@ -94,14 +94,14 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             set
             {
                 visibilityPreguntaFallidaControl = value;
-                //if (visibilityPreguntaFallidaControl)
-                //{
-                //    tiempo.Start();
-                //}
-                //else
-                //{
-                //    tiempo.Stop();
-                //}
+                if (visibilityPreguntaFallidaControl)
+                {
+                    tiempo.Stop();
+                }
+                else
+                {
+                    tiempo.Start();
+                }
             }
 
         }
@@ -157,11 +157,10 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
                 NotifyPropertyChanged("LetraPreguntaFallada");
                 NotifyPropertyChanged("RespuestaPreguntaFallada");
-                tiempo.Stop();
             }
             else
             {
-                tiempo.Start();
+                VisibilityPreguntaFallidaControl = false;
             }
             NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
         }
