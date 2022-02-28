@@ -19,11 +19,9 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 {
     public sealed partial class PreguntaFalladaControl : UserControl
     {
-        private static bool mostrarAlIniciar;
         public PreguntaFalladaControl()
         {
             this.InitializeComponent();
-            mostrarAlIniciar = false;
         }
 
         public static readonly DependencyProperty respuestaProperty =
@@ -32,12 +30,8 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 
         private static void respuestaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (mostrarAlIniciar)
-            {
-                var ucPreguntaFallada = d as PreguntaFalladaControl;
-                ucPreguntaFallada.txtRespuesta.Text = e.OldValue.ToString();
-            }
-
+            var ucPreguntaFallada = d as PreguntaFalladaControl;
+            ucPreguntaFallada.txtRespuesta.Text = e.NewValue.ToString();
         }
 
         public static readonly DependencyProperty letraBotonProperty =
@@ -47,13 +41,9 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 
         private static void letraChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (mostrarAlIniciar)
-            {
-                var ucPreguntaFallada = d as PreguntaFalladaControl;
-                ucPreguntaFallada.Visibility = Visibility.Visible;
-                ucPreguntaFallada.txtLetra.Text = e.OldValue.ToString();
-            }
-            mostrarAlIniciar = true;
+            var ucPreguntaFallada = d as PreguntaFalladaControl;
+            ucPreguntaFallada.Visibility = Visibility.Visible;
+            ucPreguntaFallada.txtLetra.Text = e.NewValue.ToString();
         }
 
         private static readonly DependencyProperty visibilidadProperty =
@@ -62,16 +52,16 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 
         private static void visibilidadChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-                var ucPreguntaFallada = d as PreguntaFalladaControl;
-                bool visible = e.NewValue.Equals(true);
-                if (visible)
-                {
-                    ucPreguntaFallada.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    ucPreguntaFallada.Visibility = Visibility.Collapsed;
-                }
+            var ucPreguntaFallada = d as PreguntaFalladaControl;
+            bool visible = e.NewValue.Equals(true);
+            if (visible)
+            {
+                ucPreguntaFallada.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ucPreguntaFallada.Visibility = Visibility.Collapsed;
+            }
         }
 
         public string Respuesta
@@ -94,7 +84,7 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ucPreguntaFallada.Visibility=Visibility.Collapsed;
+            ucPreguntaFallada.Visibility = Visibility.Collapsed;
         }
     }
 }

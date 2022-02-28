@@ -84,20 +84,24 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         public clsModelPregunta PreguntaSeleccionada { get => preguntaSeleccionada; set => preguntaSeleccionada = value; }
         public List<clsModelPregunta> ListadoPreguntas { get => listadoPreguntas; set => listadoPreguntas = value; }
 
+        public String LetraPreguntaFallada { get; set; }
+        public String RespuestaPreguntaFallada { get; set; }
+
+
         public bool VisibilityPreguntaFallidaControl
         {
             get { return visibilityPreguntaFallidaControl; }
             set
             {
                 visibilityPreguntaFallidaControl = value;
-                if (visibilityPreguntaFallidaControl)
-                {
-                    tiempo.Start();
-                }
-                else
-                {
-                    tiempo.Stop();
-                }
+                //if (visibilityPreguntaFallidaControl)
+                //{
+                //    tiempo.Start();
+                //}
+                //else
+                //{
+                //    tiempo.Stop();
+                //}
             }
 
         }
@@ -125,11 +129,11 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                     NotifyPropertyChanged("Aciertos");
                     break;
                 case -1:
+                    mostrarControlPreguntaFallada(true);//TODO HACER METODO DEL BOTON CLICK SINCRONO
                     Fallos++;
                     PalabrasRestantes--;
                     PlaySound("Wrong.mp3");
                     NotifyPropertyChanged("Fallos");
-                    mostrarControlPreguntaFallada(true);//TODO HACER METODO DEL BOTON CLICK SINCRONO
                     break;
             }
             NotifyPropertyChanged("PreguntaSeleccionada");
@@ -147,13 +151,18 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         {
             if (visible)
             {
+                LetraPreguntaFallada = preguntaSeleccionada.Letra.ToString();
+                RespuestaPreguntaFallada = preguntaSeleccionada.Respuesta;
+                VisibilityPreguntaFallidaControl = true;
+                NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
+                NotifyPropertyChanged("LetraPreguntaFallada");
+                NotifyPropertyChanged("RespuestaPreguntaFallada");
                 tiempo.Stop();
             }
             else
             {
                 tiempo.Start();
             }
-            VisibilityPreguntaFallidaControl = visible;
             NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
         }
 
