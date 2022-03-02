@@ -116,8 +116,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="listBoxPrueba" Grid.Row="0" Grid.Column="0" Margin="-18,0,18,0"
-                     ItemsSource="{Binding ListadoPreguntas}">
+            <ListBox x:Name="listBoxPrueba" Grid.Row="0" Grid.Column="0" Margin="-18,0,18,0" IsHitTestVisible="False"
+                     ItemsSource="{Binding ListadoPreguntas}" SelectedIndex="{Binding PreguntaSeleccionada, Mode=TwoWay}">
                 <ListBox.Background>
                     <ImageBrush ImageSource="\Assets\Images\fondo_pasapalabra.jpeg"></ImageBrush>
                 </ListBox.Background>
@@ -128,12 +128,7 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid  Height="64" Width="64">
-                            <Ellipse  Stroke="White" Fill="{Binding Color}" StrokeThickness="2"></Ellipse>
-                            <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.80" HorizontalAlignment="Center" VerticalAlignment="Center" OffsetX="5.0" OffsetY="5.0" Color="#02035e">
-                                <TextBlock x:Name="Target" Text="{Binding Letra}" FontFamily="Arial" FontSize="32" Foreground="White" />
-                            </controls:DropShadowPanel>
-                        </Grid>
+                        <uc:LetraControl Letra="{Binding Letra}" Color="{Binding Color, Mode=TwoWay}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

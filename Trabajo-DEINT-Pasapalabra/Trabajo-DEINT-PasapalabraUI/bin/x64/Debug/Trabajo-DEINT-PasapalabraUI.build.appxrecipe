@@ -187,6 +187,9 @@
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\UsersControlls\LetraControl.xbf">
+      <PackagePath>Views\UsersControlls\LetraControl.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\germa\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\UsersControlls\PreguntaFalladaControl.xbf">
       <PackagePath>Views\UsersControlls\PreguntaFalladaControl.xbf</PackagePath>
     </AppxPackagedFile>

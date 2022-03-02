@@ -12,6 +12,7 @@
     <RootPropertyPathName Name="TxtBoxEnunciadoPregunta" />
     <RootPropertyPathName Name="TxtBoxLetraPregunta" />
     <RootPropertyPathName Name="ListadoPreguntas" />
+    <RootPropertyPathName Name="PreguntaSeleccionada" />
     <RootPropertyPathName Name="Letra" />
     <RootPropertyPathName Name="Color" />
     <RootPropertyPathName Name="PalabrasRestantes" />
@@ -43,6 +44,8 @@
       <RootProperty Name="To" />
       <RootProperty Name="RepeatBehavior" />
       <RootProperty Name="AutoReverse" />
+      <RootProperty Name="EnableDependentAnimation" />
+      <RootProperty Name="From" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.RelativePanel">
       <RootProperty Name="Background" />
@@ -196,7 +199,9 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
       <RootProperty Name="Margin" />
+      <RootProperty Name="IsHitTestVisible" />
       <RootProperty Name="ItemsSource" />
+      <RootProperty Name="SelectedIndex" />
       <RootProperty Name="Background" />
       <RootProperty Name="ItemsPanel" />
       <RootProperty Name="ItemTemplate" />
@@ -206,9 +211,9 @@
       <RootProperty Name="Width" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Fill" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Stroke" />
       <RootProperty Name="StrokeThickness" />
-      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
@@ -246,6 +251,10 @@
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.UsersControlls.LetraControl">
+      <RootProperty Name="Letra" />
+      <RootProperty Name="Color" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Border">
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
@@ -258,6 +267,7 @@
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.MainPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
+      <RootProperty Name="Resources" />
       <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Documents.Run" />
