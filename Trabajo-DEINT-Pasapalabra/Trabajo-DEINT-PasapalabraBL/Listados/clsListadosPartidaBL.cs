@@ -14,6 +14,10 @@ namespace Trabajo_DEINT_PasapalabraBL.Listados
         {
             return clsListadosPartida.CargarListadoPartidaDAL();
         }
+        public static List<clsPartida> CargarListadoOrdenadoBL()
+        {
+            return clsListadosPartida.CargarListadoPartidasOrdenadoDAL();
+        }
     }
 }
 

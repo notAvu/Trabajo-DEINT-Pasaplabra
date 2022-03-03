@@ -5,9 +5,12 @@
     xmlns:local="using:Trabajo_DEINT_PasapalabraUI.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Trabajo_DEINT_PasapalabraUI.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.DataContext>
+        <vm:clsRankingVM/>
+    </Page.DataContext>
     <StackPanel>
         <StackPanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
@@ -15,7 +18,7 @@
         <StackPanel MaxWidth="600" BorderBrush="Black" BorderThickness="5" CornerRadius="10" Margin="0,100" Background="#90FFFFFF">
             <TextBlock Margin="0,10,0,40" FontSize="88" FontWeight="Bold" Foreground="White" FontFamily="Keedy Sans" 
                        VerticalAlignment="Center" HorizontalAlignment="Center" Text="Ranking"/>
-            <ListView ItemsSource="{Binding partidas}">
+            <ListView ItemsSource="{Binding ListaPartidas}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel BorderBrush="Black" Orientation="Horizontal">
