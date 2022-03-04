@@ -18,6 +18,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
     public class clsGamePageVM : clsVMBase
     {
         #region propiedades privadas
+        private MediaElement correctSfx;
+        private MediaElement wrongSfx;
         private List<clsModelPregunta> listadoPreguntas;
         private clsModelPregunta preguntaSeleccionada;
         private string txtBoxRespuestaJugador;
@@ -25,6 +27,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private DelegateCommand checkRespuestaCommand;
         private DelegateCommand saltarPreguntaCommand;
         private bool visibilityPreguntaFallidaControl;
+        public bool PartidaFinalizada => PalabrasRestantes == 0 || tiempo.Interval <= TimeSpan.MinValue;
+
         #endregion
 
         #region constructor por defecto
@@ -42,6 +46,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             NotifyPropertyChanged("TiempoMax");
             iniciarContador();
             TxtBoxRespuestaJugador = "";
+            wrongSfx = new MediaElement();
+            correctSfx = new MediaElement();
         }
 
         #endregion
@@ -125,14 +131,14 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 case 1:
                     Aciertos++;
                     PalabrasRestantes--;
-                    PlaySound("correct.mp3");
+                    _ = PlaySound("correct.mp3", correctSfx);
                     NotifyPropertyChanged("Aciertos");
                     break;
                 case -1:
                     mostrarControlPreguntaFallada(true);//TODO HACER METODO DEL BOTON CLICK SINCRONO
                     Fallos++;
                     PalabrasRestantes--;
-                    PlaySound("Wrong.mp3");
+                    _ = PlaySound("Wrong.mp3", wrongSfx);
                     NotifyPropertyChanged("Fallos");
                     break;
             }
@@ -241,13 +247,16 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
         /// </summary>
         /// <param name="soundFileName"></param>
-        private async void PlaySound(string soundFileName)
+        /// <param name="media"></param>
+        /// <returns></returns>
+        private async Task PlaySound(string soundFileName, MediaElement media)
         {
-            MediaElement element = new MediaElement();
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
             StorageFile file = await folder.GetFileAsync(soundFileName);
-            element.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
-            element.Play();
+            media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
+            if (correctSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) correctSfx.Stop();
+            if (wrongSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) wrongSfx.Stop();
+            media.Play();
         }
         #endregion
 

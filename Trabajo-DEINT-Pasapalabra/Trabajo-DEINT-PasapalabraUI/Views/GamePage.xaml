@@ -11,12 +11,12 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
     <Page.Resources>
         <Storyboard x:Name="storyboard4">
-                <DoubleAnimation x:Name="doubleAnimation" Duration="0:0:5" To="100" Storyboard.TargetName="bn" Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateX)" d:IsOptimized="True"
+            <DoubleAnimation x:Name="doubleAnimation" Duration="0:0:5" To="100" Storyboard.TargetName="bn" Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateX)" d:IsOptimized="True"
                                  RepeatBehavior="Forever" AutoReverse="True"/>
             <DoubleAnimation  Duration="0:0:5" To="-1000" Storyboard.TargetName="bn" Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateY)" d:IsOptimized="True"
                                  RepeatBehavior="Forever" AutoReverse="True"/>
 
-            </Storyboard>
+        </Storyboard>
     </Page.Resources>
 
     <RelativePanel x:Name="rltRoot">
@@ -32,9 +32,9 @@
                 <TextBlock Margin="0,10,0,40" FontSize="88" FontWeight="Bold" Foreground="White" FontFamily="Keedy Sans" 
                        VerticalAlignment="Center" HorizontalAlignment="Center" Text="PASAPALABRA"/>
             </controls:DropShadowPanel>
-            <Button FontFamily="Keedy Sans" HorizontalAlignment="Center" Command="{Binding Jugar}" BorderBrush="Black"  Background="White" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold">PLAY</Button>
+            <Button FontFamily="Keedy Sans" HorizontalAlignment="Center" Click="Button_Click" BorderBrush="Black"  Background="White" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold">PLAY</Button>
             <Button x:Name="btnPuntuacion" HorizontalAlignment="Center" BorderBrush="Black"  Background="White" Margin="0,15,0,0" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
-            Command="{Binding VerPuntuacion}" CommandParameter="{Binding ElementName=btnPuntuacion}" FontFamily="Keedy Sans">SCOREBOARD</Button>
+            Click="btnPuntuacion_Click" FontFamily="Keedy Sans">SCOREBOARD</Button>
         </StackPanel>
     </RelativePanel>
 </Page>

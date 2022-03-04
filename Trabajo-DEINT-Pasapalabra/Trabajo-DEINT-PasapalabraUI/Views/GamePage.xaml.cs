@@ -103,5 +103,14 @@ namespace Trabajo_DEINT_PasapalabraUI.Views
             borde2.CornerRadius = new CornerRadius(35);
             return borde2;
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void btnPuntuacion_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Ranking));
+        }
     }
 }
