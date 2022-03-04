@@ -45,39 +45,60 @@ namespace Trabajo_DEINT_PasapalabraUI.Views.UsersControlls
 
         }
 
-        public SolidColorBrush Color
-        {
-            get { return (SolidColorBrush)GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value);}
-        }
-
-        public static readonly DependencyProperty ColorProperty =
+        public static readonly DependencyProperty ComenzarAnimacionProperty =
             DependencyProperty.Register(
-                "Color",
-                typeof(SolidColorBrush),
+                "ComenzarAnimacion",
+                typeof(bool),
                 typeof(LetraControl),
-                new PropertyMetadata(null, colorChanged));
-
-        private static void colorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+                new PropertyMetadata(false, comenzarAnimacionChanged));
+        public bool ComenzarAnimacion
         {
-            SolidColorBrush mySolidColorBrush;
+            get { return (bool)GetValue(ComenzarAnimacionProperty); }
+            set { SetValue(ComenzarAnimacionProperty, value); }
+        }
+        private static void comenzarAnimacionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
             LetraControl ucLetra = d as LetraControl;
-            SolidColorBrush solidColorBrush = (SolidColorBrush)e.NewValue;
-            if (solidColorBrush.Color.Equals(Colors.Red))
+            bool comenzarAnimacion = e.NewValue.Equals(true);
+            if (comenzarAnimacion)
             {
-                mySolidColorBrush = new SolidColorBrush(Colors.Red);
-            }else if (solidColorBrush.Color.Equals(Colors.Green))
-            {
-                mySolidColorBrush= new SolidColorBrush(Colors.Green);
+                ucLetra.storyBoardPrueba.Begin();
             }
             else
             {
-                mySolidColorBrush= new SolidColorBrush(Colors.Blue);
+                ucLetra.storyBoardPrueba.Stop();
             }
+        }
 
-            ucLetra.ellipse.Fill = mySolidColorBrush;
-            ucLetra.storyBoard.Begin();
+        public static readonly DependencyProperty EstadoProperty =
+            DependencyProperty.Register(
+                "Estado",
+                typeof(int),
+                typeof(LetraControl),
+                new PropertyMetadata(-2, estadoChanged));
 
+        private static void estadoChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            LetraControl ucLetra = d as LetraControl;
+            int estado = (int)e.NewValue;
+            if (estado == 1)
+            {
+                ucLetra.ellipse.Fill = new SolidColorBrush(Colors.Green);
+            }
+            else if (estado == -1)
+            {
+                ucLetra.ellipse.Fill = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                ucLetra.ellipse.Fill = new SolidColorBrush(Colors.Blue);
+            }
+        }
+
+        public int Estado
+        {
+            get { return (int)GetValue(ComenzarAnimacionProperty); }
+            set { SetValue(EstadoProperty, value); }
         }
     }
 }

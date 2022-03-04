@@ -3,105 +3,134 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Trabajo_DEINT_PasapalabraUI.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Text;
+using Windows.Media.Capture;
+using Windows.Media.SpeechRecognition;
+using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
+// La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
 
-namespace Trabajo_DEINT_PasapalabraUI.Views
+namespace Trabajo_DEINT_PasapalabraUI
 {
     /// <summary>
-    /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
+    /// Página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
     /// </summary>
     public sealed partial class GamePage : Page
     {
+        MediaElement mediaplayer = new MediaElement();
         public GamePage()
         {
             this.InitializeComponent();
-            comenzarAnimaciones();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
         
-        public void comenzarAnimaciones()
+        /*
+        //TTS 
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 25; i++)
+            MediaElement mediaplayer = new MediaElement();
+            using (var speech = new SpeechSynthesizer())
             {
-                crearAnimacion();
-            }         
+                speech.Voice = SpeechSynthesizer.AllVoices.First(gender => gender.Gender == VoiceGender.Female);
+                string ssml = @"<speak version='1.0' " + "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='es-ES'>" + txtBox.Text + "</speak>";
+                SpeechSynthesisStream stream = await speech.SynthesizeSsmlToStreamAsync(ssml);
+                mediaplayer.SetSource(stream, stream.ContentType);
+
+            }
         }
-
-
-        private void crearAnimacion(){
-            Random r = new Random();
-            Storyboard str = new Storyboard();
-            DoubleAnimation dbAnimationEjeX = new DoubleAnimation();            
-            DoubleAnimation dbAnimationEjeY = new DoubleAnimation();            
-            animarYConfigurarElementos(r, crearElementosDeLaInterfaz(r), dbAnimationEjeX,dbAnimationEjeY,str);
-        }
-
-        private void animarYConfigurarElementos(Random r,Border borde2,DoubleAnimation dbAnimationEjeX, DoubleAnimation dbAnimationEjeY,Storyboard str)
+        */
+        //MICROFONO
+        private async void btnMicro_Click(object sender, RoutedEventArgs e)
         {
-            dbAnimationEjeX.AutoReverse = true;
-            dbAnimationEjeX.RepeatBehavior = RepeatBehavior.Forever;
-            dbAnimationEjeY.AutoReverse = true;
-            dbAnimationEjeY.To = r.Next(-1000, 1000);
-            dbAnimationEjeY.RepeatBehavior = RepeatBehavior.Forever;
-            dbAnimationEjeX.To = r.Next(-1000, 1000);
-            TranslateTransform moveTransform = new TranslateTransform();
-            moveTransform.X = r.Next(-1000, 1000);
-            moveTransform.Y = r.Next(-1000, 1000);
-            borde2.RenderTransform = moveTransform;
-            dbAnimationEjeX.Duration = new Duration(TimeSpan.FromSeconds(10));
-            dbAnimationEjeY.Duration = new Duration(TimeSpan.FromSeconds(10));
-            str.Children.Add(dbAnimationEjeX);
-            str.Children.Add(dbAnimationEjeY);
-            Storyboard.SetTarget(dbAnimationEjeY, moveTransform);
-            Storyboard.SetTarget(dbAnimationEjeX, moveTransform);
-            Storyboard.SetTargetProperty(dbAnimationEjeY, "Y");
-            Storyboard.SetTargetProperty(dbAnimationEjeX, "X");
-            RelativePanel.SetAlignHorizontalCenterWithPanel(borde2, true);
-            RelativePanel.SetBelow(borde2, stckMenu);
-            rltRoot.Children.Add(borde2);
-            str.Begin();
+            // Create an instance of SpeechRecognizer.
+            var speechRecognizer = new Windows.Media.SpeechRecognition.SpeechRecognizer();
+            // Compile the dictation grammar by default.
+            await speechRecognizer.CompileConstraintsAsync();
+            // Start recognition.
+            try
+            {
+                SpeechRecognitionResult speechRecognitionResult = await speechRecognizer.RecognizeWithUIAsync();
+                // Do something with the recognition result.
+                txtRespuesta.Text = speechRecognitionResult.Text;
+            }
+            catch (Exception)
+            {
+                RequestMicrophonePermission();
+            }
+        }
+        private static int NoCaptureDevicesHResult = -1072845856;
 
+        public async void RequestMicrophonePermission()
+        {
+
+            ContentDialog noMicDialog = new ContentDialog()
+            {
+                Title = "No tienes activados los permisos del micrófono",
+                Content = "¿Deseas activarlos?",
+                PrimaryButtonText = "Sí",
+                CloseButtonText = "No",
+
+            };
+            ContentDialogResult result = await noMicDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                try
+                {
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-speech"));
+                    MediaCaptureInitializationSettings settings = new MediaCaptureInitializationSettings();
+                    settings.StreamingCaptureMode = StreamingCaptureMode.Audio;
+                    settings.MediaCategory = MediaCategory.Speech;
+                    MediaCapture capture = new MediaCapture();
+                    await capture.InitializeAsync(settings);
+                }
+                catch (TypeLoadException)
+                {
+                    var messageDialog = new Windows.UI.Popups.MessageDialog("Componentes del reproductor no compatibles con tu sistema.");
+                    await messageDialog.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    var messageDialog = new Windows.UI.Popups.MessageDialog("No tienes permiso para activar el micrófono, habla con el administrador del equipo.");
+                    await messageDialog.ShowAsync();
+                }
+                catch (Exception exception)
+                {
+                    if (exception.HResult == NoCaptureDevicesHResult)
+                    {
+                        var messageDialog = new Windows.UI.Popups.MessageDialog("No se detectan dispositivos de audio en tu equipo.");
+                        await messageDialog.ShowAsync();
+                    }
+                }
+            }
         }
 
-        private Border crearElementosDeLaInterfaz(Random r){            
-            string letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            Windows.UI.Color[] colores = new Windows.UI.Color[] { Colors.Red, Colors.Blue, Colors.Green };
-            var borde = new Border();
-            var textBlock = new TextBlock();
-            textBlock.Text = letras[r.Next(0, 25)].ToString();
-            textBlock.HorizontalAlignment = HorizontalAlignment.Center;
-            textBlock.VerticalAlignment = VerticalAlignment.Center;
-            textBlock.FontSize = 25;
-            textBlock.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
-            textBlock.FontWeight = FontWeights.Bold;
-            borde.Child = textBlock;
-            borde.CornerRadius = new CornerRadius(25);
-            borde.Background = new SolidColorBrush(colores[r.Next(0, 3)]);            
-            Border borde2 = new Border();
-            borde2.Width = 56;
-            borde2.Height = 56;
-            Canvas.SetZIndex(borde2, -99);
-            borde.Width = 50;
-            borde.Height = 50;
-            borde.HorizontalAlignment = HorizontalAlignment.Center;
-            borde.VerticalAlignment = VerticalAlignment.Center;
-            borde2.Background = new SolidColorBrush(Windows.UI.Colors.White);
-            borde2.Child = borde;
-            borde2.BackgroundSizing = BackgroundSizing.OuterBorderEdge;
-            borde2.CornerRadius = new CornerRadius(35);
-            return borde2;
+        private async void btnAudio_Click(object sender, RoutedEventArgs e)
+        {
+            using (var speech = new SpeechSynthesizer())
+            {
+                speech.Voice = SpeechSynthesizer.AllVoices.First(gender => gender.Gender == VoiceGender.Female);
+                string ssml = @"<speak version='1.0' " + "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='es-ES'>" + txtPregunta.Text + "</speak>";
+                SpeechSynthesisStream stream = await speech.SynthesizeSsmlToStreamAsync(ssml);
+                if(mediaplayer.CurrentState != MediaElementState.Playing)
+                {
+                    mediaplayer.Stop();
+                }
+                mediaplayer.SetSource(stream, stream.ContentType);
+            }
         }
     }
 }

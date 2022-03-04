@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,44 +10,72 @@ using Windows.UI.Xaml.Media;
 
 namespace Trabajo_DEINT_PasapalabraUI.Models
 {
-    public class clsModelPregunta : clsPregunta
+    public class clsModelPregunta : clsPregunta, INotifyPropertyChanged
     {
         private int estado;
+        private bool animado;
         #region propiedadesAutoimplementadas
-        public int Estado { get => estado; set { estado = value; EvaluarColor(); } }
-
-        private void EvaluarColor()
+        public int Estado
         {
-            if (estado == 1)
+            get => estado;
+            set
             {
-                Color.Color = Colors.Green;
+                estado = value;
+                NotifyPropertyChanged("Estado");
             }
-            else if (estado == -1)
+
+        }
+
+        public bool Animado
+        {
+            get { return animado; }
+            set
             {
-                Color.Color = Colors.Red;
+                animado = value;
+                NotifyPropertyChanged("Animado");
             }
         }
 
-        public SolidColorBrush Color { get; set; }
-
         #endregion
         #region constructores
+        public clsModelPregunta() { }
         public clsModelPregunta(int estado, int id, string pregunta, string respuesta, char letra) :
             base(id, pregunta, respuesta, letra)
         {
             Estado = estado;
-            Color = new SolidColorBrush(Colors.Blue);
+            Animado = false;
+        }
+
+        public clsModelPregunta(int estado, int id, string pregunta, string respuesta, char letra, bool animado) :
+            base(id, pregunta, respuesta, letra)
+        {
+            Estado = estado;
+            if (Animado)
+            {
+                Animado = false;
+            }
+            else
+            {
+                Animado = true;
+            }
         }
 
         public clsModelPregunta(int estado, int id, string enunciado, string respuesta) : base(id, enunciado, respuesta)
         {
             Estado = estado;
-            Color = new SolidColorBrush(Colors.Blue);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged(string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
         #region animaciones
-        public void SelectedAnimation() {
-            
+        public void SelectedAnimation()
+        {
+
         }
         #endregion
     }

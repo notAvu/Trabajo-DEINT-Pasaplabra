@@ -10,7 +10,7 @@
     d:DesignWidth="64">
 
     <UserControl.Resources>
-        <Storyboard x:Name="storyBoard" x:Key="strbPregunta">
+        <Storyboard x:Name="storyBoardPrueba" x:Key="strbPregunta">
             <DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="Width"
                  From="58" To="64" AutoReverse="True" Duration="0:0:2" RepeatBehavior="Forever"/>
             <DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="Height"

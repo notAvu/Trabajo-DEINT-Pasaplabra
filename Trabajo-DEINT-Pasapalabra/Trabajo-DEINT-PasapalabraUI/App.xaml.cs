@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Trabajo_DEINT_PasapalabraUI.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -60,6 +63,8 @@ namespace Trabajo_DEINT_PasapalabraUI
                 Window.Current.Content = rootFrame;
             }
 
+
+
             if (e.PrelaunchActivated == false)
             {
                 if (rootFrame.Content == null)
@@ -69,9 +74,12 @@ namespace Trabajo_DEINT_PasapalabraUI
                     //parámetro de navegación
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
+                MaximizeWindowOnLoad();
                 // Asegurarse de que la ventana actual está activa.
                 Window.Current.Activate();
             }
+
+
         }
 
         /// <summary>
@@ -96,6 +104,63 @@ namespace Trabajo_DEINT_PasapalabraUI
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Guardar el estado de la aplicación y detener toda actividad en segundo plano
             deferral.Complete();
+        }
+
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            SetWindowMinSize(new Size(args.Window.Bounds.Width, args.Window.Bounds.Height));
+            args.Window.CoreWindow.SizeChanged += CoreWindow_SizeChanged;
+            base.OnWindowCreated(args);
+        }
+        public static Size GetCurrentDisplaySize()
+        {
+            var displayInformation = DisplayInformation.GetForCurrentView();
+            TypeInfo t = typeof(DisplayInformation).GetTypeInfo();
+            var props = t.DeclaredProperties.Where(x => x.Name.StartsWith("Screen") && x.Name.EndsWith("InRawPixels")).ToArray();
+            var w = props.Where(x => x.Name.Contains("Width")).First().GetValue(displayInformation);
+            var h = props.Where(x => x.Name.Contains("Height")).First().GetValue(displayInformation);
+            var size = new Size(System.Convert.ToDouble(w), System.Convert.ToDouble(h));
+            switch (displayInformation.CurrentOrientation)
+            {
+                case DisplayOrientations.Landscape:
+                case DisplayOrientations.LandscapeFlipped:
+                    size = new Size(Math.Max(size.Width, size.Height), Math.Min(size.Width, size.Height));
+                    break;
+                case DisplayOrientations.Portrait:
+                case DisplayOrientations.PortraitFlipped:
+                    size = new Size(Math.Min(size.Width, size.Height), Math.Max(size.Width, size.Height));
+                    break;
+            }
+            return size;
+        }
+        private void CoreWindow_SizeChanged(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.WindowSizeChangedEventArgs args)
+        {
+            if (SetWindowMinSize(args.Size)) sender.ReleasePointerCapture();
+        }
+
+        private bool SetWindowMinSize(Size size)
+        {
+            double minW = 1900, minH = 930;
+            if (size.Width < minW || size.Height < minH)
+            {
+                if (size.Width < minW) size.Width = minW;
+                if (size.Height < minH) size.Height = minH;
+                return ApplicationView.GetForCurrentView().TryResizeView(size);
+            }
+            return false;
+        }
+
+        private void MaximizeWindowOnLoad()
+        {
+            var view = DisplayInformation.GetForCurrentView();
+            var resolution = new Size(view.ScreenWidthInRawPixels, view.ScreenHeightInRawPixels);
+            var scale = view.ResolutionScale == ResolutionScale.Invalid ? 1 : view.RawPixelsPerViewPixel;
+            var bounds = new Size(resolution.Width / scale, resolution.Height / scale);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(bounds);
+            ApplicationView.PreferredLaunchViewSize = new Size(bounds.Width, bounds.Height);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TryResizeView(bounds);
+
         }
     }
 }
