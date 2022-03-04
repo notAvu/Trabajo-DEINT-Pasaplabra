@@ -43,8 +43,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             TxtBoxRespuestaJugador = "";
             wrongSfx = new MediaElement();
             correctSfx = new MediaElement();
-            _ = InitMediaElement("Wrong.mp3", wrongSfx);
-            _ = InitMediaElement("correct.mp3", correctSfx);
+            //_ = InitMediaElement("Wrong.mp3", wrongSfx);
+            //_ = InitMediaElement("correct.mp3", correctSfx);
         }
 
         #endregion
@@ -129,13 +129,13 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 case 1:
                     Aciertos++;
                     PalabrasRestantes--;
-                    PlaySound(correctSfx);
+                    _ = PlaySound("correct.mp3", correctSfx);
                     NotifyPropertyChanged("Aciertos");
                     break;
                 case -1:
                     Fallos++;
                     PalabrasRestantes--;
-                    PlaySound(wrongSfx);
+                    _ = PlaySound("Wrong.mp3", wrongSfx);
                     NotifyPropertyChanged("Fallos");
                     break;
             }
@@ -209,17 +209,14 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
         /// </summary>
         /// <param name="soundFileName"></param>
-        private void PlaySound(MediaElement sound)
-        {
-            if (correctSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) correctSfx.Stop();
-            if (wrongSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) wrongSfx.Stop();
-            sound.Play();
-        }
-        private async Task InitMediaElement(string soundFileName, MediaElement media)
+        private async Task PlaySound(string soundFileName, MediaElement media)
         {
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
             StorageFile file = await folder.GetFileAsync(soundFileName);
             media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
+            if (correctSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) correctSfx.Stop();
+            if (wrongSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) wrongSfx.Stop();
+            media.Play();
         }
         #endregion
 
