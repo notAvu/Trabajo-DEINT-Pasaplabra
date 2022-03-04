@@ -8,6 +8,9 @@
     xmlns:vm="using:Trabajo_DEINT_PasapalabraUI.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <vm:clsRankingVM/>
+    </Page.DataContext>
     <StackPanel>
         <StackPanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
@@ -20,11 +23,11 @@
                     <DataTemplate>
                         <StackPanel BorderBrush="Black" Orientation="Horizontal">
                             <TextBlock>
-                                <Run x:Name="nick" Text="Nombre"/>
-                                <Run x:Name="aciertos" Text="20"/>
-                                <Run x:Name="fallos" Text="5"/>
-                                <Run x:Name="tiemo" Text="180"/>
-                                <Run x:Name="score" Text="100"/>
+                                <Run x:Name="nick" Text="{Binding Nick}" />
+                                <Run x:Name="aciertos" Text="{Binding TotalAcertadas}"/>
+                                <Run x:Name="fallos" Text="{Binding TotalFalladas}"/>
+                                <Run x:Name="tiempo" Text="{Binding Tiempo}"/>
+                                <Run x:Name="score" Text="{Binding Puntuacion}"/>
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>

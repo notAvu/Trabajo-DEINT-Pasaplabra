@@ -125,6 +125,7 @@
     <Compile Include="Utils\clsVMBase.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
     <Compile Include="ViewModels\clsGamePageVM.cs" />
+    <Compile Include="ViewModels\clsRankingVM.cs" />
     <Compile Include="Views\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
