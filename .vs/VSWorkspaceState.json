@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Trabajo-DEINT-Pasapalabra",
-    "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraDAL",
-    "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraDAL\\Utilidades",
-    "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraUI",
-    "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraUI\\Views"
+    ""
   ],
-  "SelectedNode": "\\Trabajo-DEINT-Pasapalabra\\Trabajo-DEINT-PasapalabraDAL\\Utilidades\\clsUtilidadDMLDAL.cs",
+  "SelectedNode": "\\Trabajo-DEINT-Pasapalabra.sln",
   "PreviewInSolutionExplorer": false
 }

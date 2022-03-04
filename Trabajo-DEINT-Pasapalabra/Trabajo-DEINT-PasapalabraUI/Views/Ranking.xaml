@@ -11,28 +11,50 @@
     <Page.DataContext>
         <vm:clsRankingVM/>
     </Page.DataContext>
-    <StackPanel>
-        <StackPanel.Background>
+    
+    <RelativePanel>
+        <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
-        </StackPanel.Background>
+        </RelativePanel.Background>
+        <Button x:Name="BackButton" Foreground="White" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="BackButton_Click"
+                 RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
         <StackPanel MaxWidth="600" BorderBrush="Black" BorderThickness="5" CornerRadius="10" Margin="0,100" Background="#90FFFFFF">
             <TextBlock Margin="0,10,0,40" FontSize="88" FontWeight="Bold" Foreground="White" FontFamily="Keedy Sans" 
                        VerticalAlignment="Center" HorizontalAlignment="Center" Text="Ranking"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="nick" Text="Nick" Grid.Column="0" FontWeight="Bold" FontSize="20"/>
+                <TextBlock x:Name="aciertos" Text="Aciertos" Grid.Column="1" FontWeight="Bold" FontSize="20"/>
+                <TextBlock x:Name="fallos" Text="Fallos" Grid.Column="2" FontWeight="Bold" FontSize="20"/>
+                <TextBlock x:Name="tiempo" Text="Tiempo" Grid.Column="3" FontWeight="Bold" FontSize="20"/>
+                <TextBlock x:Name="score" Text="Puntuación" Grid.Column="4" FontWeight="Bold" FontSize="20"/>
+            </Grid>
             <ListView ItemsSource="{Binding ListaPartidas}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel BorderBrush="Black" Orientation="Horizontal">
-                            <TextBlock>
-                                <Run x:Name="nick" Text="{Binding Nick}" />
-                                <Run x:Name="aciertos" Text="{Binding TotalAcertadas}"/>
-                                <Run x:Name="fallos" Text="{Binding TotalFalladas}"/>
-                                <Run x:Name="tiempo" Text="{Binding Tiempo}"/>
-                                <Run x:Name="score" Text="{Binding Puntuacion}"/>
-                            </TextBlock>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="nick" Text="{Binding Nick}" Grid.Column="0" FontWeight="Bold" FontSize="14" />
+                            <TextBlock x:Name="aciertos" Text="{Binding TotalAcertadas}" Grid.Column="1" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock x:Name="fallos" Text="{Binding TotalFalladas}" Grid.Column="2" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock x:Name="tiempo" Text="{Binding Tiempo}" Grid.Column="3" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock x:Name="score" Text="{Binding Puntuacion}" Grid.Column="4" FontWeight="Bold" FontSize="14"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-    </StackPanel>
+    </RelativePanel>
 </Page>
