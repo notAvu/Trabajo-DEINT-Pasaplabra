@@ -41,8 +41,10 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             NotifyPropertyChanged("TiempoMax");
             iniciarContador();
             TxtBoxRespuestaJugador = "";
-            correctSfx = GenerateMediaElement("correct.mp3").Result;
-            wrongSfx = GenerateMediaElement("Wrong.mp3").Result;
+            wrongSfx = new MediaElement();
+            correctSfx = new MediaElement();
+            _ = InitMediaElement("Wrong.mp3", wrongSfx);
+            _ = InitMediaElement("correct.mp3", correctSfx);
         }
 
         #endregion
@@ -213,13 +215,11 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             if (wrongSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) wrongSfx.Stop();
             sound.Play();
         }
-        private async Task<MediaElement> GenerateMediaElement(string soundFileName)
+        private async Task InitMediaElement(string soundFileName, MediaElement media)
         {
-            MediaElement correctSound = new MediaElement();
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
             StorageFile file = await folder.GetFileAsync(soundFileName);
-            correctSound.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
-            return correctSound;
+            media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
         }
         #endregion
 
