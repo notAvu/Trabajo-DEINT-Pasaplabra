@@ -37,22 +37,6 @@ namespace Trabajo_DEINT_PasapalabraUI
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        
-        /*
-        //TTS 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MediaElement mediaplayer = new MediaElement();
-            using (var speech = new SpeechSynthesizer())
-            {
-                speech.Voice = SpeechSynthesizer.AllVoices.First(gender => gender.Gender == VoiceGender.Female);
-                string ssml = @"<speak version='1.0' " + "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='es-ES'>" + txtBox.Text + "</speak>";
-                SpeechSynthesisStream stream = await speech.SynthesizeSsmlToStreamAsync(ssml);
-                mediaplayer.SetSource(stream, stream.ContentType);
-
-            }
-        }
-        */
         //MICROFONO
         private async void btnMicro_Click(object sender, RoutedEventArgs e)
         {
@@ -132,5 +116,7 @@ namespace Trabajo_DEINT_PasapalabraUI
                 mediaplayer.SetSource(stream, stream.ContentType);
             }
         }
+
+       
     }
 }

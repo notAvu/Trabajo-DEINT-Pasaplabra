@@ -10,16 +10,18 @@ namespace Trabajo_DEINT_PasapalabraEntities
         public string Nick { get; set; }
         public int TotalAcertadas { get; set; }
         public int TotalFalladas { get; set; }
+        public int Puntuacion { get; set; }
         public TimeSpan Tiempo { get; set; }
         #endregion
         #region constructores
-        public clsPartida(int id, string nick, int totalAcertadas, int totalFalladas, TimeSpan tiempo)
+        public clsPartida(int id, string nick, int totalAcertadas, int totalFalladas, TimeSpan tiempo, int puntuacion)
         {
             Id = id;
             Nick = nick;
             TotalAcertadas = totalAcertadas;
             TotalFalladas = totalFalladas;
             Tiempo = tiempo;
+            Puntuacion = puntuacion;
         }
         public clsPartida()
         {

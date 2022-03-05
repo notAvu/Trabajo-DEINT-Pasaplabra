@@ -12,9 +12,9 @@
     <UserControl.Resources>
         <Storyboard x:Name="storyBoardPrueba" x:Key="strbPregunta">
             <DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="Width"
-                 From="58" To="64" AutoReverse="True" Duration="0:0:2" RepeatBehavior="Forever"/>
+                 From="58" To="65" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever"/>
             <DoubleAnimation EnableDependentAnimation="True" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="Height"
-                 From="58" To="64" AutoReverse="True" Duration="0:0:2" RepeatBehavior="Forever"/>
+                 From="58" To="65" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever"/>
         </Storyboard>
     </UserControl.Resources>
     <Grid Height="64" Width="64" VerticalAlignment="Center" HorizontalAlignment="Center">

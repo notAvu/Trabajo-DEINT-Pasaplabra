@@ -12,6 +12,7 @@ using Trabajo_DEINT_PasapalabraUI.Models;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 {
@@ -225,16 +226,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         private void iniciarContador()
         {
+            ContentDialog contentDialogPartidaTerminada;
             //TODO MODURALIZAR Y DISCUTIR QUE QUEREMOS QUE SE MUESTRE
-            ContentDialog contentDialogPartidaTerminada = new ContentDialog
-            {
-                Title = "Se te ha acabado el tiempo :(",
-                Content = "",
-                PrimaryButtonText = "Joder que malo soy",
-                CloseButtonText = "",
-                DefaultButton = ContentDialogButton.Primary
-            };
-
             tiempo.Interval = new TimeSpan(0, 0, 1);
             tiempo.Start();
             tiempo.Tick += (a, b) =>
@@ -243,11 +236,57 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 NotifyPropertyChanged("TiempoMax");
                 if (TiempoMax == 0)
                 {
+                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("El tiempo se ha terminado :(");
                     contentDialogPartidaTerminada.ShowAsync();
                     tiempo.Stop();
+                }else if(Aciertos==26){
+                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("¡Victoria! Has ganado el bote");
                 }
+              
             };
         }
+        /// <summary>
+        /// Método auxiliar que que retorna un contentDialog que pregunta por el nick del usuario
+        /// </summary>
+        /// <returns>ContentDialog</returns>
+
+        public ContentDialog crearCuadroDialogoPartidaTerminada(string resultado)
+        {
+            StackPanel stckPanelContentDialog = new StackPanel();
+            TextBlock txtBlockContentDialog = new TextBlock()
+            {
+                Text = new StringBuilder("Aciertos: ").Append(Aciertos).Append(Environment.NewLine).Append("Fallos: ").Append(Fallos).Append(Environment.NewLine)
+                    .Append("Tiempo Restante: ").Append(TiempoRestante.ToString()).Append(Environment.NewLine).Append("Puntuación: ").Append(Aciertos - Fallos).ToString(),    
+                     Padding = new Thickness(10),
+                Width = 330,
+            };
+            TextBox txtBoxContentDialog = new TextBox()
+            {
+                PlaceholderText = "Introduce tu nick (Longitud máxima 10 carácteres)",
+                AcceptsReturn = false,
+                CornerRadius = new CornerRadius(5),
+                Padding = new Thickness(10),
+                Width = 330,
+                MaxLength = 10,
+            };
+            stckPanelContentDialog.Children.Add(txtBlockContentDialog);
+            stckPanelContentDialog.Children.Add(txtBoxContentDialog);
+            return new ContentDialog
+            {
+                Title = resultado,
+                Content = stckPanelContentDialog,
+                PrimaryButtonText = "Volver a Jugar",
+                CornerRadius = new CornerRadius(5),
+                FontFamily = new Windows.UI.Xaml.Media.FontFamily("../Assets/Fonts/#Keedy Sans Regular"),
+                CloseButtonText = "Volver al Menu Principal",
+                DefaultButton = ContentDialogButton.Primary,
+                Background = resultado.Equals("¡Victoria! Has ganado el bote") ? new SolidColorBrush(Windows.UI.Colors.Green) : new SolidColorBrush(Windows.UI.Colors.White)
+            };
+        }
+
+
+
+
         /// <summary>
         /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
         /// </summary>
@@ -275,10 +314,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             if (!string.IsNullOrEmpty(partidaJugada.Nick))
                 clsGestoraPartida.insertarPartida(partidaJugada);
         }
-        /// <summary>
-        /// Metodo auxiliar que muestra en pantala un contentDialog para recibir el nick del usuario
-        /// </summary>
-        /// <returns></returns>
+        
         private async Task<string> askNickAsync()
         {
             string nickName = "";

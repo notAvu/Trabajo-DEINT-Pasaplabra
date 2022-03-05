@@ -23,7 +23,6 @@
         <cv:clsBoolToVisibilityConverter x:Key="cvVisbility"/>
     </Page.Resources>
 
-
     <RelativePanel>
         <RelativePanel.Background>
             <ImageBrush ImageSource="/Assets/Images/fondo_pasapalabra.jpeg"/>
@@ -132,8 +131,8 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Ellipse  Height="550" Width="550" Opacity="0.8" Fill="White"/>
-            <StackPanel Height="550" Width="550" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Background="Transparent">
+            <Ellipse  Height="550" Width="550" Margin="0,0,40,0" Opacity="0.8" Fill="White"/>
+            <StackPanel Height="550" Width="550" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,40,0" Background="Transparent">
                 <TextBlock Foreground="Black" Text="{Binding TxtBoxLetraPregunta}" FontSize="32" FontWeight="SemiBold" Margin="0,60,0,0" HorizontalAlignment="Center" />
                 <Button Name="btnAudio" Click="btnAudio_Click"  HorizontalAlignment="Center" Margin="0,20,0,0" Height="40" BorderBrush="DarkBlue" BorderThickness="1" CornerRadius="20"
                        MinWidth="20" MinHeight="20" Background="{ThemeResource AppBarItemBackgroundThemeBrush}" >

@@ -33,7 +33,7 @@
                        VerticalAlignment="Center" HorizontalAlignment="Center" Text="PASAPALABRA"/>
             </controls:DropShadowPanel>
             <Button FontFamily="Keedy Sans" HorizontalAlignment="Center" BorderBrush="Black"  Background="White" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold" Click="Button_Play_Click">PLAY</Button>
-            <Button x:Name="btnPuntuacion" HorizontalAlignment="Center" BorderBrush="Black"  Background="White" Margin="0,15,0,0" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
+            <Button x:Name="btnPuntuacion" Click="Button_Ranking_Click" HorizontalAlignment="Center" BorderBrush="Black"  Background="White" Margin="0,15,0,0" CornerRadius="5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
             FontFamily="Keedy Sans">SCOREBOARD</Button>
         </StackPanel>
     </RelativePanel>

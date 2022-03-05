@@ -15,11 +15,13 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         {
             instanciarConexion();
             List<clsPartida> listadoPartidas = new List<clsPartida>();
-            ejecutarSelect("SELECT * FROM Partidas");
-            while (MiLector.HasRows)
+            ejecutarSelect("SELECT * FROM Partidas ORDER BY(aciertos - fallos), tiempo");
+            if (MiLector.HasRows) {
+                while (MiLector.Read())
             {
-                MiLector.Read();
-                listadoPartidas.Add(getPartida(MiLector));
+
+                    listadoPartidas.Add(getPartida(MiLector));
+                }
             }
             cerrarFlujos();
             return listadoPartidas;
@@ -35,6 +37,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
             if (reader["Nickname"] != DBNull.Value) { oPartida.Nick = (string)reader["Nickname"]; }
             oPartida.TotalAcertadas = (int)reader["aciertos"];
             oPartida.TotalFalladas = (int)reader["fallos"];
+            oPartida.Puntuacion = (int)reader["puntuacion"];
             oPartida.Tiempo = (TimeSpan)reader["tiempo"];
             return oPartida;
         }

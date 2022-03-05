@@ -108,5 +108,10 @@ namespace Trabajo_DEINT_PasapalabraUI.Views
         {
             this.Frame.Navigate(typeof(GamePage));
         }
+
+        private void Button_Ranking_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Ranking));
+        }
     }
 }
