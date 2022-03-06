@@ -20,6 +20,12 @@
     <RootPropertyPathName Name="RespuestaPreguntaFallada" />
     <RootPropertyPathName Name="LetraPreguntaFallada" />
     <RootPropertyPathName Name="VisibilityPreguntaFallidaControl" />
+    <RootPropertyPathName Name="ListaPartidas" />
+    <RootPropertyPathName Name="Puntuacion" />
+    <RootPropertyPathName Name="Tiempo" />
+    <RootPropertyPathName Name="TotalFalladas" />
+    <RootPropertyPathName Name="TotalAcertadas" />
+    <RootPropertyPathName Name="Nick" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
@@ -83,8 +89,8 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
       <RootProperty Name="Orientation" />
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="VerticalAlignment" />
     </RootType>
@@ -140,6 +146,7 @@
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="TextAlignment" />
       <RootProperty Name="MaxWidth" />
+      <RootProperty Name="Width" />
       <RootProperty Name="Opacity" />
     </RootType>
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.MainPage" />
@@ -175,6 +182,7 @@
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Children" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Padding" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
       <RootProperty Name="VerticalAlignment" />
@@ -201,6 +209,7 @@
     <RootType FullName="Windows.UI.Xaml.Shapes.Ellipse">
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Fill" />
       <RootProperty Name="VerticalAlignment" />
@@ -263,6 +272,13 @@
     <RootType FullName="Windows.UI.Xaml.Documents.LineBreak" />
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.GamePage" />
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.ViewModels.clsRankingVM" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="IsHitTestVisible" />
+      <RootProperty Name="ItemTemplate" />
+    </RootType>
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.Ranking" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="Resources" />
       <RootProperty Name="Content" />

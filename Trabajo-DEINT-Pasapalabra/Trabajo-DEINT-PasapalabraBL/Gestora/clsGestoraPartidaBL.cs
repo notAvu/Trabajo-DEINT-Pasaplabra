@@ -7,7 +7,7 @@ namespace Trabajo_DEINT_PasapalabraBL.Gestora
     {
         public static int insertarPartidaBL(clsPartida oPartida)
         {
-            return clsGestoraPartida.insertarPartida(oPartida);
+            return clsGestoraPartidaDAL.insertarPartidaDAL(oPartida);
         }
     }
 }

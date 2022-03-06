@@ -4,17 +4,15 @@
     <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
   </Roots.Interfaces>
   <Roots.PropertyPathNames>
-    <RootPropertyPathName Name="VerPuntuacion" />
-    <RootPropertyPathName Name="Jugar" />
     <RootPropertyPathName Name="SaltarPreguntaCommand" />
     <RootPropertyPathName Name="CheckRespuestaCommand" />
     <RootPropertyPathName Name="TxtBoxRespuestaJugador" />
     <RootPropertyPathName Name="TxtBoxEnunciadoPregunta" />
     <RootPropertyPathName Name="TxtBoxLetraPregunta" />
     <RootPropertyPathName Name="ListadoPreguntas" />
-    <RootPropertyPathName Name="PreguntaSeleccionada" />
     <RootPropertyPathName Name="Letra" />
-    <RootPropertyPathName Name="Color" />
+    <RootPropertyPathName Name="Estado" />
+    <RootPropertyPathName Name="Animado" />
     <RootPropertyPathName Name="PalabrasRestantes" />
     <RootPropertyPathName Name="Fallos" />
     <RootPropertyPathName Name="Aciertos" />
@@ -22,6 +20,12 @@
     <RootPropertyPathName Name="RespuestaPreguntaFallada" />
     <RootPropertyPathName Name="LetraPreguntaFallada" />
     <RootPropertyPathName Name="VisibilityPreguntaFallidaControl" />
+    <RootPropertyPathName Name="ListaPartidas" />
+    <RootPropertyPathName Name="Puntuacion" />
+    <RootPropertyPathName Name="Tiempo" />
+    <RootPropertyPathName Name="TotalFalladas" />
+    <RootPropertyPathName Name="TotalAcertadas" />
+    <RootPropertyPathName Name="Nick" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
@@ -85,8 +89,8 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
       <RootProperty Name="Orientation" />
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="VerticalAlignment" />
     </RootType>
@@ -109,7 +113,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="FontFamily" />
       <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Command" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="Background" />
       <RootProperty Name="CornerRadius" />
@@ -118,7 +121,6 @@
       <RootProperty Name="FontWeight" />
       <RootProperty Name="Content" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="CommandParameter" />
       <RootProperty Name="Style" />
       <RootProperty Name="Name" />
       <RootProperty Name="Height" />
@@ -126,13 +128,9 @@
       <RootProperty Name="MinWidth" />
       <RootProperty Name="MinHeight" />
       <RootProperty Name="Padding" />
+      <RootProperty Name="Command" />
       <RootProperty Name="VerticalAlignment" />
       <RootEvent Name="Click" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Data.Binding">
-      <RootProperty Name="ElementName" />
-      <RootProperty Name="Mode" />
-      <RootProperty Name="UpdateSourceTrigger" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="Margin" />
@@ -148,9 +146,10 @@
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="TextAlignment" />
       <RootProperty Name="MaxWidth" />
+      <RootProperty Name="Width" />
       <RootProperty Name="Opacity" />
     </RootType>
-    <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.GamePage" />
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.MainPage" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.ViewModels.clsGamePageVM" />
     <RootType FullName="Microsoft.Toolkit.Uwp.UI.AttachedDropShadow">
       <RootProperty Name="Offset" />
@@ -183,8 +182,10 @@
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Children" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Padding" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="HorizontalAlignment" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
@@ -201,7 +202,6 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="IsHitTestVisible" />
       <RootProperty Name="ItemsSource" />
-      <RootProperty Name="SelectedIndex" />
       <RootProperty Name="Background" />
       <RootProperty Name="ItemsPanel" />
       <RootProperty Name="ItemTemplate" />
@@ -209,6 +209,7 @@
     <RootType FullName="Windows.UI.Xaml.Shapes.Ellipse">
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Fill" />
       <RootProperty Name="VerticalAlignment" />
@@ -225,6 +226,10 @@
       <RootProperty Name="MaxWidth" />
       <RootProperty Name="MaxHeight" />
       <RootProperty Name="Command" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="PlaceholderText" />
@@ -253,7 +258,8 @@
     </RootType>
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.UsersControlls.LetraControl">
       <RootProperty Name="Letra" />
-      <RootProperty Name="Color" />
+      <RootProperty Name="Estado" />
+      <RootProperty Name="ComenzarAnimacion" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Border">
       <RootProperty Name="BorderBrush" />
@@ -265,7 +271,14 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Documents.LineBreak" />
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
-    <RootType FullName="Trabajo_DEINT_PasapalabraUI.MainPage" />
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.GamePage" />
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.ViewModels.clsRankingVM" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="IsHitTestVisible" />
+      <RootProperty Name="ItemTemplate" />
+    </RootType>
+    <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.Ranking" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="Resources" />
       <RootProperty Name="Content" />

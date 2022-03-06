@@ -12,7 +12,7 @@ namespace Trabajo_DEINT_PasapalabraBL.Listados
     {
         public static List<clsPregunta> CargarListadoPreguntaBL()
         {
-            return clsListadosPregunta.CargarListadoPreguntaDAL();
+            return clsListadosPreguntaDAL.CargarListadoPreguntaDAL();
         }
     }
 }

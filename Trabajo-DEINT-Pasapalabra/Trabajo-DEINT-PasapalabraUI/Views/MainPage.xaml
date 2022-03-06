@@ -15,8 +15,7 @@
                                  RepeatBehavior="Forever" AutoReverse="True"/>
             <DoubleAnimation  Duration="0:0:5" To="-1000" Storyboard.TargetName="bn" Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateY)" d:IsOptimized="True"
                                  RepeatBehavior="Forever" AutoReverse="True"/>
-
-            </Storyboard>
+        </Storyboard>
     </Page.Resources>
 
     <RelativePanel x:Name="rltRoot">

@@ -12,7 +12,7 @@ namespace Trabajo_DEINT_PasapalabraBL.Listados
     {
         public static List<clsPartida> CargarListadoPartidaBL()
         {
-            return clsListadosPartida.CargarListadoPartidaDAL();
+            return clsListadosPartidaDAL.CargarListadoPartidaDAL();
         }
     }
 }

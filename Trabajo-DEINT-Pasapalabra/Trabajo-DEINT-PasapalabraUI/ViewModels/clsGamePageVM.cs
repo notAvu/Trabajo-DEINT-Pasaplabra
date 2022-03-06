@@ -5,10 +5,12 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Trabajo_DEINT_PasapalabraBL.Gestora;
 using Trabajo_DEINT_PasapalabraBL.Listados;
 using Trabajo_DEINT_PasapalabraDAL.Gestora;
 using Trabajo_DEINT_PasapalabraEntities;
 using Trabajo_DEINT_PasapalabraUI.Models;
+using Trabajo_DEINT_PasapalabraUI.Views;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -45,7 +47,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             PalabrasRestantes = listadoPreguntas.Count;
             NotifyPropertyChanged("PalabrasRestantes");
             recargarPregunta();
-            TiempoMax = 300;
+            TiempoMax = 5;
             NotifyPropertyChanged("TiempoMax");
             iniciarContador();
             TxtBoxRespuestaJugador = "";
@@ -201,6 +203,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         {
             listadoPreguntas = new List<clsModelPregunta>();
             clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
+            NotifyPropertyChanged("ListadoPreguntas");
         }
 
         /// <summary>
@@ -230,7 +233,6 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private void iniciarContador()
         {
             ContentDialog contentDialogPartidaTerminada;
-            //TODO MODURALIZAR Y DISCUTIR QUE QUEREMOS QUE SE MUESTRE
             tiempo.Interval = new TimeSpan(0, 0, 1);
             tiempo.Start();
             tiempo.Tick += (a, b) =>
@@ -240,27 +242,74 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 if (TiempoMax == 0)
                 {
                     contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("El tiempo se ha terminado :(");
-                    contentDialogPartidaTerminada.ShowAsync();
-                    tiempo.Stop();
-                }else if(Aciertos==26){
-                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("¡Victoria! Has ganado el bote");
+                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
                 }
-              
+                else if (Aciertos == 26)
+                {
+                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("¡Victoria! Has ganado el bote");
+                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+                }
+                else if (PalabrasRestantes == 0) {
+                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("Partida terminada, ya no quedan preguntas");
+                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+                }
             };
+        }
+
+        private async Task mostrarContentDialogPartidaTerminadaAsync(ContentDialog contentDialogPartidaTerminada)
+        {
+            tiempo.Stop();
+            preguntaSeleccionada.Animado = false;
+
+            var result = await contentDialogPartidaTerminada.ShowAsync();
+            if (result == ContentDialogResult.Primary)//Volver a jugar
+            {
+                tiempo = new DispatcherTimer();
+                mostrarControlPreguntaFallada(false);//Para que no muestre el control, en caso de haber fallado la ultima pregunta y volver a jugar
+                cargarListadoPreguntas();
+                SelectedIndex = 0;
+                Fallos = 0;
+                NotifyPropertyChanged("Fallos");
+                Aciertos = 0;
+                NotifyPropertyChanged("Aciertos");
+                TiempoMax = 10;
+                NotifyPropertyChanged("TiempoMax");
+
+                preguntaSeleccionada = listadoPreguntas[0];
+                preguntaSeleccionada.Animado = true;
+                recargarPregunta();
+
+                PalabrasRestantes = listadoPreguntas.Count;
+                NotifyPropertyChanged("PalabrasRestantes");
+
+                iniciarContador();
+                _ = PlaySound("bgMusic.mp3", bgMusic);
+            }
+            else
+            {
+                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+            }
+            StackPanel stck = contentDialogPartidaTerminada.Content as StackPanel;
+            UIElementCollection hijosDelStck = stck.Children;
+            String user = (hijosDelStck[1] as TextBox).Text;
+            if (String.IsNullOrWhiteSpace(user))
+            {
+                user = "Invitado";
+            }
+            clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(user, Aciertos, Fallos, tiempo.Interval));//TODO TRY-CATCH
         }
         /// <summary>
         /// Método auxiliar que que retorna un contentDialog que pregunta por el nick del usuario
         /// </summary>
         /// <returns>ContentDialog</returns>
-
-        public ContentDialog crearCuadroDialogoPartidaTerminada(string resultado)
+        private ContentDialog crearCuadroDialogoPartidaTerminada(string resultado)
         {
             bgMusic.Stop();
             StackPanel stckPanelContentDialog = new StackPanel();
             TextBlock txtBlockContentDialog = new TextBlock()
             {
                 Text = new StringBuilder("Aciertos: ").Append(Aciertos).Append(Environment.NewLine).Append("Fallos: ").Append(Fallos).Append(Environment.NewLine)
-                    .Append("Tiempo Restante: ").Append(TiempoRestante.ToString()).Append(Environment.NewLine).Append("Puntuación: ").Append(Aciertos - Fallos).ToString(),    
+                    .Append("Tiempo Restante: ").Append(TiempoMax).Append(Environment.NewLine).Append("Puntuación: ").Append(Aciertos - Fallos).ToString(),    
                      Padding = new Thickness(10),
                 Width = 330,
             };
@@ -297,38 +346,13 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
             StorageFile file = await folder.GetFileAsync(soundFileName);
             media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
-            if (correctSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) correctSfx.Stop();
-            if (wrongSfx.CurrentState == Windows.UI.Xaml.Media.MediaElementState.Playing) wrongSfx.Stop();
+            if (correctSfx.CurrentState == MediaElementState.Playing) correctSfx.Stop();
+            if (wrongSfx.CurrentState == MediaElementState.Playing) wrongSfx.Stop();
             media.Play();
         }
         #endregion
 
         #region metodos finPartida
-        /// <summary>
-        /// Metodo auxiliar que se llama al finalizar la partida para cargar los datos de la misma en la base de datos
-        /// TODO Finalizar implementacion
-        /// </summary>
-        private async Task GameFinishedAsync()
-        {
-            string nick = await askNickAsync();
-            clsPartida partidaJugada = new clsPartida(nick, Aciertos, Fallos, tiempo.Interval);
-            if (!string.IsNullOrEmpty(partidaJugada.Nick))
-                clsGestoraPartida.insertarPartida(partidaJugada);
-        }
-        
-        private async Task<string> askNickAsync()
-        {
-            string nickName = "";
-            TextBox inputTbx = new TextBox();
-            inputTbx.AcceptsReturn = true;
-            ContentDialog nickContent = new ContentDialog();
-            nickContent.Title = "Introducza un apodo";
-            nickContent.PrimaryButtonText = "Enviar puntuacion";
-            nickContent.Content = inputTbx;
-            if (await nickContent.ShowAsync() == ContentDialogResult.Primary)
-                nickName = inputTbx.Text;
-            return nickName;
-        }
         #endregion
 
     }
