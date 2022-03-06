@@ -19,6 +19,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
     public class clsGamePageVM : clsVMBase
     {
         #region propiedades privadas
+        private MediaElement bgMusic;
         private MediaElement correctSfx;
         private MediaElement wrongSfx;
         private List<clsModelPregunta> listadoPreguntas;
@@ -50,6 +51,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             TxtBoxRespuestaJugador = "";
             wrongSfx = new MediaElement();
             correctSfx = new MediaElement();
+            bgMusic = new MediaElement();
+            _ = PlaySound("bgMusic.mp3", bgMusic);
         }
 
         #endregion
@@ -126,7 +129,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         private void CheckRespuestaCommand_Execute()
         {
-            PreguntaSeleccionada.Estado = TxtBoxRespuestaJugador.ToLower().Equals(PreguntaSeleccionada.Respuesta.ToLower()) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
+            PreguntaSeleccionada.Estado = sinTildes(TxtBoxRespuestaJugador.ToLower()).Equals(PreguntaSeleccionada.Respuesta.ToLower()) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
             switch (PreguntaSeleccionada.Estado)
             {
                 case 1:
@@ -252,6 +255,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         public ContentDialog crearCuadroDialogoPartidaTerminada(string resultado)
         {
+            bgMusic.Stop();
             StackPanel stckPanelContentDialog = new StackPanel();
             TextBlock txtBlockContentDialog = new TextBlock()
             {
@@ -283,9 +287,6 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 Background = resultado.Equals("¡Victoria! Has ganado el bote") ? new SolidColorBrush(Windows.UI.Colors.Green) : new SolidColorBrush(Windows.UI.Colors.White)
             };
         }
-
-
-
 
         /// <summary>
         /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
