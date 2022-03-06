@@ -6,26 +6,25 @@ using Trabajo_DEINT_PasapalabraEntities;
 
 namespace Trabajo_DEINT_PasapalabraDAL.Gestora
 {
-    public class clsGestoraPartidaDAL
+    public class clsGestoraPartidaDAL : clsUtilidadDMLDAL
     {
 
         public static int insertarPartidaDAL(clsPartida partida)
         {
             int filasAfectadas;
-            clsUtilidadBaseDAL.instanciarConexion();
+            instanciarConexion();
             anhiadirParametros(partida);
-            filasAfectadas = clsUtilidadDMLDAL.ejecutarSentenciaDML("Insert into Partida values(@ID,@Nickname,@aciertos,@fallos,@tiempo)");
-            clsUtilidadDMLDAL.MiConexion.closeConnection();
+            filasAfectadas = ejecutarSentenciaDML("Insert into Partidas values(@Nickname,@aciertos,@fallos,@tiempo)");
+            MiConexion.closeConnection();
             return filasAfectadas;
         }
 
         public static void anhiadirParametros(clsPartida partida)
         {
-            clsUtilidadDMLDAL.MiComando.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = partida.Id;
-            clsUtilidadDMLDAL.MiComando.Parameters.Add("@Nickname", System.Data.SqlDbType.VarChar).Value = partida.Nick;
-            clsUtilidadDMLDAL.MiComando.Parameters.Add("@aciertos", System.Data.SqlDbType.Int).Value = partida.TotalAcertadas;
-            clsUtilidadDMLDAL.MiComando.Parameters.Add("@fallos", System.Data.SqlDbType.Int).Value = partida.TotalFalladas;
-            clsUtilidadDMLDAL.MiComando.Parameters.Add("@tiempo", System.Data.SqlDbType.Time).Value = partida.Tiempo;
+            MiComando.Parameters.Add("@Nickname", System.Data.SqlDbType.VarChar).Value = partida.Nick;
+            MiComando.Parameters.Add("@aciertos", System.Data.SqlDbType.Int).Value = partida.TotalAcertadas;
+            MiComando.Parameters.Add("@fallos", System.Data.SqlDbType.Int).Value = partida.TotalFalladas;
+            MiComando.Parameters.Add("@tiempo", System.Data.SqlDbType.Time).Value = partida.Tiempo;
         }
 
     }

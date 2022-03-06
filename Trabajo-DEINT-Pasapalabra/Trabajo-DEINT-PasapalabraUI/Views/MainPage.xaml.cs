@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -25,12 +27,26 @@ namespace Trabajo_DEINT_PasapalabraUI.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private MediaElement bgMusic;
         public MainPage()
         {
             this.InitializeComponent();
+            bgMusic = new MediaElement();
+            _ = PlayBgm();
             comenzarAnimaciones();
         }
-        
+        private async Task PlayBgm()
+        {
+            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
+            StorageFile file = await folder.GetFileAsync("bgMusic.mp3");
+            bgMusic.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
+            if (bgMusic.CurrentState == MediaElementState.Playing)
+            {
+                bgMusic.Stop();
+            }
+            bgMusic.Play();
+        }
+
         public void comenzarAnimaciones()
         {
             for (int i = 0; i < 25; i++)

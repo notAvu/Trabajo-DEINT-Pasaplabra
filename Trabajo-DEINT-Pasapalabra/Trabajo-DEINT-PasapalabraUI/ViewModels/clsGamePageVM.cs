@@ -21,7 +21,6 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
     public class clsGamePageVM : clsVMBase
     {
         #region propiedades privadas
-        private MediaElement bgMusic;
         private MediaElement correctSfx;
         private MediaElement wrongSfx;
         private List<clsModelPregunta> listadoPreguntas;
@@ -31,30 +30,29 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private DelegateCommand checkRespuestaCommand;
         private DelegateCommand saltarPreguntaCommand;
         private bool visibilityPreguntaFallidaControl;
+        private ContentDialog contentDialogPartidaTerminada;
         #endregion
 
         #region constructor por defecto
         public clsGamePageVM()
         {
             tiempo = new DispatcherTimer();
-            mostrarControlPreguntaFallada(false);
-            SelectedIndex = 0;
-            cargarListadoPreguntas();
+            MostrarUserControlPreguntaFallada(false);
 
+            CargarListadoPreguntas();
             preguntaSeleccionada = listadoPreguntas[0];
             preguntaSeleccionada.Animado = true;
+            RecargarPregunta();
 
             PalabrasRestantes = listadoPreguntas.Count;
             NotifyPropertyChanged("PalabrasRestantes");
-            recargarPregunta();
-            TiempoMax = 5;
+
+            TiempoMax = 30;
             NotifyPropertyChanged("TiempoMax");
-            iniciarContador();
-            TxtBoxRespuestaJugador = "";
+            IniciarContador();
+
             wrongSfx = new MediaElement();
             correctSfx = new MediaElement();
-            bgMusic = new MediaElement();
-            _ = PlaySound("bgMusic.mp3", bgMusic);
         }
 
         #endregion
@@ -73,18 +71,17 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             }
         }
         public string TxtBoxEnunciadoPregunta { get; set; }
-        public string TxtBoxLetraPregunta { get; set; }
         public DispatcherTimer TiempoRestante { get => tiempo; set => tiempo = value; }
         public int Aciertos { get; set; }
         public int Fallos { get; set; }
         public int PalabrasRestantes { get; set; }
         public int TiempoMax { get; set; }
-        public int SelectedIndex { get; set; }//¿Esta esto bien o es un poco peruano?
+        public int SelectedIndex { get; set; }
         public DelegateCommand CheckRespuestaCommand
         {
             get
             {
-                return checkRespuestaCommand = new DelegateCommand(CheckRespuestaCommand_Execute, CheckRespuesta_CanExecute);
+                return checkRespuestaCommand = new DelegateCommand(CheckRespuestaCommand_Execute, CheckRespuestaCommand_CanExecute);
             }
         }
         public DelegateCommand SaltarPreguntaCommand
@@ -99,6 +96,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         public String LetraPreguntaFallada { get; set; }
         public String RespuestaPreguntaFallada { get; set; }
+
+        public String TxtBoxLetraPregunta { get; set; }
 
         public bool VisibilityPreguntaFallidaControl
         {
@@ -123,10 +122,11 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private void SaltarPregunta_Execute()
         {
             SiguientePregunta();
+            RecargarPregunta();
         }
-        private bool CheckRespuesta_CanExecute()
+        private bool CheckRespuestaCommand_CanExecute()
         {
-            return preguntaSeleccionada != null && !string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador);
+            return !string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador);
         }
 
         private void CheckRespuestaCommand_Execute()
@@ -141,42 +141,34 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                     NotifyPropertyChanged("Aciertos");
                     break;
                 case -1:
-                    mostrarControlPreguntaFallada(true);//TODO HACER METODO DEL BOTON CLICK SINCRONO
+                    MostrarUserControlPreguntaFallada(true);
                     Fallos++;
                     PalabrasRestantes--;
                     _ = PlaySound("Wrong.mp3", wrongSfx);
                     NotifyPropertyChanged("Fallos");
                     break;
             }
-            NotifyPropertyChanged("PreguntaSeleccionada");
+            ComprobarPartidaTerminada();
+            NotifyPropertyChanged("PalabrasRestantes");
             if (PalabrasRestantes > 0)
             {
                 SiguientePregunta();
             }
-            //TODO METER AQUI LO QUE HARIA SI HA TERMINADO EL ROSCO
-            NotifyPropertyChanged("PalabrasRestantes");
-            recargarPregunta();
+            RecargarPregunta();
         }
-
-
         #endregion
 
         #region metodos auxiliares
-        private void mostrarControlPreguntaFallada(bool visible)
+        private void MostrarUserControlPreguntaFallada(bool visible)
         {
             if (visible)
             {
                 LetraPreguntaFallada = preguntaSeleccionada.Letra.ToString();
-                RespuestaPreguntaFallada = preguntaSeleccionada.Respuesta;
-                VisibilityPreguntaFallidaControl = true;
-                NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
                 NotifyPropertyChanged("LetraPreguntaFallada");
+                RespuestaPreguntaFallada = preguntaSeleccionada.Respuesta;
                 NotifyPropertyChanged("RespuestaPreguntaFallada");
             }
-            else
-            {
-                VisibilityPreguntaFallidaControl = false;
-            }
+            VisibilityPreguntaFallidaControl = visible;
             NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
         }
 
@@ -191,19 +183,136 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 {
                     SelectedIndex = i;
                     PreguntaSeleccionada = listadoPreguntas[SelectedIndex];
-                    recargarPregunta();
-                    NotifyPropertyChanged("PreguntaSeleccionada");
                     break;
                 }
             }
             preguntaSeleccionada.Animado = true;
         }
 
-        private void cargarListadoPreguntas()
+        private void CargarListadoPreguntas()
         {
             listadoPreguntas = new List<clsModelPregunta>();
             clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
-            NotifyPropertyChanged("ListadoPreguntas");
+            NotifyPropertyChanged("ListadoPreguntas");//No hace falta en el constructor, pero si al cargar de nuevo cuando el usuario quiere volver a jugar
+        }
+
+        private void RecargarPregunta()
+        {
+            int indice = preguntaSeleccionada.Enunciado.IndexOf(":");
+            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice - 1);//PERUANO, PERO NO SE COMO PONERLO
+            NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
+            TxtBoxLetraPregunta = preguntaSeleccionada.Enunciado.Substring(0, indice);
+            NotifyPropertyChanged("TxtBoxLetraPregunta");
+            TxtBoxRespuestaJugador = "";
+            NotifyPropertyChanged("TxtBoxRespuestaJugador");
+        }
+
+        private void IniciarContador()
+        {
+            ContentDialog contentDialogPartidaTerminada;
+            tiempo.Interval = new TimeSpan(0, 0, 1);
+            tiempo.Start();
+            tiempo.Tick += (a, b) =>
+            {
+                TiempoMax--;
+                NotifyPropertyChanged("TiempoMax");
+                if (TiempoMax == 0)
+                {
+                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("El tiempo se ha terminado :(");
+                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+                }
+            };
+        }
+
+        public void ComprobarPartidaTerminada()
+        {
+            if (Aciertos == 26)
+            {
+                contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("¡Victoria! Has ganado el bote");
+                mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+            }
+            else if (PalabrasRestantes == 0)
+            {
+                contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("Partida terminada, ya no quedan preguntas");
+                mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+            }
+        }
+
+        private async Task mostrarContentDialogPartidaTerminadaAsync(ContentDialog contentDialogPartidaTerminada)
+        {
+            tiempo.Stop();
+            preguntaSeleccionada.Animado = false;
+
+            var result = await contentDialogPartidaTerminada.ShowAsync();
+            if (result == ContentDialogResult.Primary)//Volver a jugar
+            {
+                ReiniciarPartida();
+            }
+            else
+            {
+                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+                tiempo.Stop();
+            }
+            StackPanel stck = contentDialogPartidaTerminada.Content as StackPanel;
+            UIElementCollection hijosDelStck = stck.Children;
+            String nick = (hijosDelStck[1] as TextBox).Text;
+            if (String.IsNullOrWhiteSpace(nick))
+            {
+                nick = "Invitado";
+            }
+            insertarPartida(nick);
+        }
+
+        private void ReiniciarPartida()
+        {
+            tiempo = new DispatcherTimer();
+            MostrarUserControlPreguntaFallada(false);//Para que no muestre el control, en caso de haber fallado la ultima pregunta y volver a jugar
+            CargarListadoPreguntas();
+            SelectedIndex = 0;
+            Fallos = 0;
+            NotifyPropertyChanged("Fallos");
+            Aciertos = 0;
+            NotifyPropertyChanged("Aciertos");
+            TiempoMax = 30;
+            NotifyPropertyChanged("TiempoMax");
+
+            preguntaSeleccionada = listadoPreguntas[0];
+            preguntaSeleccionada.Animado = true;
+            RecargarPregunta();
+
+            PalabrasRestantes = listadoPreguntas.Count;
+            NotifyPropertyChanged("PalabrasRestantes");
+
+            IniciarContador();
+        }
+        #endregion
+
+        #region metodos privados
+        private void insertarPartida(String nick)
+        {
+            try
+            {
+                clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(nick, Aciertos, Fallos, tiempo.Interval));//TODO TRY-CATCH
+            }
+            catch (Exception ex)
+            {
+                crearYmostrarContentDialogInserccionFallida();
+                tiempo.Stop();
+            }
+        }
+
+        /// <summary>
+        /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
+        /// </summary>
+        /// <param name="soundFileName"></param>
+        private async Task PlaySound(string soundFileName, MediaElement media)
+        {
+            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
+            StorageFile file = await folder.GetFileAsync(soundFileName);
+            media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
+            if (correctSfx.CurrentState == MediaElementState.Playing) correctSfx.Stop();
+            if (wrongSfx.CurrentState == MediaElementState.Playing) wrongSfx.Stop();
+            media.Play();
         }
 
         /// <summary>
@@ -219,98 +328,34 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             )
             .Normalize(NormalizationForm.FormC);
 
-        private void recargarPregunta()
+        private async void crearYmostrarContentDialogInserccionFallida()
         {
-            int indice = preguntaSeleccionada.Enunciado.IndexOf(":");
-            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice - 1);//PERUANO, PERO NO SE COMO PONERLO
-            NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
-            TxtBoxLetraPregunta = preguntaSeleccionada.Enunciado.Substring(0, indice);
-            NotifyPropertyChanged("TxtBoxLetraPregunta");
-            TxtBoxRespuestaJugador = "";
-            NotifyPropertyChanged("TxtBoxRespuestaJugador");
-        }
-
-        private void iniciarContador()
-        {
-            ContentDialog contentDialogPartidaTerminada;
-            tiempo.Interval = new TimeSpan(0, 0, 1);
-            tiempo.Start();
-            tiempo.Tick += (a, b) =>
+            var contentDialogInserccionFallida = new ContentDialog
             {
-                TiempoMax--;
-                NotifyPropertyChanged("TiempoMax");
-                if (TiempoMax == 0)
-                {
-                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("El tiempo se ha terminado :(");
-                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
-                }
-                else if (Aciertos == 26)
-                {
-                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("¡Victoria! Has ganado el bote");
-                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
-                }
-                else if (PalabrasRestantes == 0) {
-                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("Partida terminada, ya no quedan preguntas");
-                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
-                }
+                Title = "Inserccion fallida",
+                Content = "No se ha podido guardar la puntuación del jugador, disculpen las molestias",
+                PrimaryButtonText = "Aceptar",
             };
-        }
-
-        private async Task mostrarContentDialogPartidaTerminadaAsync(ContentDialog contentDialogPartidaTerminada)
-        {
-            tiempo.Stop();
-            preguntaSeleccionada.Animado = false;
-
-            var result = await contentDialogPartidaTerminada.ShowAsync();
-            if (result == ContentDialogResult.Primary)//Volver a jugar
-            {
-                tiempo = new DispatcherTimer();
-                mostrarControlPreguntaFallada(false);//Para que no muestre el control, en caso de haber fallado la ultima pregunta y volver a jugar
-                cargarListadoPreguntas();
-                SelectedIndex = 0;
-                Fallos = 0;
-                NotifyPropertyChanged("Fallos");
-                Aciertos = 0;
-                NotifyPropertyChanged("Aciertos");
-                TiempoMax = 10;
-                NotifyPropertyChanged("TiempoMax");
-
-                preguntaSeleccionada = listadoPreguntas[0];
-                preguntaSeleccionada.Animado = true;
-                recargarPregunta();
-
-                PalabrasRestantes = listadoPreguntas.Count;
-                NotifyPropertyChanged("PalabrasRestantes");
-
-                iniciarContador();
-                _ = PlaySound("bgMusic.mp3", bgMusic);
-            }
-            else
+            var result = await contentDialogInserccionFallida.ShowAsync();
+            if (result == ContentDialogResult.Primary)
             {
                 (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+
             }
-            StackPanel stck = contentDialogPartidaTerminada.Content as StackPanel;
-            UIElementCollection hijosDelStck = stck.Children;
-            String user = (hijosDelStck[1] as TextBox).Text;
-            if (String.IsNullOrWhiteSpace(user))
-            {
-                user = "Invitado";
-            }
-            clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(user, Aciertos, Fallos, tiempo.Interval));//TODO TRY-CATCH
         }
+
         /// <summary>
         /// Método auxiliar que que retorna un contentDialog que pregunta por el nick del usuario
         /// </summary>
         /// <returns>ContentDialog</returns>
         private ContentDialog crearCuadroDialogoPartidaTerminada(string resultado)
         {
-            bgMusic.Stop();
             StackPanel stckPanelContentDialog = new StackPanel();
             TextBlock txtBlockContentDialog = new TextBlock()
             {
                 Text = new StringBuilder("Aciertos: ").Append(Aciertos).Append(Environment.NewLine).Append("Fallos: ").Append(Fallos).Append(Environment.NewLine)
-                    .Append("Tiempo Restante: ").Append(TiempoMax).Append(Environment.NewLine).Append("Puntuación: ").Append(Aciertos - Fallos).ToString(),    
-                     Padding = new Thickness(10),
+                    .Append("Tiempo Restante: ").Append(TiempoMax).Append(Environment.NewLine).Append("Puntuación: ").Append(Aciertos - Fallos).ToString(),
+                Padding = new Thickness(10),
                 Width = 330,
             };
             TextBox txtBoxContentDialog = new TextBox()
@@ -330,29 +375,12 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 Content = stckPanelContentDialog,
                 PrimaryButtonText = "Volver a Jugar",
                 CornerRadius = new CornerRadius(5),
-                FontFamily = new Windows.UI.Xaml.Media.FontFamily("../Assets/Fonts/#Keedy Sans Regular"),
+                FontFamily = new FontFamily("../Assets/Fonts/#Keedy Sans Regular"),
                 CloseButtonText = "Volver al Menu Principal",
                 DefaultButton = ContentDialogButton.Primary,
                 Background = resultado.Equals("¡Victoria! Has ganado el bote") ? new SolidColorBrush(Windows.UI.Colors.Green) : new SolidColorBrush(Windows.UI.Colors.White)
             };
         }
-
-        /// <summary>
-        /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
-        /// </summary>
-        /// <param name="soundFileName"></param>
-        private async Task PlaySound(string soundFileName, MediaElement media)
-        {
-            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
-            StorageFile file = await folder.GetFileAsync(soundFileName);
-            media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
-            if (correctSfx.CurrentState == MediaElementState.Playing) correctSfx.Stop();
-            if (wrongSfx.CurrentState == MediaElementState.Playing) wrongSfx.Stop();
-            media.Play();
-        }
-        #endregion
-
-        #region metodos finPartida
         #endregion
 
     }

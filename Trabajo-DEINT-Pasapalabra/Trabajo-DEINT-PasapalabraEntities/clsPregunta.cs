@@ -9,7 +9,7 @@ namespace Trabajo_DEINT_PasapalabraEntities
         #region propiedades
         public int Id { get; }
         public string Enunciado { get; }
-        public string Respuesta { get; }
+        public string Respuesta { get; set; }
         public char Letra { get; }
         #endregion
         #region constructores
