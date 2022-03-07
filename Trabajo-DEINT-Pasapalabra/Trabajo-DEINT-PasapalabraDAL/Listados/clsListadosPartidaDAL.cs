@@ -32,7 +32,11 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         }
 
 
-
+        /// <summary>
+        /// Metodo privado que lee los datos provenientes de la Base de Datos y los introduce en un objeto de tipo clsPartida.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns>Devuelve un objeto de tipo clsPartida</returns>
         private static clsPartida getPartida(SqlDataReader reader)
         {
             clsPartida oPartida;

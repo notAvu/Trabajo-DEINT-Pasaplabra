@@ -24,6 +24,10 @@ namespace Trabajo_DEINT_PasapalabraDAL.Gestora
             return filasAfectadas;
         }
 
+        /// <summary>
+        /// Metodo privado que añade los parámetros del objeto clsPartida a la consulta INSERT
+        /// </summary>
+        /// <param name="partida">un objeto de tipo clsPartida</param>
         private static void anhiadirParametros(clsPartida partida)
         {
             MiComando.Parameters.Add("@Nickname", System.Data.SqlDbType.VarChar).Value = partida.Nick;

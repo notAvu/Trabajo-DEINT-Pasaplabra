@@ -64,7 +64,6 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             get { return txtBoxRespuestaJugador; }
             set
             {
-
                 txtBoxRespuestaJugador = value;
                 if (checkRespuestaCommand != null)
                 {
@@ -75,7 +74,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         public string TxtBoxEnunciadoPregunta { get; set; }
         public DispatcherTimer TiempoRestante { get => tiempo; set => tiempo = value; }
         public int Aciertos { get; set; }
-        public bool ComandoHabilitado { get; set; }
+        //public bool ComandoHabilitado { get; set; }
         public int Fallos { get; set; }
         public int PalabrasRestantes { get; set; }
         public int TiempoMax { get; set; }
@@ -144,8 +143,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// <returns></returns>
         private bool CheckRespuestaCommand_CanExecute()
         {
-            ComandoHabilitado = !String.IsNullOrEmpty(txtBoxRespuestaJugador);
-            return ComandoHabilitado;
+            //ComandoHabilitado = !String.IsNullOrEmpty(txtBoxRespuestaJugador);
+            return !String.IsNullOrEmpty(txtBoxRespuestaJugador);
         }
 
         /// <summary>

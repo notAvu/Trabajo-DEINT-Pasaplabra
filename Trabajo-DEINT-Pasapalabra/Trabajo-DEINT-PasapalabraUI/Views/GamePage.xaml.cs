@@ -30,7 +30,7 @@ namespace Trabajo_DEINT_PasapalabraUI
         public GamePage()
         {
             this.InitializeComponent();
-            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+            //Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
 
         //MICROFONO
@@ -112,15 +112,18 @@ namespace Trabajo_DEINT_PasapalabraUI
                 mediaplayer.SetSource(stream, stream.ContentType);
             }
         }
-        private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
-        {
-            if (args.VirtualKey.Equals(Windows.System.VirtualKey.Enter))
-            {
-                ViewModels.clsGamePageVM vm = (this.Frame.Content as Page).DataContext as ViewModels.clsGamePageVM;
-                if (vm.ComandoHabilitado) {
-                    vm.CheckRespuestaCommand.Execute(vm.CheckRespuestaCommand);                }
-            }
-        }
+
+        //Este metodo pretendia bindear la tecla Enter para que el usuario no tuviera que hacer click en el boton, no se ha implementado por falta de tiempo
+        //pero lo que habríamos hecho es cambiar el Binding a x:bind para llamar a este método en el VM.
+        //private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        //{
+        //    if (args.VirtualKey.Equals(Windows.System.VirtualKey.Enter))
+        //    {
+        //        ViewModels.clsGamePageVM vm = (this.Frame.Content as Page).DataContext as ViewModels.clsGamePageVM;
+        //        if (vm.ComandoHabilitado) {
+        //            vm.CheckRespuestaCommand.Execute(vm.CheckRespuestaCommand);                }
+        //    }
+        //}
 
 
     }

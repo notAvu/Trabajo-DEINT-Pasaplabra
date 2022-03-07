@@ -44,7 +44,10 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         }
 
 
-
+        /// <summary>
+        /// Metodo privado que lee los datos provenientes de la Base de Datos y los introduce en un objeto de tipo clsPregunta.
+        /// </summary>
+        /// <returns>Devuelve un objeto de tipo clsPregunta</returns>
         private static clsPregunta getPregunta()
         {
             clsPregunta oPregunta;
