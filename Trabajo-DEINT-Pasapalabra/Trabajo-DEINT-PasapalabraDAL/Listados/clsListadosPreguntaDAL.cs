@@ -12,6 +12,10 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
 {
     public class clsListadosPreguntaDAL
     {
+        /// <summary>
+        /// Carga un listado de preguntas contenida en la Base de Datos.
+        /// </summary>
+        /// <returns>Devuelve una Lista de objetos de tipo clsPregunta</returns>
         public static List<clsPregunta> CargarListadoPreguntaDAL()
         {
             List<clsPregunta> listadoPregunta = new List<clsPregunta>();

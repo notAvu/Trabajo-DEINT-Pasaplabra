@@ -11,6 +11,10 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
 {
     public class clsListadosPartidaDAL
     {
+        /// <summary>
+        /// Carga un listado de partidas contenida en la Base de Datos.
+        /// </summary>
+        /// <returns>Devuelve una Lista de objetos de tipo clsPartida</returns>
         public static List<clsPartida> CargarListadoPartidaDAL()
         {
             instanciarConexion();
