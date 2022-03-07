@@ -270,6 +270,9 @@
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.GamePage" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.ViewModels.clsRankingVM" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="Content" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="IsHitTestVisible" />

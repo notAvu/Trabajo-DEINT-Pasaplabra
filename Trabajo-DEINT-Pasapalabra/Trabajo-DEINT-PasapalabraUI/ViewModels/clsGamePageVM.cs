@@ -126,16 +126,32 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #endregion
 
         #region commands
+        /// <summary>
+        /// Llama al método SiguientePregunta() para actualizar PregunaSeleccionada a la nueva pregunta que no haya sido respondida,
+        /// luego, llama a RecargarPregunta() que se encarga de recargar los textBoxes de la vista para mostrar la nueva pregunta al usuario
+        /// </summary>
         private void SaltarPregunta_Execute()
         {
             SiguientePregunta();
             RecargarPregunta();
         }
+
+        /// <summary>
+        /// Devuelve un bool en función de si el txtBox donde el usuario responde a la pregunta esta vacio o nulo 
+        /// </summary>
+        /// <returns></returns>
         private bool CheckRespuestaCommand_CanExecute()
         {
             return !string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador);
         }
 
+        /// <summary>
+        /// Cambia el valor de Estado de la pregunta seleccionada a 1 en caso de que la respuesta del usuario coincide con la respuesta de la pregunta
+        /// y -1 en caso contrario.<br/>
+        /// Una vez cambiado el Estado, en caso de haber acertado o fallado, suma Aciertos o Fallos, disminuye las PalabrasRestantes y reproduce el sonido correspondiente en función de acierto o error.<br/>
+        /// Comprueba si la partida ha terminado, en caso de haber respondido todas las preguntas, y, en caso de que quedan preguntas por responder,
+        /// llama a la siguiente y la recarga en la vista
+        /// </summary>
         private void CheckRespuestaCommand_Execute()
         {
             PreguntaSeleccionada.Estado = SinTildes(TxtBoxRespuestaJugador.ToLower()).Equals(PreguntaSeleccionada.Respuesta.ToLower()) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
@@ -164,6 +180,9 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             RecargarPregunta();
         }
 
+        /// <summary>
+        /// Navega desde el Frame actual a MainPage y para el contador para que no siga ejecutandose aunque cambies de Frame
+        /// </summary>
         private void VolverAInicio_Execute()
         {
             (Window.Current.Content as Frame).Navigate(typeof(MainPage));
@@ -172,10 +191,15 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #endregion
 
         #region metodos logica juego
+        /// <summary>
+        /// Detiene la animacion de la pregunta recien respondida, con ayuda de un entero auxiliar SelectedIndex, recoge la siguiente pregunta
+        /// que no ha sido respondida, y, una vez seteada la nueva pregunta en PreguntaSeleccionada, comienza su animacion
+        /// </summary>
         private void SiguientePregunta()
         {
+            bool encontrado = false;
             preguntaSeleccionada.Animado = false;
-            for (int i = SelectedIndex + 1; i < listadoPreguntas.Count + 1; i++)
+            for (int i = SelectedIndex + 1; (i < listadoPreguntas.Count + 1) && !encontrado; i++)
             {
                 if (i == listadoPreguntas.Count)
                 { i = 0; }
@@ -183,12 +207,16 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 {
                     SelectedIndex = i;
                     PreguntaSeleccionada = listadoPreguntas[SelectedIndex];
-                    break;
+                    encontrado = true;
                 }
             }
             preguntaSeleccionada.Animado = true;
         }
 
+        /// <summary>
+        /// Llama a clsListadosPreguntaBL.CargarListadoPreguntaBL() para cargar un listado de preguntas aleatorio de la BBDD, en caso de fallar la carga, muestra un content dialog
+        /// informando al usuario y manda al usuario al MainPage
+        /// </summary>
         private void CargarListadoPreguntas()
         {
             listadoPreguntas = new List<clsModelPregunta>();
@@ -203,10 +231,13 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             NotifyPropertyChanged("ListadoPreguntas");//No hace falta en el constructor, pero si al cargar de nuevo cuando el usuario quiere volver a jugar
         }
 
+        /// <summary>
+        /// Llamado una vez cargado la nueva PreguntaSeleccionada, recarga los textBocks de los controls para mostrar la nueva pregunta al usuario
+        /// </summary>
         private void RecargarPregunta()
         {
             int indice = preguntaSeleccionada.Enunciado.IndexOf(":");
-            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice - 1);//PERUANO, PERO NO SE COMO PONERLO
+            TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice - 1);
             NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
             TxtBoxLetraPregunta = preguntaSeleccionada.Enunciado.Substring(0, indice);
             NotifyPropertyChanged("TxtBoxLetraPregunta");
@@ -216,6 +247,9 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #endregion
 
         #region metodos partida terminada
+        /// <summary>
+        /// Comprueba si ha terminado la partida acertando todas o no, mostrando el content dialog correspondiente
+        /// </summary>
         public void ComprobarPartidaTerminada()
         {
             if (Aciertos == 26)
@@ -223,13 +257,19 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("¡Victoria! Has ganado el bote");
                 MostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
             }
-            else if (PalabrasRestantes == 0)
+            else if (PalabrasRestantes == 0)//Ha terminado la partida pero no ha ganado el bote
             {
                 contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("Partida terminada, ya no quedan preguntas");
                 MostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
             }
         }
 
+        /// <summary>
+        /// Muestra un content dialog con la partida terminada y su puntuación, recoge el String del textBox, y inserta la partida con la puntuación y el String recogido como un nick<br/>
+        /// Dependiendo del botón elegido, lleva al usuario a la pantalla de inicio o reinicia la partida
+        /// </summary>
+        /// <param name="contentDialogPartidaTerminada"></param>
+        /// <returns></returns>
         private async Task MostrarContentDialogPartidaTerminadaAsync(ContentDialog contentDialogPartidaTerminada)
         {
             tiempo.Stop();
@@ -254,6 +294,9 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Reinicia los atributos del viewModel para reiniciar la partida del usuario
+        /// </summary>
         private void ReiniciarPartida()
         {
             tiempo = new DispatcherTimer();
@@ -276,13 +319,18 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
             IniciarContador();
         }
+        /// <summary>
+        /// Dado un String representando el nick del usuario, recoge los datos de la partida terminada y la inserta en la BBDD, en caso de haber un error, muestra un content dialog
+        /// informando al usuario y vuelve al inicio (MainPage)
+        /// </summary>
+        /// <param name="nick"></param>
         private void InsertarPartida(String nick)
         {
             try
             {
-                clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(nick, Aciertos, Fallos, TimeSpan.FromSeconds(TiempoMax)));//TODO QUE COÑO
+                clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(nick, Aciertos, Fallos, TimeSpan.FromSeconds(TiempoMax)));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 CrearYmostrarContentDialogOperacionFallida("Guardado de partida fallido", "No se ha podido guardar la partida del jugador, disculpen las molestias");
                 tiempo.Stop();
@@ -291,7 +339,11 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         #endregion
 
         #region metodos content dialogs
-
+        /// <summary>
+        /// Muestra un content dialog con titulo y contenido pasados por parametro, un único botón de Aceptar y al pulsarlo lleva al usuario al Frame MainPage (Inicio)
+        /// </summary>
+        /// <param name="titulo"></param>
+        /// <param name="contenido"></param>
         private async void CrearYmostrarContentDialogOperacionFallida(String titulo, String contenido)
         {
             var contentDialog = new ContentDialog
@@ -374,6 +426,9 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             )
             .Normalize(NormalizationForm.FormC);
 
+        /// <summary>
+        /// Inicia el contador de la vista, y lo va actualizando cada segundo, cuando llegue a 0, termnina la partida y muestra al usuario su correspondiente content dialog
+        /// </summary>
         private void IniciarContador()
         {
             ContentDialog contentDialogPartidaTerminada;
@@ -392,6 +447,10 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             };
         }
 
+        /// <summary>
+        /// Cambia la visibilidad de el userControl personalizado PreguntaFalladaControl, actualizando sus datos si tiene que mostrarse
+        /// </summary>
+        /// <param name="visible"></param>
         private void MostrarUserControlPreguntaFallada(bool visible)
         {
             if (visible)
