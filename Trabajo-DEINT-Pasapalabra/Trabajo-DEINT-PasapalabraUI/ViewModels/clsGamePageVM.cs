@@ -21,6 +21,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
     public class clsGamePageVM : clsVMBase
     {
         #region propiedades privadas
+
+        private MediaElement music;
         private MediaElement correctSfx;
         private MediaElement wrongSfx;
         private List<clsModelPregunta> listadoPreguntas;
@@ -52,6 +54,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             NotifyPropertyChanged("TiempoMax");
             IniciarContador();
 
+            music = new MediaElement();
+            _ = PlaySound("bgMusic.mp3", music);
             wrongSfx = new MediaElement();
             correctSfx = new MediaElement();
         }
@@ -188,6 +192,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private void VolverAInicio_Execute()
         {
             (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+            music.Stop();
             tiempo.Stop();
         }
         #endregion

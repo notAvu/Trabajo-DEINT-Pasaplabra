@@ -37,13 +37,13 @@ namespace Trabajo_DEINT_PasapalabraUI.Views
         }
         private async Task PlayBgm()
         {
-            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
-            StorageFile file = await folder.GetFileAsync("bgMusic.mp3");
-            bgMusic.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
             if (bgMusic.CurrentState == MediaElementState.Playing)
             {
                 bgMusic.Stop();
             }
+            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
+            StorageFile file = await folder.GetFileAsync("bgMusic.mp3");
+            bgMusic.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
             bgMusic.Play();
         }
 
@@ -122,11 +122,19 @@ namespace Trabajo_DEINT_PasapalabraUI.Views
 
         private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
+            if (bgMusic.CurrentState == MediaElementState.Playing)
+            {
+                bgMusic.Stop();
+            }
             this.Frame.Navigate(typeof(GamePage));
         }
 
         private void Button_Ranking_Click(object sender, RoutedEventArgs e)
         {
+            if (bgMusic.CurrentState == MediaElementState.Playing)
+            {
+                bgMusic.Stop();
+            }
             this.Frame.Navigate(typeof(Ranking));
         }
     }
