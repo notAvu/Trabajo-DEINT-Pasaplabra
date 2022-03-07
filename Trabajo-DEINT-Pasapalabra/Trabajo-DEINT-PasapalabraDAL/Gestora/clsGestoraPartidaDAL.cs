@@ -8,7 +8,12 @@ namespace Trabajo_DEINT_PasapalabraDAL.Gestora
 {
     public class clsGestoraPartidaDAL : clsUtilidadDMLDAL
     {
-
+        /// <summary>
+        /// Inserta una partida jugada nueva en la Base de Datos.
+        /// Precondiciones: el objeto partida no debe ser null.
+        /// </summary>
+        /// <param name="partida">Recibe por parámtro un objeto de tipo clsPartida</param>
+        /// <returns>Devuelve un entero con el número de filas afectadas</returns>
         public static int insertarPartidaDAL(clsPartida partida)
         {
             int filasAfectadas;
@@ -19,7 +24,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Gestora
             return filasAfectadas;
         }
 
-        public static void anhiadirParametros(clsPartida partida)
+        private static void anhiadirParametros(clsPartida partida)
         {
             MiComando.Parameters.Add("@Nickname", System.Data.SqlDbType.VarChar).Value = partida.Nick;
             MiComando.Parameters.Add("@aciertos", System.Data.SqlDbType.Int).Value = partida.TotalAcertadas;

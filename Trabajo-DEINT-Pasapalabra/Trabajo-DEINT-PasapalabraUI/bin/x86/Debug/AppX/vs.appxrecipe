@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T09:33:16.448</Modified>
+      <Modified>2022-03-07T12:10:54.018</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>entrypoint\Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-03-07T09:33:15.146</Modified>
+      <Modified>2022-03-07T12:10:51.222</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -124,15 +124,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraBL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraBL.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraBL.dll</PackagePath>
-      <Modified>2022-03-07T09:14:53.951</Modified>
+      <Modified>2022-03-07T10:37:48.032</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraDAL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraDAL.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraDAL.dll</PackagePath>
-      <Modified>2022-03-07T09:14:53.551</Modified>
+      <Modified>2022-03-07T10:37:47.648</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraEntities\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraEntities.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraEntities.dll</PackagePath>
-      <Modified>2022-03-07T09:14:52.839</Modified>
+      <Modified>2022-03-07T10:37:46.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\.nuget\packages\win2d.uwp\1.25.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
@@ -168,101 +168,101 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\fondo_pasapalabra.jpeg">
       <PackagePath>Assets\Images\fondo_pasapalabra.jpeg</PackagePath>
-      <Modified>2022-03-07T09:13:22.814</Modified>
+      <Modified>2022-03-07T10:34:24.616</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\micro1.png">
       <PackagePath>Assets\Images\micro1.png</PackagePath>
-      <Modified>2022-03-07T09:13:22.815</Modified>
+      <Modified>2022-03-07T10:34:24.617</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\micro2.png">
       <PackagePath>Assets\Images\micro2.png</PackagePath>
-      <Modified>2022-03-07T09:13:22.816</Modified>
+      <Modified>2022-03-07T10:34:24.617</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Images\volumen.png">
       <PackagePath>Assets\Images\volumen.png</PackagePath>
-      <Modified>2022-03-07T09:13:22.817</Modified>
+      <Modified>2022-03-07T10:34:24.618</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2022-03-07T09:13:22.818</Modified>
+      <Modified>2022-03-07T10:34:24.619</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T09:13:22.818</Modified>
+      <Modified>2022-03-07T10:34:24.619</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T09:13:22.819</Modified>
+      <Modified>2022-03-07T10:34:24.620</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T09:13:22.819</Modified>
+      <Modified>2022-03-07T10:34:24.620</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T09:13:22.820</Modified>
+      <Modified>2022-03-07T10:34:24.620</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T09:13:22.820</Modified>
+      <Modified>2022-03-07T10:34:24.621</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T09:13:22.821</Modified>
+      <Modified>2022-03-07T10:34:24.621</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\correct.mp3">
       <PackagePath>Assets\correct.mp3</PackagePath>
-      <Modified>2022-03-07T09:13:22.925</Modified>
+      <Modified>2022-03-07T10:34:24.725</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\bgMusic.mp3">
       <PackagePath>Assets\bgMusic.mp3</PackagePath>
-      <Modified>2022-03-07T09:13:22.923</Modified>
+      <Modified>2022-03-07T10:34:24.723</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Wrong.mp3">
       <PackagePath>Assets\Wrong.mp3</PackagePath>
-      <Modified>2022-03-07T09:13:22.821</Modified>
+      <Modified>2022-03-07T10:34:24.622</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2022-03-07T09:13:22.928</Modified>
+      <Modified>2022-03-07T10:34:24.727</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\Assets\Fonts\Keedy Sans Regular.ttf">
       <PackagePath>Assets\Fonts\Keedy Sans Regular.ttf</PackagePath>
-      <Modified>2022-03-07T09:13:22.813</Modified>
+      <Modified>2022-03-07T10:34:24.615</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Trabajo-DEINT-PasapalabraUI.xr.xml">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.xr.xml</PackagePath>
-      <Modified>2022-03-07T09:33:14.920</Modified>
+      <Modified>2022-03-07T10:37:52.196</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-03-07T09:33:14.969</Modified>
+      <Modified>2022-03-07T12:10:51.006</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-03-07T09:33:14.970</Modified>
+      <Modified>2022-03-07T12:10:51.007</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\GamePage.xbf">
       <PackagePath>Views\GamePage.xbf</PackagePath>
-      <Modified>2022-03-07T09:33:14.963</Modified>
+      <Modified>2022-03-07T12:10:51.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\Ranking.xbf">
       <PackagePath>Views\Ranking.xbf</PackagePath>
-      <Modified>2022-03-07T09:33:14.971</Modified>
+      <Modified>2022-03-07T12:10:51.008</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\UsersControlls\LetraControl.xbf">
       <PackagePath>Views\UsersControlls\LetraControl.xbf</PackagePath>
-      <Modified>2022-03-07T09:33:14.971</Modified>
+      <Modified>2022-03-07T12:10:51.009</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Views\UsersControlls\PreguntaFalladaControl.xbf">
       <PackagePath>Views\UsersControlls\PreguntaFalladaControl.xbf</PackagePath>
-      <Modified>2022-03-07T09:33:14.972</Modified>
+      <Modified>2022-03-07T12:10:51.009</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -274,11 +274,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-03-07T09:15:04.733</Modified>
+      <Modified>2022-03-07T10:37:54.527</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\Source\Repos\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x86\Debug\Core\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-03-07T09:33:16.442</Modified>
+      <Modified>2022-03-07T12:10:54.004</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jmunoz\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>

@@ -74,6 +74,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         public string TxtBoxEnunciadoPregunta { get; set; }
         public DispatcherTimer TiempoRestante { get => tiempo; set => tiempo = value; }
         public int Aciertos { get; set; }
+        public bool ComandoHabilitado { get; set; }
         public int Fallos { get; set; }
         public int PalabrasRestantes { get; set; }
         public int TiempoMax { get; set; }
@@ -142,7 +143,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// <returns></returns>
         private bool CheckRespuestaCommand_CanExecute()
         {
-            return !string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador);
+            return (ComandoHabilitado=!string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador));
         }
 
         /// <summary>
@@ -236,6 +237,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// </summary>
         private void RecargarPregunta()
         {
+            ComandoHabilitado = false;
             int indice = preguntaSeleccionada.Enunciado.IndexOf(":");
             TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice - 1);
             NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
