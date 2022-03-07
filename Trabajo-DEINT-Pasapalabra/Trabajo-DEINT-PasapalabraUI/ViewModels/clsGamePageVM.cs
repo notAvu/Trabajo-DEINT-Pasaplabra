@@ -48,7 +48,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             PalabrasRestantes = listadoPreguntas.Count;
             NotifyPropertyChanged("PalabrasRestantes");
 
-            TiempoMax = 30;
+            TiempoMax = 300;
             NotifyPropertyChanged("TiempoMax");
             IniciarContador();
 
@@ -264,7 +264,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             NotifyPropertyChanged("Fallos");
             Aciertos = 0;
             NotifyPropertyChanged("Aciertos");
-            TiempoMax = 30;
+            TiempoMax = 300;
             NotifyPropertyChanged("TiempoMax");
 
             preguntaSeleccionada = listadoPreguntas[0];
@@ -280,7 +280,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         {
             try
             {
-                clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(nick, Aciertos, Fallos, tiempo.Interval));//TODO QUE COÑO
+                clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(nick, Aciertos, Fallos, TimeSpan.FromSeconds(TiempoMax)));//TODO QUE COÑO
             }
             catch (Exception ex)
             {

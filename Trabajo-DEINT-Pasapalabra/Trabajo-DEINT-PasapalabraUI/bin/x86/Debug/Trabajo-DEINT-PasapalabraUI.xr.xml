@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
-  <Roots.Interfaces>
-    <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
-  </Roots.Interfaces>
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="SaltarPreguntaCommand" />
     <RootPropertyPathName Name="CheckRespuestaCommand" />
@@ -17,6 +14,7 @@
     <RootPropertyPathName Name="Fallos" />
     <RootPropertyPathName Name="Aciertos" />
     <RootPropertyPathName Name="TiempoMax" />
+    <RootPropertyPathName Name="VolverAInicioCommand" />
     <RootPropertyPathName Name="RespuestaPreguntaFallada" />
     <RootPropertyPathName Name="LetraPreguntaFallada" />
     <RootPropertyPathName Name="VisibilityPreguntaFallidaControl" />
@@ -122,16 +120,15 @@
       <RootProperty Name="Content" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Style" />
+      <RootProperty Name="Command" />
       <RootProperty Name="Name" />
       <RootProperty Name="Height" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="MinWidth" />
       <RootProperty Name="MinHeight" />
       <RootProperty Name="Padding" />
-      <RootProperty Name="Command" />
       <RootProperty Name="VerticalAlignment" />
       <RootEvent Name="Click" />
-      <RootEvent Name="KeyDown" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="Margin" />
@@ -155,7 +152,6 @@
     <RootType FullName="Microsoft.Toolkit.Uwp.UI.AttachedDropShadow">
       <RootProperty Name="Offset" />
     </RootType>
-    <RootType FullName="Trabajo_DEINT_PasapalabraUI.Utils.Converters.clsBoolToVisibilityConverter" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.UsersControlls.PreguntaFalladaControl">
       <RootProperty Name="Respuesta" />
       <RootProperty Name="LetraBoton" />
@@ -274,8 +270,12 @@
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.GamePage" />
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.ViewModels.clsRankingVM" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="Content" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="ItemsSource" />
+      <RootProperty Name="IsHitTestVisible" />
       <RootProperty Name="ItemTemplate" />
     </RootType>
     <RootType FullName="Trabajo_DEINT_PasapalabraUI.Views.Ranking" />
