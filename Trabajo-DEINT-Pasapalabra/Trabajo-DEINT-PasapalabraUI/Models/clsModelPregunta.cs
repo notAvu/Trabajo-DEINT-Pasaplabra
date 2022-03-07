@@ -12,8 +12,11 @@ namespace Trabajo_DEINT_PasapalabraUI.Models
 {
     public class clsModelPregunta : clsPregunta, INotifyPropertyChanged
     {
+        #region atributos
         private int estado;
         private bool animado;
+        #endregion
+
         #region propiedadesAutoimplementadas
         public int Estado
         {
@@ -37,6 +40,7 @@ namespace Trabajo_DEINT_PasapalabraUI.Models
         }
 
         #endregion
+
         #region constructores
         public clsModelPregunta() { }
         public clsModelPregunta(int estado, int id, string pregunta, string respuesta, char letra) :
@@ -46,36 +50,14 @@ namespace Trabajo_DEINT_PasapalabraUI.Models
             Animado = false;
         }
 
-        public clsModelPregunta(int estado, int id, string pregunta, string respuesta, char letra, bool animado) :
-            base(id, pregunta, respuesta, letra)
-        {
-            Estado = estado;
-            if (Animado)
-            {
-                Animado = false;
-            }
-            else
-            {
-                Animado = true;
-            }
-        }
+        #endregion
 
-        public clsModelPregunta(int estado, int id, string enunciado, string respuesta) : base(id, enunciado, respuesta)
-        {
-            Estado = estado;
-        }
-
+        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void NotifyPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-        #region animaciones
-        public void SelectedAnimation()
-        {
-
         }
         #endregion
     }

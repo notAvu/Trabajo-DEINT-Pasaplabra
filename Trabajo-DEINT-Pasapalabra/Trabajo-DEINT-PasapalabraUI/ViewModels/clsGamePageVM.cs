@@ -29,6 +29,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private DispatcherTimer tiempo;
         private DelegateCommand checkRespuestaCommand;
         private DelegateCommand saltarPreguntaCommand;
+        private DelegateCommand volverAInicioCommand;
         private bool visibilityPreguntaFallidaControl;
         private ContentDialog contentDialogPartidaTerminada;
         #endregion
@@ -91,6 +92,12 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 return saltarPreguntaCommand = new DelegateCommand(SaltarPregunta_Execute);
             }
         }
+        public DelegateCommand VolverAInicioCommand//NOTA: Este metodo se podría haber hecho por code behind, pero si se hiciese así el contador
+                                                   //no pararía y se mostaría el content dialog de partida terminada por tiempo estuvieses en cualquier frame
+        {
+            get { return volverAInicioCommand = new DelegateCommand(VolverAInicio_Execute); }
+        }
+
         public clsModelPregunta PreguntaSeleccionada { get => preguntaSeleccionada; set => preguntaSeleccionada = value; }
         public List<clsModelPregunta> ListadoPreguntas { get => listadoPreguntas; set => listadoPreguntas = value; }
 
@@ -131,7 +138,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
         private void CheckRespuestaCommand_Execute()
         {
-            PreguntaSeleccionada.Estado = sinTildes(TxtBoxRespuestaJugador.ToLower()).Equals(PreguntaSeleccionada.Respuesta.ToLower()) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
+            PreguntaSeleccionada.Estado = SinTildes(TxtBoxRespuestaJugador.ToLower()).Equals(PreguntaSeleccionada.Respuesta.ToLower()) ? 1 : -1;//TODO preguntarle a fernando lo del bool?=null como estado por defecto
             switch (PreguntaSeleccionada.Estado)
             {
                 case 1:
@@ -156,22 +163,15 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             }
             RecargarPregunta();
         }
+
+        private void VolverAInicio_Execute()
+        {
+            (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+            tiempo.Stop();
+        }
         #endregion
 
-        #region metodos auxiliares
-        private void MostrarUserControlPreguntaFallada(bool visible)
-        {
-            if (visible)
-            {
-                LetraPreguntaFallada = preguntaSeleccionada.Letra.ToString();
-                NotifyPropertyChanged("LetraPreguntaFallada");
-                RespuestaPreguntaFallada = preguntaSeleccionada.Respuesta;
-                NotifyPropertyChanged("RespuestaPreguntaFallada");
-            }
-            VisibilityPreguntaFallidaControl = visible;
-            NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
-        }
-
+        #region metodos logica juego
         private void SiguientePregunta()
         {
             preguntaSeleccionada.Animado = false;
@@ -192,7 +192,14 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         private void CargarListadoPreguntas()
         {
             listadoPreguntas = new List<clsModelPregunta>();
-            clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
+            try
+            {
+                clsListadosPreguntaBL.CargarListadoPreguntaBL().ForEach(pregunta => listadoPreguntas.Add(new clsModelPregunta(0, pregunta.Id, pregunta.Enunciado, pregunta.Respuesta, pregunta.Letra)));
+            }
+            catch (Exception)
+            {
+                CrearYmostrarContentDialogOperacionFallida("Cargado de preguntas fallido", "No se ha podido cargar las preguntas, disculpen las molestias");
+            }
             NotifyPropertyChanged("ListadoPreguntas");//No hace falta en el constructor, pero si al cargar de nuevo cuando el usuario quiere volver a jugar
         }
 
@@ -206,53 +213,29 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             TxtBoxRespuestaJugador = "";
             NotifyPropertyChanged("TxtBoxRespuestaJugador");
         }
+        #endregion
 
-        private void IniciarContador()
-        {
-            ContentDialog contentDialogPartidaTerminada;
-            tiempo.Interval = new TimeSpan(0, 0, 1);
-            tiempo.Start();
-            tiempo.Tick += (a, b) =>
-            {
-                TiempoMax--;
-                NotifyPropertyChanged("TiempoMax");
-                if (TiempoMax == 0)
-                {
-                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("El tiempo se ha terminado :(");
-                    mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
-                }
-            };
-        }
-
+        #region metodos partida terminada
         public void ComprobarPartidaTerminada()
         {
             if (Aciertos == 26)
             {
                 contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("¡Victoria! Has ganado el bote");
-                mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+                MostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
             }
             else if (PalabrasRestantes == 0)
             {
                 contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("Partida terminada, ya no quedan preguntas");
-                mostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+                MostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
             }
         }
 
-        private async Task mostrarContentDialogPartidaTerminadaAsync(ContentDialog contentDialogPartidaTerminada)
+        private async Task MostrarContentDialogPartidaTerminadaAsync(ContentDialog contentDialogPartidaTerminada)
         {
             tiempo.Stop();
             preguntaSeleccionada.Animado = false;
 
             var result = await contentDialogPartidaTerminada.ShowAsync();
-            if (result == ContentDialogResult.Primary)//Volver a jugar
-            {
-                ReiniciarPartida();
-            }
-            else
-            {
-                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
-                tiempo.Stop();
-            }
             StackPanel stck = contentDialogPartidaTerminada.Content as StackPanel;
             UIElementCollection hijosDelStck = stck.Children;
             String nick = (hijosDelStck[1] as TextBox).Text;
@@ -260,7 +243,15 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             {
                 nick = "Invitado";
             }
-            insertarPartida(nick);
+            InsertarPartida(nick);
+            if (result == ContentDialogResult.Primary)//Volver a jugar
+            {
+                ReiniciarPartida();
+            }
+            else
+            {
+                VolverAInicio_Execute();
+            }
         }
 
         private void ReiniciarPartida()
@@ -285,62 +276,34 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
 
             IniciarContador();
         }
-        #endregion
-
-        #region metodos privados
-        private void insertarPartida(String nick)
+        private void InsertarPartida(String nick)
         {
             try
             {
-                clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(nick, Aciertos, Fallos, tiempo.Interval));//TODO TRY-CATCH
+                clsGestoraPartidaBL.insertarPartidaBL(new clsPartida(nick, Aciertos, Fallos, tiempo.Interval));//TODO QUE COÑO
             }
             catch (Exception ex)
             {
-                crearYmostrarContentDialogInserccionFallida();
+                CrearYmostrarContentDialogOperacionFallida("Guardado de partida fallido", "No se ha podido guardar la partida del jugador, disculpen las molestias");
                 tiempo.Stop();
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
-        /// </summary>
-        /// <param name="soundFileName"></param>
-        private async Task PlaySound(string soundFileName, MediaElement media)
+        #region metodos content dialogs
+
+        private async void CrearYmostrarContentDialogOperacionFallida(String titulo, String contenido)
         {
-            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
-            StorageFile file = await folder.GetFileAsync(soundFileName);
-            media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
-            if (correctSfx.CurrentState == MediaElementState.Playing) correctSfx.Stop();
-            if (wrongSfx.CurrentState == MediaElementState.Playing) wrongSfx.Stop();
-            media.Play();
-        }
-
-        /// <summary>
-        /// Método que elimina las tildes de la cadena que entra como parámetro y devuelve la misma cadena pero sin las tildes
-        /// </summary>
-        /// <param name="texto"></param>
-        /// <returns>Devuelve asociado al nombre una cadena sin tildes</returns>
-        private static string sinTildes(string texto) =>
-            new String(
-                texto.Normalize(NormalizationForm.FormD)
-                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-                .ToArray()
-            )
-            .Normalize(NormalizationForm.FormC);
-
-        private async void crearYmostrarContentDialogInserccionFallida()
-        {
-            var contentDialogInserccionFallida = new ContentDialog
+            var contentDialog = new ContentDialog
             {
-                Title = "Inserccion fallida",
-                Content = "No se ha podido guardar la puntuación del jugador, disculpen las molestias",
+                Title = titulo,
+                Content = contenido,
                 PrimaryButtonText = "Aceptar",
             };
-            var result = await contentDialogInserccionFallida.ShowAsync();
+            var result = await contentDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
-
+                VolverAInicio_Execute();
             }
         }
 
@@ -380,6 +343,66 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
                 DefaultButton = ContentDialogButton.Primary,
                 Background = resultado.Equals("¡Victoria! Has ganado el bote") ? new SolidColorBrush(Windows.UI.Colors.Green) : new SolidColorBrush(Windows.UI.Colors.White)
             };
+        }
+        #endregion
+
+        #region metodos privados auxiliares generales
+        /// <summary>
+        /// Metodo auxiliar para reproducir un sonido de la carpeta Sounds dado el nombre del archivo 
+        /// </summary>
+        /// <param name="soundFileName"></param>
+        private async Task PlaySound(string soundFileName, MediaElement media)
+        {
+            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
+            StorageFile file = await folder.GetFileAsync(soundFileName);
+            media.SetSource(await file.OpenAsync(FileAccessMode.Read), "");
+            if (correctSfx.CurrentState == MediaElementState.Playing) correctSfx.Stop();
+            if (wrongSfx.CurrentState == MediaElementState.Playing) wrongSfx.Stop();
+            media.Play();
+        }
+
+        /// <summary>
+        /// Método que elimina las tildes de la cadena que entra como parámetro y devuelve la misma cadena pero sin las tildes
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns>Devuelve asociado al nombre una cadena sin tildes</returns>
+        private static string SinTildes(string texto) =>
+            new String(
+                texto.Normalize(NormalizationForm.FormD)
+                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                .ToArray()
+            )
+            .Normalize(NormalizationForm.FormC);
+
+        private void IniciarContador()
+        {
+            ContentDialog contentDialogPartidaTerminada;
+            tiempo.Interval = new TimeSpan(0, 0, 1);
+            tiempo.Start();
+            tiempo.Tick += (a, b) =>
+            {
+                TiempoMax--;
+                NotifyPropertyChanged("TiempoMax");
+                if (TiempoMax == 0)
+                {
+                    tiempo.Stop();
+                    contentDialogPartidaTerminada = crearCuadroDialogoPartidaTerminada("El tiempo se ha terminado :(");
+                    MostrarContentDialogPartidaTerminadaAsync(contentDialogPartidaTerminada);
+                }
+            };
+        }
+
+        private void MostrarUserControlPreguntaFallada(bool visible)
+        {
+            if (visible)
+            {
+                LetraPreguntaFallada = preguntaSeleccionada.Letra.ToString();
+                NotifyPropertyChanged("LetraPreguntaFallada");
+                RespuestaPreguntaFallada = preguntaSeleccionada.Respuesta;
+                NotifyPropertyChanged("RespuestaPreguntaFallada");
+            }
+            VisibilityPreguntaFallidaControl = visible;
+            NotifyPropertyChanged("VisibilityPreguntaFallidaControl");
         }
         #endregion
 
