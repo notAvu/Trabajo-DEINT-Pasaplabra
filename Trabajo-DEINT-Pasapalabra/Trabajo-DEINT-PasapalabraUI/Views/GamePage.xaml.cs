@@ -30,6 +30,7 @@ namespace Trabajo_DEINT_PasapalabraUI
         public GamePage()
         {
             this.InitializeComponent();
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -116,7 +117,16 @@ namespace Trabajo_DEINT_PasapalabraUI
                 mediaplayer.SetSource(stream, stream.ContentType);
             }
         }
+        private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        {
+            if (args.VirtualKey.Equals(Windows.System.VirtualKey.Enter))
+            {
+                ViewModels.clsGamePageVM vm = (this.Frame.Content as Page).DataContext as ViewModels.clsGamePageVM;
+                if (vm.ComandoHabilitado) {
+                    vm.CheckRespuestaCommand.Execute(vm.CheckRespuestaCommand);                }
+            }
+        }
 
-       
+
     }
 }
