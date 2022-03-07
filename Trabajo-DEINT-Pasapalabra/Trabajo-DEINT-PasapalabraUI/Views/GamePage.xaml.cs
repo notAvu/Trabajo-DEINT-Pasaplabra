@@ -33,11 +33,6 @@ namespace Trabajo_DEINT_PasapalabraUI
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }
-
         //MICROFONO
         private async void btnMicro_Click(object sender, RoutedEventArgs e)
         {

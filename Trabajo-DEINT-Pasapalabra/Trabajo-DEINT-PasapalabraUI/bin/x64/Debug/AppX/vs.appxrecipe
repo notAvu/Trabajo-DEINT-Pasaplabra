@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-07T12:02:32.392</Modified>
+      <Modified>2022-03-07T12:42:48.301</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>entrypoint\Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-03-07T12:02:31.758</Modified>
+      <Modified>2022-03-07T12:42:47.666</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -124,11 +124,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraBL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraBL.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraBL.dll</PackagePath>
-      <Modified>2022-03-07T09:44:20.569</Modified>
+      <Modified>2022-03-07T12:29:20.960</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraDAL\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraDAL.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraDAL.dll</PackagePath>
-      <Modified>2022-03-07T09:44:20.397</Modified>
+      <Modified>2022-03-07T12:29:20.832</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraEntities\bin\Debug\netstandard2.0\Trabajo-DEINT-PasapalabraEntities.dll">
       <PackagePath>Trabajo-DEINT-PasapalabraEntities.dll</PackagePath>
@@ -242,27 +242,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-03-07T12:02:31.681</Modified>
+      <Modified>2022-03-07T12:42:47.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-03-07T12:02:31.682</Modified>
+      <Modified>2022-03-07T12:42:47.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\GamePage.xbf">
       <PackagePath>Views\GamePage.xbf</PackagePath>
-      <Modified>2022-03-07T12:02:31.678</Modified>
+      <Modified>2022-03-07T12:42:47.587</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\Ranking.xbf">
       <PackagePath>Views\Ranking.xbf</PackagePath>
-      <Modified>2022-03-07T12:02:31.682</Modified>
+      <Modified>2022-03-07T12:42:47.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\UsersControlls\LetraControl.xbf">
       <PackagePath>Views\UsersControlls\LetraControl.xbf</PackagePath>
-      <Modified>2022-03-07T12:02:31.682</Modified>
+      <Modified>2022-03-07T12:42:47.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Views\UsersControlls\PreguntaFalladaControl.xbf">
       <PackagePath>Views\UsersControlls\PreguntaFalladaControl.xbf</PackagePath>
-      <Modified>2022-03-07T12:02:31.682</Modified>
+      <Modified>2022-03-07T12:42:47.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -278,7 +278,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\Desktop\Trabajo-DEINT-Pasaplabra\Trabajo-DEINT-Pasapalabra\Trabajo-DEINT-PasapalabraUI\bin\x64\Debug\Core\Trabajo-DEINT-PasapalabraUI.exe">
       <PackagePath>Trabajo-DEINT-PasapalabraUI.exe</PackagePath>
-      <Modified>2022-03-07T12:02:32.390</Modified>
+      <Modified>2022-03-07T12:42:48.298</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\gdebustamante\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>

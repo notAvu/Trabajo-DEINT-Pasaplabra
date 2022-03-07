@@ -64,6 +64,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             get { return txtBoxRespuestaJugador; }
             set
             {
+
                 txtBoxRespuestaJugador = value;
                 if (checkRespuestaCommand != null)
                 {
@@ -143,7 +144,8 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// <returns></returns>
         private bool CheckRespuestaCommand_CanExecute()
         {
-            return (ComandoHabilitado=!string.IsNullOrWhiteSpace(TxtBoxRespuestaJugador));
+            ComandoHabilitado = !String.IsNullOrEmpty(txtBoxRespuestaJugador);
+            return ComandoHabilitado;
         }
 
         /// <summary>
@@ -237,7 +239,6 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
         /// </summary>
         private void RecargarPregunta()
         {
-            ComandoHabilitado = false;
             int indice = preguntaSeleccionada.Enunciado.IndexOf(":");
             TxtBoxEnunciadoPregunta = preguntaSeleccionada.Enunciado.Substring(indice + 1, preguntaSeleccionada.Enunciado.Length - indice - 1);
             NotifyPropertyChanged("TxtBoxEnunciadoPregunta");
@@ -245,6 +246,7 @@ namespace Trabajo_DEINT_PasapalabraUI.ViewModels
             NotifyPropertyChanged("TxtBoxLetraPregunta");
             TxtBoxRespuestaJugador = "";
             NotifyPropertyChanged("TxtBoxRespuestaJugador");
+
         }
         #endregion
 
