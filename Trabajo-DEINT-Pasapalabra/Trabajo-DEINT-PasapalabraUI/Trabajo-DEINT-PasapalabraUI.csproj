@@ -148,12 +148,19 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Copia de logo1080.png" />
     <Content Include="Assets\Images\fondo_pasapalabra.jpeg" />
     <Content Include="Assets\Images\micro1.png" />
     <Content Include="Assets\Images\micro2.png" />
     <Content Include="Assets\correct.mp3" />
     <Content Include="Assets\Images\volumen.png" />
     <Content Include="Assets\bgMusic.mp3" />
+    <Content Include="Assets\logo chikto.png" />
+    <Content Include="Assets\logo chkito.scale-200.png" />
+    <Content Include="Assets\logo chkito.scale-400.png" />
+    <Content Include="Assets\logo chkito.targetsize-256_altform-lightunplated.png" />
+    <Content Include="Assets\logo1080.png" />
+    <Content Include="Assets\logo300.png" />
     <Content Include="Assets\Wrong.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
