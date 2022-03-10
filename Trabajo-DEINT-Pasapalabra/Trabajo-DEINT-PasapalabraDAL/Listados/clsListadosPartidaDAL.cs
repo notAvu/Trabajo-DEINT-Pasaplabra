@@ -19,7 +19,7 @@ namespace Trabajo_DEINT_PasapalabraDAL.Listados
         {
             instanciarConexion();
             List<clsPartida> listadoPartidas = new List<clsPartida>();
-            ejecutarSelect("SELECT * FROM Partidas ORDER BY(aciertos - fallos), tiempo DESC");
+            ejecutarSelect("SELECT * FROM Partidas ORDER BY(aciertos - fallos) desc, tiempo ASC");
             if (MiLector.HasRows) {
                 while (MiLector.Read())
             {
